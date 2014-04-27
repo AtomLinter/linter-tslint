@@ -1,0 +1,27 @@
+{
+  "name": "linter-tslint",
+  "main": "./lib/init",
+  "linter-package": true,
+  "version": "0.0.1",
+  "description": "Linter plugin for JavaScript, using tslint",
+  "activationEvents": [
+    "linter-tslint:toggle"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AtomLinter/linter-tslint.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {},
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/AtomLinter/linter-tslint/issues"
+  },
+  "homepage": "https://github.com/AtomLinter/linter-tslint",
+  "dist": {
+    "shasum": "ef99bad67e3e7db0dc69d8d379272ef02f4a4a21"
+  }
+}
