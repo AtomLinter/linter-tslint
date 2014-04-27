@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/AtomLinter/linter-tslint.git"
+    "url": "https://github.com/park9140/linter-tslint.git"
   },
   "license": "MIT",
   "engines": {
@@ -18,9 +18,9 @@
   "dependencies": {},
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/AtomLinter/linter-tslint/issues"
+    "url": "https://github.com/park9140/linter-tslint/issues"
   },
-  "homepage": "https://github.com/AtomLinter/linter-tslint",
+  "homepage": "https://github.com/park9140/linter-tslint",
   "dist": {
     "shasum": "ef99bad67e3e7db0dc69d8d379272ef02f4a4a21"
   }
