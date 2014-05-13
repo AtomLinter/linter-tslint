@@ -1,4 +1,4 @@
-linter-jshint
+linter-tslint
 =========================
 
 This linter plugin for AtomLinter provides an interface to [tslint](https://github.com/palantir/tslint). It will be used with files that have the "TypeScript" syntax.
@@ -6,7 +6,7 @@ This linter plugin for AtomLinter provides an interface to [tslint](https://gith
 ## Installation
 Linter package must be installed in order to use this plugin. If Linter is not installed, please follow the instructions [here](https://github.com/AtomLinter/Linter).
 
-### jshint installation
+### tslint installation
 Before using this plugin, you must ensure that `tslint` is installed on your system. To install `tslint`, do the following:
 
 1. Install [Node.js](http://nodejs.org) (and [npm](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) on Linux).
@@ -20,7 +20,7 @@ Before using this plugin, you must ensure that `tslint` is installed on your sys
 
 **Note:** This plugin requires `tslint` 0.4.8 or later.
 
-Now you can proceed to install the linter-jshint plugin.
+Now you can proceed to install the linter-tslint plugin.
 
 ### Plugin installation
 ```
@@ -28,7 +28,7 @@ $ apm install linter-tslint
 ```
 
 ## Settings
-You can configure linter-jshint by editing ~/.atom/config.cson (choose Open Your Config in Atom menu):
+You can configure linter-tslint by editing ~/.atom/config.cson (choose Open Your Config in Atom menu):
 ```
 'linter-tslint':
   'tslintExecutablePath': null #tslint path. run 'which tslint' to find the path
