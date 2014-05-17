@@ -2,6 +2,7 @@ linterPath = atom.packages.getLoadedPackage("linter").path
 Linter = require "#{linterPath}/lib/linter"
 path = require "path"
 exec = (require "child_process").exec
+{Range} = require "atom"
 
 class LinterTslint extends Linter
   # The syntax that the linter handles. May be a string or
@@ -30,7 +31,8 @@ class LinterTslint extends Linter
     messages = messagesUnprocessed.map (message) =>
         message: message.failure,
         line: message.startPosition.line + 1,
-        col: message.startPosition.character,
+        range: new Range([message.startPosition.line, message.startPosition.character],
+            [message.endPosition.line, message.endPosition.character]),
         linter: @linterName,
         level: 'error'
     callback messages
