@@ -21,7 +21,9 @@ class LinterTslint extends Linter
 
   constructor: (editor) ->
     @cwd = path.dirname(editor.getUri())
-    @executablePath = atom.config.get 'linter-tslint.tslintExecutablePath'
+
+    atom.config.observe 'linter-tslint.tslintExecutablePath', (tslintPath) =>
+      @executablePath = tslintPath
 
   getCmd:(filePath) ->
     cmd = super(filePath)
