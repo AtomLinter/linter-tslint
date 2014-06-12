@@ -7,7 +7,7 @@ exec = (require "child_process").exec
 class LinterTslint extends Linter
   # The syntax that the linter handles. May be a string or
   # list/tuple of strings. Names should be all lowercase.
-  @syntax: ['source.ts'] # , 'text.html.twig', 'text.html.erb', 'text.html.ruby']
+  @syntax: ['source.ts']
 
   # A string, list, tuple or callable that returns a string, list or tuple,
   # containing the command line (with arguments) used to lint.
@@ -21,20 +21,28 @@ class LinterTslint extends Linter
 
   constructor: (editor) ->
     @cwd = path.dirname(editor.getUri())
-    @executablePath = atom.config.get 'linter-tslint.tslintExecutablePath'
+
+    atom.config.observe 'linter-tslint.tslintExecutablePath', (tslintPath) =>
+      @executablePath = tslintPath
 
   getCmd:(filePath) ->
     cmd = super(filePath)
 
   processMessage: (message, callback) ->
-    messagesUnprocessed = if typeof message == "object" then [message] else JSON.parse(message || "[]")
+    if typeof message == "object"
+      messagesUnprocessed = [message]
+    else
+      messagesUnprocessed = JSON.parse(message) || []
+
     messages = messagesUnprocessed.map (message) =>
-        message: message.failure,
-        line: message.startPosition.line + 1,
-        range: new Range([message.startPosition.line, message.startPosition.character],
-            [message.endPosition.line, message.endPosition.character]),
-        linter: @linterName,
-        level: 'error'
+      message: message.failure,
+      line: message.startPosition.line + 1,
+      range: new Range(
+        [message.startPosition.line, message.startPosition.character],
+        [message.endPosition.line, message.endPosition.character]),
+      linter: @linterName,
+      level: 'error'
+
     callback messages
 
 module.exports = LinterTslint
