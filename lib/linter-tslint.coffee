@@ -19,6 +19,8 @@ class LinterTslint extends Linter
 
   linterName: 'tslint'
 
+  isNodeExecutable: yes
+
   constructor: (editor) ->
     @cwd = path.dirname(editor.getUri())
 
