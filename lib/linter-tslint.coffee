@@ -31,7 +31,9 @@ class LinterTslint extends Linter
     cmd = super(filePath)
 
   processMessage: (message, callback) ->
-    if typeof message == "object"
+    if Array.isArray(message)
+      messagesUnprocessed = [];
+    else if typeof message == "object"
       messagesUnprocessed = [message]
     else
       messagesUnprocessed = JSON.parse(message) || []
@@ -40,7 +42,7 @@ class LinterTslint extends Linter
       message: message.failure,
       line: message.startPosition.line + 1,
       range: new Range(
-        [message.startPosition.line, message.startPosition.character],
+        [message.startPosition.line, message.startPosition.character == 0 ? 0 : message.startPosition.character - 1],
         [message.endPosition.line, message.endPosition.character]),
       linter: @linterName,
       level: 'error'
