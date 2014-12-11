@@ -5,3 +5,6 @@ tslintPath = path.join __dirname, '..', 'node_modules', 'tslint', 'bin'
 module.exports =
   configDefaults:
     tslintExecutablePath: tslintPath
+
+  activate: ->
+    console.log 'activate linter-tslint'

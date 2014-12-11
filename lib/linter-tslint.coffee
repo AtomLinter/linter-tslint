@@ -22,17 +22,22 @@ class LinterTslint extends Linter
   isNodeExecutable: yes
 
   constructor: (editor) ->
+    super(editor)
+
     @cwd = path.dirname(editor.getUri())
 
     atom.config.observe 'linter-tslint.tslintExecutablePath', (tslintPath) =>
       @executablePath = tslintPath
+
+  destroy: ->
+    atom.config.unobserve 'linter-tslint.tslintExecutablePath'
 
   getCmd:(filePath) ->
     cmd = super(filePath)
 
   processMessage: (message, callback) ->
     if Array.isArray(message)
-      messagesUnprocessed = [];
+      messagesUnprocessed = []
     else if typeof message == "object"
       messagesUnprocessed = [message]
     else
