@@ -2,7 +2,7 @@
   "name": "linter-tslint",
   "main": "./lib/init",
   "linter-package": true,
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Linter plugin for Typescript, using tslint",
   "activationEvents": [
     "linter-tslint:toggle"
