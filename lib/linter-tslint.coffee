@@ -22,6 +22,7 @@ class LinterTslint extends Linter
   isNodeExecutable: yes
 
   constructor: (editor) ->
+    super(editor)
     @cwd = path.dirname(editor.getUri())
 
     @subscriptions.add atom.config.observe 'linter-tslint.tslintExecutablePath', (tslintPath) =>
