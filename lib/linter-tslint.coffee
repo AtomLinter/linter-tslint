@@ -48,10 +48,10 @@ class LinterTslint extends Linter
     messages = messagesUnprocessed.map (message) =>
       message: message.failure,
       line: message.startPosition.line - 1,
-      col: message.startPosition.character,
+      col: message.startPosition.character - 1,
       range: new Range(
-        [message.startPosition.line - 1, message.startPosition.character],
-        [message.endPosition.line - 1, message.endPosition.character]
+        [message.startPosition.line - 1, message.startPosition.character - 1],
+        [message.endPosition.line - 1, message.endPosition.character - 1]
       ),
       linter: @linterName,
       level: 'warning'
