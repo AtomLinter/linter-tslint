@@ -39,7 +39,7 @@ class LinterTslint extends Linter
 
   processMessage: (message, callback) ->
     if Array.isArray(message)
-      messagesUnprocessed = [];
+      messagesUnprocessed = []
     else if typeof message == "object"
       messagesUnprocessed = [message]
     else
@@ -47,11 +47,11 @@ class LinterTslint extends Linter
 
     messages = messagesUnprocessed.map (message) =>
       message: message.failure,
-      line: message.startPosition.line - 1,
-      col: message.startPosition.character - 1,
+      line: message.startPosition.line,
+      col: message.startPosition.character,
       range: new Range(
-        [message.startPosition.line - 1, message.startPosition.character - 1],
-        [message.endPosition.line - 1, message.endPosition.character - 1]
+        [message.startPosition.line, message.startPosition.character],
+        [message.endPosition.line, message.endPosition.character]
       ),
       linter: @linterName,
       level: 'warning'
