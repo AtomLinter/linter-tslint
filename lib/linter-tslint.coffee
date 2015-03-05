@@ -1,5 +1,6 @@
 linterPath = atom.packages.getLoadedPackage("linter").path
 Linter = require "#{linterPath}/lib/linter"
+{findFile} = require "#{linterPath}/lib/utils"
 path = require "path"
 exec = (require "child_process").exec
 {Range} = require "atom"
@@ -11,7 +12,7 @@ class LinterTslint extends Linter
 
   # A string, list, tuple or callable that returns a string, list or tuple,
   # containing the command line (with arguments) used to lint.
-  cmd: 'tslint -t json -f'
+  cmd: ['tslint', '-t', 'json']
 
   executablePath: null
 
@@ -23,7 +24,12 @@ class LinterTslint extends Linter
 
   constructor: (editor) ->
     super(editor)
-    @cwd = path.dirname(editor.getUri())
+
+    config = findFile @cwd, ['tslint.json']
+    if config
+      @cmd = @cmd.concat ['-c', config, '-f']
+    else
+      @cmd = @cmd.concat ['-f']
 
     @subscriptions.add atom.config.observe 'linter-tslint.tslintExecutablePath', (tslintPath) =>
       @executablePath = tslintPath
