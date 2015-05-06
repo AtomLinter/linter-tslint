@@ -4,7 +4,7 @@
   "linter-package": true,
   "version": "0.2.1",
   "description": "Linter plugin for Typescript, using tslint",
-  "activationEvents": [],
+  "activationCommands": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/AtomLinter/linter-tslint.git"
