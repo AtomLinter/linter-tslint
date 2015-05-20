@@ -2,9 +2,9 @@
   "name": "linter-tslint",
   "main": "./lib/init",
   "linter-package": true,
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Linter plugin for Typescript, using tslint",
-  "activationEvents": [],
+  "activationCommands": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/AtomLinter/linter-tslint.git"
@@ -14,7 +14,7 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "tslint": "^0.4.9"
+    "tslint": "^2.1.1"
   },
   "readmeFilename": "README.md",
   "bugs": {
