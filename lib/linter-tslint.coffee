@@ -42,6 +42,8 @@ class LinterTslint extends Linter
       messagesUnprocessed = []
     else if typeof message == "object"
       messagesUnprocessed = [message]
+    else if message == ""
+      messagesUnprocessed = []
     else
       messagesUnprocessed = JSON.parse(message) || []
 
