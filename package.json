@@ -13,7 +13,7 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "tslint": "^2.1.1"
+    "tslint": "^2.4.5"
   },
   "readmeFilename": "README.md",
   "bugs": {
@@ -22,5 +22,12 @@
   "homepage": "https://github.com/AtomLinter/linter-tslint",
   "dist": {
     "shasum": "ef99bad67e3e7db0dc69d8d379272ef02f4a4a21"
+  },
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "1.0.0": "provideLinter"
+      }
+    }
   }
 }
