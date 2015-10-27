@@ -5,7 +5,7 @@ module.exports =
 
   activate: ->
     @subscriptions = new CompositeDisposable
-    @scopes = ['source.ts', 'source.ts.tsx']
+    @scopes = ['source.ts', 'source.tsx']
 
   deactivate: ->
     @subscriptions.dispose()
