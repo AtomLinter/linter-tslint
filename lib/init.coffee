@@ -12,7 +12,7 @@ module.exports =
   activate: ->
     @subscriptions = new CompositeDisposable
     @scopes = ['source.ts', 'source.tsx']
-    @subscriptions.add atom.config.observe 'linter-php.rulesDirectory',
+    @subscriptions.add atom.config.observe 'linter-tslint.rulesDirectory',
       (rulesDirectory) =>
         @rulesDirectory = rulesDirectory
 
