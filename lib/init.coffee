@@ -34,7 +34,7 @@ module.exports =
             {
               type: 'Warning'
               text: "#{failure.getRuleName()} - #{failure.getFailure()}"
-              filePath: failure.getFileName(),
+              filePath: path.normalize failure.getFileName()
               range: [
                 [ startPosition.line, startPosition.character],
                 [ endPosition.line, endPosition.character]]
