@@ -3,9 +3,18 @@ path = require 'path'
 
 module.exports =
 
+  config:
+    rulesDirectory:
+      type: 'string'
+      title: 'Custom rules directory'
+      default: ''
+
   activate: ->
     @subscriptions = new CompositeDisposable
     @scopes = ['source.ts', 'source.tsx']
+    @subscriptions.add atom.config.observe 'linter-php.rulesDirectory',
+      (rulesDirectory) =>
+        @rulesDirectory = rulesDirectory
 
   deactivate: ->
     @subscriptions.dispose()
@@ -23,6 +32,7 @@ module.exports =
         linter = new Linter(filePath, text, {
           formatter: 'json',
           configuration: configuration
+          rulesDirectory: @rulesDirectory || undefined
         });
 
         lintResult = linter.lint()
