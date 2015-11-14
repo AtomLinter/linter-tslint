@@ -33,7 +33,7 @@ module.exports =
         configuration = Linter.findConfiguration(undefined, filePath)
         
         if (rulesDirectory && textEditor.project && textEditor.project.getPaths().length)
-          directory = textEditor.project.getPaths()[0] + '/' + rulesDirectory
+          directory = textEditor.project.getPaths()[0] + path.sep + rulesDirectory
         else
           directory = undefined
         
