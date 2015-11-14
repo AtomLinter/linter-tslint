@@ -1,6 +1,5 @@
 {CompositeDisposable} = require 'atom'
 path = require 'path'
-directory = ''
 rulesDirectory = ''
 
 module.exports =
@@ -32,10 +31,9 @@ module.exports =
         text = textEditor.getText()
         configuration = Linter.findConfiguration(undefined, filePath)
         
+        directory = undefined
         if (rulesDirectory && textEditor.project && textEditor.project.getPaths().length)
           directory = textEditor.project.getPaths()[0] + path.sep + rulesDirectory
-        else
-          directory = undefined
         
         linter = new Linter(filePath, text, {
           formatter: 'json',
