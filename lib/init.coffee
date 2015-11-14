@@ -1,5 +1,7 @@
 {CompositeDisposable} = require 'atom'
 path = require 'path'
+directory = ''
+rulesDirectory = ''
 
 module.exports =
 
@@ -13,8 +15,8 @@ module.exports =
     @subscriptions = new CompositeDisposable
     @scopes = ['source.ts', 'source.tsx']
     @subscriptions.add atom.config.observe 'linter-tslint.rulesDirectory',
-      (rulesDirectory) =>
-        @rulesDirectory = rulesDirectory
+      (dir) =>
+        rulesDirectory = dir
 
   deactivate: ->
     @subscriptions.dispose()
@@ -29,10 +31,16 @@ module.exports =
         filePath = textEditor.getPath()
         text = textEditor.getText()
         configuration = Linter.findConfiguration(undefined, filePath)
+        
+        if (rulesDirectory && textEditor.project && textEditor.project.getPaths().length)
+          directory = textEditor.project.getPaths()[0] + '/' + rulesDirectory
+        else
+          directory = undefined
+        
         linter = new Linter(filePath, text, {
           formatter: 'json',
           configuration: configuration
-          rulesDirectory: @rulesDirectory || undefined
+          rulesDirectory: directory
         });
 
         lintResult = linter.lint()
