@@ -29,12 +29,12 @@ module.exports =
       lint: (textEditor) ->
         filePath = textEditor.getPath()
         text = textEditor.getText()
-        configuration = Linter.findConfiguration(undefined, filePath)
-        
+        configuration = Linter.findConfiguration(null, filePath)
+
         directory = undefined
         if (rulesDirectory && textEditor.project && textEditor.project.getPaths().length)
           directory = textEditor.project.getPaths()[0] + path.sep + rulesDirectory
-        
+
         linter = new Linter(filePath, text, {
           formatter: 'json',
           configuration: configuration
