@@ -11,6 +11,21 @@ Linter package must be installed in order to use this plugin. If Linter is not i
 $ apm install linter-tslint
 ```
 
+### Configuration
+Configuration rules can be defined in atom config like the following as an example.
+```
+"*":
+  "linter-tslint":
+    rules:
+      "variable-name": true
+      quotemark: [
+        true
+        "single"
+        "avoid-escape"
+      ]
+```
+The format of rules is equal to the one in [tslint](https://github.com/palantir/tslint#usage).
+
 ## Contributing
 If you would like to contribute enhancements or fixes, please do the following:
 

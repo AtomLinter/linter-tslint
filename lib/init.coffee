@@ -1,6 +1,7 @@
 {CompositeDisposable} = require 'atom'
 path = require 'path'
 rulesDirectory = ''
+rules = {}
 
 module.exports =
 
@@ -9,6 +10,10 @@ module.exports =
       type: 'string'
       title: 'Custom rules directory'
       default: ''
+    rules:
+      type: 'object'
+      title: 'Rules in configuration'
+      default: {}
 
   activate: ->
     @subscriptions = new CompositeDisposable
@@ -16,6 +21,9 @@ module.exports =
     @subscriptions.add atom.config.observe 'linter-tslint.rulesDirectory',
       (dir) =>
         rulesDirectory = dir
+    @subscriptions.add atom.config.observe 'linter-tslint.rules',
+      (obj) =>
+        rules = obj
 
   deactivate: ->
     @subscriptions.dispose()
@@ -30,6 +38,8 @@ module.exports =
         filePath = textEditor.getPath()
         text = textEditor.getText()
         configuration = Linter.findConfiguration(null, filePath)
+        if (rules)
+          configuration.rules = rules
 
         directory = undefined
         if (rulesDirectory && textEditor.project && textEditor.project.getPaths().length)
