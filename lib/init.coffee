@@ -1,5 +1,6 @@
 {CompositeDisposable} = require 'atom'
 path = require 'path'
+merge = require 'merge'
 rulesDirectory = ''
 rules = {}
 
@@ -39,7 +40,7 @@ module.exports =
         text = textEditor.getText()
         configuration = Linter.findConfiguration(null, filePath)
         if (rules)
-          configuration.rules = rules
+          configuration.rules = merge(configuration.rules, rules)
 
         directory = undefined
         if (rulesDirectory && textEditor.project && textEditor.project.getPaths().length)
