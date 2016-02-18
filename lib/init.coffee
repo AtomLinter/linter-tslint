@@ -14,12 +14,12 @@ module.exports =
     useLocalTslint:
       type: 'boolean'
       title: 'Try using the local tslint package (if exist)'
-      default: false
+      default: true
 
   rulesDirectory: ''
   tslintCache: new Map
   tslintDef: null
-  useLocalTslint: false
+  useLocalTslint: true
 
   activate: ->
     @subscriptions = new CompositeDisposable
