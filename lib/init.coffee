@@ -51,7 +51,7 @@ module.exports =
     new Promise (resolve, reject) =>
       requireResolve TSLINT_MODULE_NAME, { basedir },
         (err, linterPath, pkg) =>
-          if not err and pkd?.version.startsWith('3.')
+          if not err and pkg?.version.startsWith '3.'
             linter = require linterPath
           else
             linter = @tslintDef
