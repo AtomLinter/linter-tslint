@@ -13,7 +13,7 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "tslint": "^3.3.0",
+    "tslint": "^3.4.0",
     "typescript": ">=1.7.5"
   },
   "readmeFilename": "README.md",
