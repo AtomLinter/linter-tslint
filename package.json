@@ -13,6 +13,7 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
+    "resolve": "1.1.7",
     "tslint": "^3.3.0",
     "typescript": ">=1.7.5"
   },
