@@ -15,7 +15,7 @@
   "dependencies": {
     "resolve": "1.1.7",
     "tslint": "^3.3.0",
-    "typescript": ">=1.7.5"
+    "typescript": "^1.8.2"
   },
   "readmeFilename": "README.md",
   "bugs": {
