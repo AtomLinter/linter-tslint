@@ -1,10 +1,10 @@
 linter-tslint
 =========================
 
-This linter plugin for AtomLinter provides an interface to [tslint](https://github.com/palantir/tslint). It will be used with files that have the "TypeScript" syntax.
+This linter plugin for AtomLinter provides an interface to [tslint](https://github.com/palantir/tslint). It will be used with files that have the "TypeScript" or "TypeScriptReact" syntax.
 
 ## Installation
-Linter package must be installed in order to use this plugin. If Linter is not installed, please follow the instructions [here](https://github.com/AtomLinter/Linter).
+On first activation the plugin will install all dependencies automatically, you no longer have to worry about installing Linter.
 
 ### Plugin installation
 ```
