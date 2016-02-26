@@ -22,6 +22,7 @@ module.exports =
   useLocalTslint: true
 
   activate: ->
+    require('atom-package-deps').install('linter-tslint')
     @subscriptions = new CompositeDisposable
     @scopes = ['source.ts', 'source.tsx']
     @subscriptions.add atom.config.observe 'linter-tslint.rulesDirectory',
