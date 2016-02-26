@@ -13,6 +13,7 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
+    "atom-package-deps": "^4.0.1",
     "resolve": "1.1.7",
     "tslint": "^3.5.0",
     "typescript": "^1.8.2"
@@ -25,6 +26,9 @@
   "dist": {
     "shasum": "ef99bad67e3e7db0dc69d8d379272ef02f4a4a21"
   },
+  "package-deps": [
+    "linter"
+  ],
   "providedServices": {
     "linter": {
       "versions": {
