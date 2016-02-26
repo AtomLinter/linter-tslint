@@ -4,6 +4,7 @@ requireResolve = require 'resolve'
 
 TSLINT_MODULE_NAME = 'tslint'
 
+
 module.exports =
 
   config:
