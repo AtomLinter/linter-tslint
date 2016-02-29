@@ -8,15 +8,19 @@
     "type": "git",
     "url": "https://github.com/AtomLinter/linter-tslint.git"
   },
+  "scripts": {
+    "test": "npm run lint",
+    "lint": "coffeelint ./lib"
+  },
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "atom-package-deps": "^4.0.1",
+    "atom-package-deps": "4.0.1",
     "resolve": "1.1.7",
-    "tslint": "^3.5.0",
-    "typescript": "^1.8.2"
+    "tslint": "3.5.0",
+    "typescript": "1.8.2"
   },
   "readmeFilename": "README.md",
   "bugs": {
@@ -35,5 +39,8 @@
         "1.0.0": "provideLinter"
       }
     }
+  },
+  "devDependencies": {
+    "coffeelint": "1.14.2"
   }
 }

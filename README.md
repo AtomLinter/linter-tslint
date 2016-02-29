@@ -1,5 +1,6 @@
 linter-tslint
-=========================
+==============
+[![Build Status](https://travis-ci.org/AtomLinter/linter-tslint.svg?branch=master)](https://travis-ci.org/AtomLinter/linter-tslint)
 
 This linter plugin for AtomLinter provides an interface to [tslint](https://github.com/palantir/tslint). It will be used with files that have the "TypeScript" or "TypeScriptReact" syntax.
 
