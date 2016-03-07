@@ -41,6 +41,6 @@
     }
   },
   "devDependencies": {
-    "coffeelint": "1.14.2"
+    "coffeelint": "1.15.0"
   }
 }
