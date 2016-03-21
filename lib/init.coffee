@@ -1,5 +1,6 @@
 {CompositeDisposable} = require 'atom'
 path = require 'path'
+fs = require 'fs'
 requireResolve = require 'resolve'
 
 TSLINT_MODULE_NAME = 'tslint'
@@ -10,7 +11,7 @@ module.exports =
   config:
     rulesDirectory:
       type: 'string'
-      title: 'Custom rules directory'
+      title: 'Custom rules directory (absolute path)'
       default: ''
     useLocalTslint:
       type: 'boolean'
@@ -28,7 +29,11 @@ module.exports =
     @scopes = ['source.ts', 'source.tsx']
     @subscriptions.add atom.config.observe 'linter-tslint.rulesDirectory',
       (dir) =>
-        @rulesDirectory = dir
+        if dir and path.isAbsolute(dir)
+          fs.stat dir, (err, stats) =>
+            if stats?.isDirectory()
+              @rulesDirectory = dir
+
     @subscriptions.add atom.config.observe 'linter-tslint.useLocalTslint',
       (use) =>
         @tslintCache.clear()
@@ -72,17 +77,24 @@ module.exports =
         text = textEditor.getText()
 
         @getLinter(filePath).then (Linter) =>
-          configuration = Linter.findConfiguration(null, filePath)
+          configurationPath = Linter.findConfigurationPath null, filePath
+          configuration = Linter.loadConfigurationFromPath configurationPath
 
-          directory = undefined
-          if @rulesDirectory and textEditor.project?.getPaths().length
-            directory = path.join textEditor.project.getPaths()[0],
-              @rulesDirectory
+          rulesDirectory = configuration.rulesDirectory
+          if rulesDirectory
+            configurationDir = path.dirname configurationPath
+            if not Array.isArray rulesDirectory
+              rulesDirectory = [rulesDirectory]
+            rulesDirectory = rulesDirectory.map (dir) ->
+              path.join configurationDir, dir
+
+            if @rulesDirectory
+              rulesDirectory.push @rulesDirectory
 
           linter = new Linter filePath, text,
-            formatter: 'json',
+            formatter: 'json'
             configuration: configuration
-            rulesDirectory: directory
+            rulesDirectory: rulesDirectory
 
           lintResult = linter.lint()
 
