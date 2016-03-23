@@ -1,5 +1,11 @@
 # Change Log
 
+## [v0.9.0](https://github.com/AtomLinter/linter-tslint/tree/v0.9.0) (2016-03-23)
+
+- Correct ```rulesDirectory``` resolving. ```rulesDirectory``` from settings have to be an absolute path [47668b81](https://github.com/AtomLinter/linter-tslint/commit/47668b81459113a4478accba64b9a72d18e0b0e8) ([arusakov](https://github.com/arusakov))
+- TypeScript@1.8.9  [d34b74b8](https://github.com/AtomLinter/linter-tslint/commit/d34b74b855217668d6df058e38bc7b7d6a3ddabd) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- tslint@3.6.0  [b2873a02](https://github.com/AtomLinter/linter-tslint/commit/b2873a02415e125738c5ef6b7eda22c38da831f2) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.8.3](https://github.com/AtomLinter/linter-tslint/tree/v0.8.3) (2016-03-02)
 
 - CHANGELOG.md [aecfe6207](https://github.com/AtomLinter/linter-tslint/commit/aecfe6207672d83ecdea3008c79034cc207bc3ea) ([arusakov](https://github.com/arusakov))

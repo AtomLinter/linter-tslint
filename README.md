@@ -12,6 +12,16 @@ On first activation the plugin will install all dependencies automatically, you 
 $ apm install linter-tslint
 ```
 
+## Settings
+You can configure linter-tslint by editing `~/.atom/config.cson` (choose Config... in Atom menu):
+```coffee
+'linter-tslint':
+  # Custom rules directory (absolute path)
+  rulesDirectory: "/path/to/rules"
+  # Try using the local tslint package (if exist)
+  useLocalTslint: true
+```
+
 ## Contributing
 If you would like to contribute enhancements or fixes, please do the following:
 
@@ -28,6 +38,3 @@ Please note that modifications should follow these coding guidelines:
 - Vertical whitespace helps readability, don’t be afraid to use it.
 
 Thank you for helping out!
-
-## Donation
-[![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)
