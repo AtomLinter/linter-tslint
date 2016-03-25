@@ -5,10 +5,16 @@ requireResolve = require 'resolve'
 
 TSLINT_MODULE_NAME = 'tslint'
 
+trim = str -> str.replace /^\s|\s$/g, ''
 
 module.exports =
 
   config:
+    tslintPath:
+      type: 'string'
+      title: ''
+      default: 'Local path or ' +
+        'http url (http:// or https:// schemas) to tslint.json'
     rulesDirectory:
       type: 'string'
       title: 'Custom rules directory (absolute path)'
@@ -21,6 +27,7 @@ module.exports =
   rulesDirectory: ''
   tslintCache: new Map
   tslintDef: null
+  tslintJSON: null
   useLocalTslint: true
 
   activate: ->
@@ -29,15 +36,37 @@ module.exports =
     @scopes = ['source.ts', 'source.tsx']
     @subscriptions.add atom.config.observe 'linter-tslint.rulesDirectory',
       (dir) =>
+        dir = trim dir
+
         if dir and path.isAbsolute(dir)
           fs.stat dir, (err, stats) =>
-            if stats?.isDirectory()
-              @rulesDirectory = dir
+            @rulesDirectory = if stats?.isDirectory() then dir else ''
+          return
+        @rulesDirectory = ''
 
     @subscriptions.add atom.config.observe 'linter-tslint.useLocalTslint',
       (use) =>
         @tslintCache.clear()
         @useLocalTslint = use
+
+    @subscriptions.add atom.config.observe 'linter-tslint.tslintPath',
+      (tslintPath) =>
+        tslintPath = trim tslintPath
+
+        if tslintPath.test /^https?:\/\/.+/
+          fetch(tslintPath)
+            .then(response -> response.json)
+            .then(json => @tslintJSON = json)
+            .catch(err -> return)
+          return
+
+        if path.isAbsolute(tslintPath)
+          fs.stat tslintPath, (err, stats) ->
+            # todo
+
+          return
+
+        @tslintJSON = null
 
   deactivate: ->
     @subscriptions.dispose()
