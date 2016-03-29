@@ -1,5 +1,9 @@
 # Change Log
 
+## [v0.9.1](https://github.com/AtomLinter/linter-tslint/tree/v0.9.0) (2016-03-29)
+
+- Fix for "TypeError: Linter.findConfigurationPath is not a function" [725928f0](https://github.com/AtomLinter/linter-tslint/commit/725928f014752d5e7445380d0c34c2b891ca3c80) ([arusakov](https://github.com/arusakov))
+
 ## [v0.9.0](https://github.com/AtomLinter/linter-tslint/tree/v0.9.0) (2016-03-23)
 
 - Correct ```rulesDirectory``` resolving. ```rulesDirectory``` from settings have to be an absolute path [47668b81](https://github.com/AtomLinter/linter-tslint/commit/47668b81459113a4478accba64b9a72d18e0b0e8) ([arusakov](https://github.com/arusakov))
