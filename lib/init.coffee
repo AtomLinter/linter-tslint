@@ -77,8 +77,8 @@ module.exports =
         text = textEditor.getText()
 
         @getLinter(filePath).then (Linter) =>
-          configurationPath = Linter.findConfigurationPath null, filePath
-          configuration = Linter.loadConfigurationFromPath configurationPath
+          configurationPath = @tslintDef.findConfigurationPath null, filePath
+          configuration = @tslintDef.loadConfigurationFromPath configurationPath
 
           rulesDirectory = configuration.rulesDirectory
           if rulesDirectory
