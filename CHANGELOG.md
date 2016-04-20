@@ -1,6 +1,10 @@
 # Change Log
 
-## [v0.9.1](https://github.com/AtomLinter/linter-tslint/tree/v0.9.0) (2016-03-29)
+## [v0.9.2](https://github.com/AtomLinter/linter-tslint/tree/v0.9.2) (2016-04-20)
+- Fix path resolution for custom rules directories [ec0b98f5](https://github.com/AtomLinter/linter-tslint/commit/ec0b98f5a8fbc2fc4089d44d5d9519020ec05fd8) ([danielmoore](https://github.com/danielmoore))
+- tslint@3.7.4 [a23c915c](https://github.com/AtomLinter/linter-tslint/commit/a23c915c80a1d4ca5271b99c0edf8f9cbd86a517) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
+## [v0.9.1](https://github.com/AtomLinter/linter-tslint/tree/v0.9.1) (2016-03-29)
 
 - Fix for "TypeError: Linter.findConfigurationPath is not a function" [725928f0](https://github.com/AtomLinter/linter-tslint/commit/725928f014752d5e7445380d0c34c2b891ca3c80) ([arusakov](https://github.com/arusakov))
 
