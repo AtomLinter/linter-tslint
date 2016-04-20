@@ -86,7 +86,9 @@ module.exports =
             if not Array.isArray rulesDirectory
               rulesDirectory = [rulesDirectory]
             rulesDirectory = rulesDirectory.map (dir) ->
-              path.join configurationDir, dir
+              if path.isAbsolute dir
+              then dir
+              else path.join configurationDir, dir
 
             if @rulesDirectory
               rulesDirectory.push @rulesDirectory
