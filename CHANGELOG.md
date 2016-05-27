@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.10.0](https://github.com/AtomLinter/linter-tslint/tree/v0.10.0) (2016-05-27)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.9.3...v0.10.0)
+
+**Implemented enhancements:**
+
+- Update tslint to version 3.10.2 🚀 [\#92](https://github.com/AtomLinter/linter-tslint/pull/92) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update tslint to version 3.9.0 🚀 [\#86](https://github.com/AtomLinter/linter-tslint/pull/86) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.9.3](https://github.com/AtomLinter/linter-tslint/tree/v0.9.3) (2016-05-02)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.9.2...v0.9.3)
 
