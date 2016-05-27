@@ -1,6 +1,6 @@
 {
   "name": "linter-tslint",
-  "main": "./lib/init",
+  "main": "./lib/init.coffee",
   "linter-package": true,
   "version": "0.9.3",
   "description": "Linter plugin for Typescript, using tslint",
@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
     "atom-package-deps": "4.0.1",
