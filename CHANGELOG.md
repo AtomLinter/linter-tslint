@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.11.0](https://github.com/AtomLinter/linter-tslint/tree/v0.11.0) (2016-08-01)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.10.0...v0.11.0)
+
+**Implemented enhancements:**
+
+- Could not find the following rules specified in the configuration [\#94](https://github.com/AtomLinter/linter-tslint/issues/94)
+- Update tslint to version 3.14.0 🚀 [\#105](https://github.com/AtomLinter/linter-tslint/pull/105) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update tslint to version 3.13.0 🚀 [\#101](https://github.com/AtomLinter/linter-tslint/pull/101) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update tslint to version 3.12.1 🚀 [\#100](https://github.com/AtomLinter/linter-tslint/pull/100) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update tslint to version 3.11.0 🚀 [\#96](https://github.com/AtomLinter/linter-tslint/pull/96) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.10.0](https://github.com/AtomLinter/linter-tslint/tree/v0.10.0) (2016-05-27)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.9.3...v0.10.0)
 
