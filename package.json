@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "atom-package-deps": "4.0.1",
+    "loophole": "^1.1.0",
     "resolve": "1.1.7",
     "tslint": "3.14.0",
     "typescript": "1.8.10"
