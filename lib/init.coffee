@@ -59,14 +59,16 @@ module.exports =
       requireResolve TSLINT_MODULE_NAME, { basedir },
         (err, linterPath, pkg) =>
           if not err and pkg?.version.startsWith '3.'
-            linter = require linterPath
+            linter = require('loophole').allowUnsafeNewFunction ->
+              require linterPath
           else
             linter = @tslintDef
           @tslintCache.set basedir, linter
           resolve(linter)
 
   provideLinter: ->
-    @tslintDef = require TSLINT_MODULE_NAME
+    @tslintDef = require('loophole').allowUnsafeNewFunction ->
+      require TSLINT_MODULE_NAME
 
     provider =
       grammarScopes: @scopes
