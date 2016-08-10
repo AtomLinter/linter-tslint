@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.11.1](https://github.com/AtomLinter/linter-tslint/tree/v0.11.1) (2016-08-10)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.11.0...v0.11.1)
+
+**Implemented enhancements:**
+
+- Update atom-package-deps to version 4.1.0 🚀 [\#107](https://github.com/AtomLinter/linter-tslint/pull/107) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
+**Fixed bugs:**
+
+- error finding tslint when installed globally [\#102](https://github.com/AtomLinter/linter-tslint/issues/102)
+- Use `loophole` package to to fix \#104 [\#106](https://github.com/AtomLinter/linter-tslint/pull/106) ([guncha](https://github.com/guncha))
+
 ## [v0.11.0](https://github.com/AtomLinter/linter-tslint/tree/v0.11.0) (2016-08-01)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.10.0...v0.11.0)
 

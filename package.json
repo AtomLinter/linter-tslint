@@ -2,7 +2,7 @@
   "name": "linter-tslint",
   "main": "./lib/init.coffee",
   "linter-package": true,
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "Linter plugin for Typescript, using tslint",
   "repository": {
     "type": "git",
