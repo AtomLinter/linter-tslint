@@ -1,6 +1,6 @@
 {
   "name": "linter-tslint",
-  "main": "./lib/init.coffee",
+  "main": "./lib/main.js",
   "linter-package": true,
   "version": "0.11.1",
   "description": "Linter plugin for Typescript, using tslint",
@@ -10,11 +10,23 @@
   },
   "scripts": {
     "test": "apm test",
-    "lint": "coffeelint lib && eslint ."
+    "lint": "eslint ."
   },
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
+  },
+  "configSchema": {
+    "rulesDirectory": {
+      "type": "string",
+      "title": "Custom rules directory (absolute path)",
+      "default": ""
+    },
+    "useLocalTslint": {
+      "type": "boolean",
+      "title": "Try using the local tslint package (if exist)",
+      "default": true
+    }
   },
   "dependencies": {
     "atom-package-deps": "4.3.1",
@@ -42,7 +54,6 @@
     }
   },
   "devDependencies": {
-    "coffeelint": "1.15.7",
     "eslint": "^3.6.0",
     "eslint-config-airbnb-base": "^8.0.0",
     "eslint-plugin-import": "^1.16.0"
