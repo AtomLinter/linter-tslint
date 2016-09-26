@@ -9,8 +9,8 @@
     "url": "https://github.com/AtomLinter/linter-tslint.git"
   },
   "scripts": {
-    "test": "npm run lint",
-    "lint": "coffeelint ./lib"
+    "test": "apm test",
+    "lint": "coffeelint lib && eslint ."
   },
   "license": "MIT",
   "engines": {
@@ -42,6 +42,31 @@
     }
   },
   "devDependencies": {
-    "coffeelint": "1.15.7"
+    "coffeelint": "1.15.7",
+    "eslint": "^3.6.0",
+    "eslint-config-airbnb-base": "^8.0.0",
+    "eslint-plugin-import": "^1.16.0"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "rules": {
+      "global-require": "off",
+      "import/no-unresolved": [
+        "error",
+        {
+          "ignore": [
+            "atom"
+          ]
+        }
+      ]
+    },
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true
+    },
+    "globals": {
+      "atom": true
+    }
   }
 }
