@@ -6,7 +6,7 @@ const validPath = path.join(__dirname, 'fixtures', 'valid', 'valid.ts');
 const invalidPath = path.join(__dirname, 'fixtures', 'invalid', 'invalid.ts');
 
 describe('The TSLint provider for Linter', () => {
-  const lint = require('../lib/init.coffee').provideLinter().lint;
+  const lint = require('../lib/main.js').provideLinter().lint;
 
   beforeEach(() => {
     atom.workspace.destroyActivePaneItem();
