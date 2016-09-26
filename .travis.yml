@@ -1,11 +1,41 @@
-language: node_js
-node_js:
-  - "4.1"
-env:
-  - CXX=g++-4.8
+### Project specific config ###
+language: generic
+
+matrix:
+  include:
+    - os: linux
+      env: ATOM_CHANNEL=stable
+
+    - os: linux
+      env: ATOM_CHANNEL=beta
+
+    - os: osx
+      env: ATOM_CHANNEL=stable
+
+### Generic setup follows ###
+script:
+  - curl -s -O https://raw.githubusercontent.com/atom/ci/master/build-package.sh
+  - chmod u+x build-package.sh
+  - ./build-package.sh
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
+branches:
+  only:
+    - master
+
+git:
+  depth: 10
+
+sudo: false
+
 addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
+    - build-essential
+    - git
+    - libgnome-keyring-dev
+    - fakeroot
