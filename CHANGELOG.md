@@ -1,5 +1,22 @@
 # Change Log
 
+## [v0.12.0](https://github.com/AtomLinter/linter-tslint/tree/v0.12.0) (2016-12-05)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.11.1...v0.12.0)
+
+**Implemented enhancements:**
+
+- TSLint 4.0 support [\#123](https://github.com/AtomLinter/linter-tslint/issues/123)
+- Implement specs [\#48](https://github.com/AtomLinter/linter-tslint/issues/48)
+- Linter version is version locked with plugin version [\#25](https://github.com/AtomLinter/linter-tslint/issues/25)
+- Update ESLint configuration [\#126](https://github.com/AtomLinter/linter-tslint/pull/126) ([Arcanemagus](https://github.com/Arcanemagus))
+- Update for TSLint v4 [\#124](https://github.com/AtomLinter/linter-tslint/pull/124) ([timkendrick](https://github.com/timkendrick))
+- Update typescript to version 2.0.6 🚀 [\#121](https://github.com/AtomLinter/linter-tslint/pull/121) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Rewrite in ES2015 [\#116](https://github.com/AtomLinter/linter-tslint/pull/116) ([Arcanemagus](https://github.com/Arcanemagus))
+- Add basic specs [\#115](https://github.com/AtomLinter/linter-tslint/pull/115) ([Arcanemagus](https://github.com/Arcanemagus))
+- Update typescript to version 2.0.3 🚀 [\#114](https://github.com/AtomLinter/linter-tslint/pull/114) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update atom-package-deps to version 4.3.1 🚀 [\#113](https://github.com/AtomLinter/linter-tslint/pull/113) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update tslint to version 3.15.1 🚀 [\#111](https://github.com/AtomLinter/linter-tslint/pull/111) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.11.1](https://github.com/AtomLinter/linter-tslint/tree/v0.11.1) (2016-08-10)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.11.0...v0.11.1)
 
