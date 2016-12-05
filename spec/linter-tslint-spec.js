@@ -14,7 +14,7 @@ describe('The TSLint provider for Linter', () => {
     waitsForPromise(() =>
       Promise.all([
         atom.packages.activatePackage('linter-tslint'),
-      ])
+      ]),
     );
   });
 
@@ -22,7 +22,7 @@ describe('The TSLint provider for Linter', () => {
     waitsForPromise(() =>
       atom.workspace.open(validPath).then(editor => lint(editor)).then((messages) => {
         expect(messages.length).toBe(0);
-      })
+      }),
     );
   });
 
@@ -36,7 +36,7 @@ describe('The TSLint provider for Linter', () => {
         expect(messages[0].text).toBe(expectedMsg);
         expect(messages[0].filePath).toBe(invalidPath);
         expect(messages[0].range).toEqual([[0, 14], [0, 14]]);
-      })
+      }),
     );
   });
 });
