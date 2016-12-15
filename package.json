@@ -30,9 +30,9 @@
   "dependencies": {
     "atom-package-deps": "4.3.1",
     "loophole": "^1.1.0",
-    "resolve": "1.1.7",
+    "resolve": "1.2.0",
     "tslint": "4.0.2",
-    "typescript": "2.0.6"
+    "typescript": "2.1.4"
   },
   "readmeFilename": "README.md",
   "bugs": {
@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "eslint": "^3.9.1",
-    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-config-airbnb-base": "^11.0.0",
     "eslint-plugin-import": "^2.1.0"
   },
   "eslintConfig": {
