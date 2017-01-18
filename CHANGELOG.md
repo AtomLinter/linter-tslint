@@ -1,6 +1,14 @@
 # Change Log
 
-## [v0.13.0](https://github.com/AtomLinter/linter-tslint/tree/v0.13.0) (2017-01-06)
+## [v0.13.1](https://github.com/AtomLinter/linter-tslint/tree/v0.13.1) (2017-01-17)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.13.0...v0.13.1)
+
+**Implemented enhancements:**
+
+- Update to eslint-config-airbnb-base v11.0.1 [\#132](https://github.com/AtomLinter/linter-tslint/pull/132) ([Arcanemagus](https://github.com/Arcanemagus))
+- Update typescript to the latest version 🚀 [\#131](https://github.com/AtomLinter/linter-tslint/pull/131) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+
+## [v0.13.0](https://github.com/AtomLinter/linter-tslint/tree/v0.13.0) (2017-01-07)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.12.0...v0.13.0)
 
 **Implemented enhancements:**
