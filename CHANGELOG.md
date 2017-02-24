@@ -1,6 +1,16 @@
 # Change Log
 
-## [v0.13.1](https://github.com/AtomLinter/linter-tslint/tree/v0.13.1) (2017-01-17)
+## [v0.14.0](https://github.com/AtomLinter/linter-tslint/tree/v0.14.0) (2017-02-23)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.13.1...v0.14.0)
+
+**Implemented enhancements:**
+
+- Greenkeeper/eslint config airbnb base 11.1.0 [\#141](https://github.com/AtomLinter/linter-tslint/pull/141) ([Arcanemagus](https://github.com/Arcanemagus))
+- fix\(package\): update typescript to version 2.2.1 [\#140](https://github.com/AtomLinter/linter-tslint/pull/140) ([Arcanemagus](https://github.com/Arcanemagus))
+- Remove macOS testing [\#139](https://github.com/AtomLinter/linter-tslint/pull/139) ([Arcanemagus](https://github.com/Arcanemagus))
+- fix\(package\): update tslint to version 4.4.2 [\#138](https://github.com/AtomLinter/linter-tslint/pull/138) ([Arcanemagus](https://github.com/Arcanemagus))
+
+## [v0.13.1](https://github.com/AtomLinter/linter-tslint/tree/v0.13.1) (2017-01-18)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.13.0...v0.13.1)
 
 **Implemented enhancements:**
