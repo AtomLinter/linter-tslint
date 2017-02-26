@@ -30,6 +30,12 @@
       "type": "boolean",
       "title": "Ignore typings files (.d.ts)",
       "default": false
+    },
+    "fixOnSave": {
+      "title": "Fix errors on save",
+      "description": "Have tslint attempt to fix some errors automatically when saving the file.",
+      "type": "boolean",
+      "default": false
     }
   },
   "dependencies": {
