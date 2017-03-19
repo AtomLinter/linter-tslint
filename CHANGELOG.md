@@ -1,6 +1,15 @@
 # Change Log
 
-## [v0.14.0](https://github.com/AtomLinter/linter-tslint/tree/v0.14.0) (2017-02-23)
+## [v0.15.0](https://github.com/AtomLinter/linter-tslint/tree/v0.15.0) (2017-03-19)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.14.0...v0.15.0)
+
+**Implemented enhancements:**
+
+- Update to eslint-config-airbnb-base v11.1.1 [\#147](https://github.com/AtomLinter/linter-tslint/pull/147) ([Arcanemagus](https://github.com/Arcanemagus))
+- Whitelist the Greenkeeper branches [\#146](https://github.com/AtomLinter/linter-tslint/pull/146) ([Arcanemagus](https://github.com/Arcanemagus))
+- fix\(package\): update tslint to version 4.5.1 [\#145](https://github.com/AtomLinter/linter-tslint/pull/145) ([Arcanemagus](https://github.com/Arcanemagus))
+
+## [v0.14.0](https://github.com/AtomLinter/linter-tslint/tree/v0.14.0) (2017-02-24)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.13.1...v0.14.0)
 
 **Implemented enhancements:**
