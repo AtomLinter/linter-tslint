@@ -31,7 +31,7 @@
     "atom-package-deps": "^4.3.1",
     "loophole": "^1.1.0",
     "resolve": "^1.2.0",
-    "tslint": "4.5.1",
+    "tslint": "5.0.0",
     "typescript": "2.2.1"
   },
   "readmeFilename": "README.md",
