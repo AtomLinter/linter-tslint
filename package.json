@@ -25,6 +25,11 @@
       "type": "boolean",
       "title": "Try using the local tslint package (if exist)",
       "default": true
+    },
+    "ignoreTypings": {
+      "type": "boolean",
+      "title": "Ignore typings files (.d.ts)",
+      "default": false
     }
   },
   "dependencies": {
