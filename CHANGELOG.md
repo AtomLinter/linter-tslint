@@ -1,5 +1,21 @@
 # Change Log
 
+## [v1.0.0](https://github.com/AtomLinter/linter-tslint/tree/v1.0.0) (2017-04-13)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.15.0...v1.0.0)
+
+**Implemented enhancements:**
+
+- Reduce activation time [\#154](https://github.com/AtomLinter/linter-tslint/pull/154) ([Arcanemagus](https://github.com/Arcanemagus))
+- fix\(package\): update tslint to version 5.1.0 [\#153](https://github.com/AtomLinter/linter-tslint/pull/153) ([Arcanemagus](https://github.com/Arcanemagus))
+- support tslint@5 [\#151](https://github.com/AtomLinter/linter-tslint/pull/151) ([despairblue](https://github.com/despairblue))
+- Update tslint to the latest version 🚀 [\#150](https://github.com/AtomLinter/linter-tslint/pull/150) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+- Update typescript to the latest version 🚀 [\#148](https://github.com/AtomLinter/linter-tslint/pull/148) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+
+**Merged pull requests:**
+
+- Updating UTs to support both TSLint4 and TSLint5 issues [\#152](https://github.com/AtomLinter/linter-tslint/pull/152) ([Xapphire13](https://github.com/Xapphire13))
+- Adding command to fix TS files + other changes \(see desc.\) [\#149](https://github.com/AtomLinter/linter-tslint/pull/149) ([Xapphire13](https://github.com/Xapphire13))
+
 ## [v0.15.0](https://github.com/AtomLinter/linter-tslint/tree/v0.15.0) (2017-03-19)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.14.0...v0.15.0)
 
