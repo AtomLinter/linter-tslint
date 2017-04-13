@@ -25,6 +25,11 @@
       "type": "boolean",
       "title": "Try using the local tslint package (if exist)",
       "default": true
+    },
+    "ignoreTypings": {
+      "type": "boolean",
+      "title": "Ignore typings files (.d.ts)",
+      "default": false
     }
   },
   "dependencies": {
@@ -32,7 +37,7 @@
     "loophole": "^1.1.0",
     "resolve": "^1.2.0",
     "tslint": "4.5.1",
-    "typescript": "2.2.1"
+    "typescript": "2.2.2"
   },
   "readmeFilename": "README.md",
   "bugs": {
