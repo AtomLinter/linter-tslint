@@ -31,7 +31,7 @@ describe('The TSLint provider for Linter', () => {
     waitsForPromise(() =>
       atom.workspace.open(invalidPath).then(editor => lint(editor)).then((messages) => {
         expect(messages.length).toBe(1);
-        expect(messages[0].type).toBe('Warning');
+        expect(messages[0].type).toBe('warning');
         expect(messages[0].html).not.toBeDefined();
         expect(messages[0].text).toBe(expectedMsg);
         expect(messages[0].filePath).toBe(invalidPath);
