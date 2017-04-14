@@ -40,17 +40,9 @@ describe('The TSLint provider for Linter', () => {
     );
   });
 
-  it('handles null filepath', () => {
-    waitsForPromise(() =>
-      atom.workspace.open(null).then(editor => lint(editor)).then((result) => {
-        expect(result).toBeNull();
-      }),
-    );
-  });
-
   it('handles undefined filepath', () => {
     waitsForPromise(() =>
-      atom.workspace.open(undefined).then(editor => lint(editor)).then((result) => {
+      atom.workspace.open().then(editor => lint(editor)).then((result) => {
         expect(result).toBeNull();
       }),
     );
