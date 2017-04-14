@@ -39,4 +39,12 @@ describe('The TSLint provider for Linter', () => {
       }),
     );
   });
+
+  it('handles undefined filepath', () => {
+    waitsForPromise(() =>
+      atom.workspace.open().then(editor => lint(editor)).then((result) => {
+        expect(result).toBeNull();
+      }),
+    );
+  });
 });
