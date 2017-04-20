@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "atom-package-deps": "^4.3.1",
+    "crypto-random-string": "^1.0.0",
     "loophole": "^1.1.0",
     "resolve": "^1.2.0",
     "tslint": "5.1.0",
