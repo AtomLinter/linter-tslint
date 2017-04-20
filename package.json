@@ -26,6 +26,12 @@
       "title": "Try using the local tslint package (if exist)",
       "default": true
     },
+    "enableSemanticRules": {
+      "type": "boolean",
+      "title": "Enable semantic rules",
+      "description": "Pass a TypeScript program object to the linter. May negatively affect performance. See this page for details: https://palantir.github.io/tslint/usage/type-checking/",
+      "default": false
+    },
     "ignoreTypings": {
       "type": "boolean",
       "title": "Ignore typings files (.d.ts)",
