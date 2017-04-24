@@ -1,3 +1,2 @@
-export default () => {
-  const foo = 42;
-}
+declare const x: boolean;
+x === true;

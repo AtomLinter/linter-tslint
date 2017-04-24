@@ -1,4 +1,2 @@
-export default () => {
-  const foo = 42;
-  return foo;
-}
+declare const x: boolean;
+x;

@@ -1,5 +1,8 @@
 {
+  "linterOptions": {
+    "typeCheck": true
+  },
   "rules": {
-    "no-unused-variable": true
+    "no-boolean-literal-compare": true
   }
 }

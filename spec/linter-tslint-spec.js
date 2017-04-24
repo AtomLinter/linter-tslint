@@ -80,7 +80,7 @@ describe('The TSLint provider for Linter (with semantic rules)', () => {
   });
 
   it('handles messages from TSLint', () => {
-    const expectedMsg = 'no-unused-variable - \'foo\' is declared but never used.';
+    const expectedMsg = 'no-boolean-literal-compare - This expression is unnecessarily compared to a boolean. Just use it directly.';
     waitsForPromise(() =>
       atom.workspace.open(invalidTypecheckedPath).then(editor => lint(editor)).then((messages) => {
         expect(messages.length).toBe(1);
@@ -88,7 +88,7 @@ describe('The TSLint provider for Linter (with semantic rules)', () => {
         expect(messages[0].html).not.toBeDefined();
         expect(messages[0].text).toBe(expectedMsg);
         expect(messages[0].filePath).toBe(invalidTypecheckedPath);
-        expect(messages[0].range).toEqual([[1, 8], [1, 11]]);
+        expect(messages[0].range).toEqual([[1, 0], [1, 1]]);
       }),
     );
   });
