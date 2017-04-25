@@ -29,7 +29,7 @@
     "enableSemanticRules": {
       "type": "boolean",
       "title": "Enable semantic rules",
-      "description": "Pass a TypeScript program object to the linter. May negatively affect performance. See this page for details: https://palantir.github.io/tslint/usage/type-checking/",
+      "description": "Allow passing a TypeScript program object to the linter. May negatively affect performance. See this page for details: https://palantir.github.io/tslint/usage/type-checking/",
       "default": false
     },
     "ignoreTypings": {
