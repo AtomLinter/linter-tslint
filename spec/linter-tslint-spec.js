@@ -2,8 +2,9 @@
 
 import * as path from 'path';
 
-const validPath = path.join(__dirname, 'fixtures', 'valid', 'valid.ts');
 const invalidPath = path.join(__dirname, 'fixtures', 'invalid', 'invalid.ts');
+const noConfigPath = path.join(__dirname, 'fixtures', 'no-config', 'noConfig.ts');
+const validPath = path.join(__dirname, 'fixtures', 'valid', 'valid.ts');
 
 describe('The TSLint provider for Linter', () => {
   const lint = require('../lib/main.js').provideLinter().lint;
@@ -45,6 +46,12 @@ describe('The TSLint provider for Linter', () => {
       atom.workspace.open().then(editor => lint(editor)).then((result) => {
         expect(result).toBeNull();
       }),
+    );
+  });
+
+  it('validates even when there is no tslint.json', () => {
+    waitsForPromise(() =>
+      atom.workspace.open(noConfigPath).then(editor => lint(editor)),
     );
   });
 });
