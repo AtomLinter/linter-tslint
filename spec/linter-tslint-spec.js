@@ -48,3 +48,48 @@ describe('The TSLint provider for Linter', () => {
     );
   });
 });
+
+const validTypecheckedPath = path.join(__dirname, 'fixtures', 'valid-typechecked', 'valid-typechecked.ts');
+const invalidTypecheckedPath = path.join(__dirname, 'fixtures', 'invalid-typechecked', 'invalid-typechecked.ts');
+
+describe('The TSLint provider for Linter (with semantic rules)', () => {
+  const lint = require('../lib/main.js').provideLinter().lint;
+
+  beforeEach(() => {
+    atom.workspace.destroyActivePaneItem();
+
+    waitsForPromise(() =>
+      Promise.all([
+        atom.packages.activatePackage('linter-tslint'),
+      ]),
+    );
+
+    atom.config.set('linter-tslint.enableSemanticRules', true);
+  });
+
+  afterEach(() => {
+    atom.config.set('linter-tslint.enableSemanticRules', false);
+  });
+
+  it('finds nothing wrong with a valid file', () => {
+    waitsForPromise(() =>
+      atom.workspace.open(validTypecheckedPath).then(editor => lint(editor)).then((messages) => {
+        expect(messages.length).toBe(0);
+      }),
+    );
+  });
+
+  it('handles messages from TSLint', () => {
+    const expectedMsg = 'no-boolean-literal-compare - This expression is unnecessarily compared to a boolean. Just use it directly.';
+    waitsForPromise(() =>
+      atom.workspace.open(invalidTypecheckedPath).then(editor => lint(editor)).then((messages) => {
+        expect(messages.length).toBe(1);
+        expect(messages[0].type).toBe('error');
+        expect(messages[0].html).not.toBeDefined();
+        expect(messages[0].text).toBe(expectedMsg);
+        expect(messages[0].filePath).toBe(invalidTypecheckedPath);
+        expect(messages[0].range).toEqual([[1, 0], [1, 1]]);
+      }),
+    );
+  });
+});

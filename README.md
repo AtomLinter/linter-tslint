@@ -20,6 +20,8 @@ You can configure linter-tslint by editing `~/.atom/config.cson` (choose Config.
   rulesDirectory: "/path/to/rules"
   # Try using the local tslint package (if exist)
   useLocalTslint: true
+  # Enable semantic rules
+  enableSemanticRules: true
 ```
 
 ## Contributing
