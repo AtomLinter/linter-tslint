@@ -1,5 +1,22 @@
 # Change Log
 
+## [v1.2.0](https://github.com/AtomLinter/linter-tslint/tree/v1.2.0) (2017-04-25)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.1.0...v1.2.0)
+
+**Implemented enhancements:**
+
+- Performance issues with multiple rules [\#93](https://github.com/AtomLinter/linter-tslint/issues/93)
+- Refactored to perform linting/fixing on async worker task [\#158](https://github.com/AtomLinter/linter-tslint/pull/158) ([Xapphire13](https://github.com/Xapphire13))
+- Pass a program object to the linter to enable type checking [\#157](https://github.com/AtomLinter/linter-tslint/pull/157) ([smockle](https://github.com/smockle))
+
+**Fixed bugs:**
+
+- Fixing bug where the worker thread would hang if there wasn't a tslint.json file [\#160](https://github.com/AtomLinter/linter-tslint/pull/160) ([Xapphire13](https://github.com/Xapphire13))
+
+**Closed issues:**
+
+- Enable type-checking for rules that needs it [\#109](https://github.com/AtomLinter/linter-tslint/issues/109)
+
 ## [v1.1.0](https://github.com/AtomLinter/linter-tslint/tree/v1.1.0) (2017-04-17)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.0.0...v1.1.0)
 
