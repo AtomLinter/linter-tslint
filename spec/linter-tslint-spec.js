@@ -1,6 +1,7 @@
 'use babel';
 
 import * as path from 'path';
+// NOTE: If using 'fit' you must add it to the list below!
 import { beforeEach, it } from 'jasmine-fix'; // eslint-disable-line import/no-extraneous-dependencies
 import linterTslint from '../lib/main';
 
