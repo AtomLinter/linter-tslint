@@ -1,5 +1,16 @@
 # Change Log
 
+## [v1.2.1](https://github.com/AtomLinter/linter-tslint/tree/v1.2.1) (2017-04-26)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.2.0...v1.2.1)
+
+**Fixed bugs:**
+
+- Fixing old reference to this.lint\(\) that was left from refactoring in fix on save [\#163](https://github.com/AtomLinter/linter-tslint/pull/163) ([Xapphire13](https://github.com/Xapphire13))
+
+**Closed issues:**
+
+- Uncaught TypeError: \_this.lint is not a function [\#161](https://github.com/AtomLinter/linter-tslint/issues/161)
+
 ## [v1.2.0](https://github.com/AtomLinter/linter-tslint/tree/v1.2.0) (2017-04-25)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.1.0...v1.2.0)
 
