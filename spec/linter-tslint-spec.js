@@ -28,13 +28,13 @@ describe('The TSLint provider for Linter', () => {
       });
 
       it('handles messages from TSLint', async () => {
-        const expectedMsg = 'semicolon - Missing semicolon';
+        const expectedMsgRegEx = /Missing semicolon \(<a href=".*">semicolon<\/a>\)/;
         const editor = await atom.workspace.open(invalidPath);
         const result = await lint(editor);
         expect(result.length).toBe(1);
         expect(result[0].type).toBe('warning');
-        expect(result[0].html).not.toBeDefined();
-        expect(result[0].text).toBe(expectedMsg);
+        expect(expectedMsgRegEx.test(result[0].html)).toBeTruthy();
+        expect(result[0].text).not.toBeDefined();
         expect(result[0].filePath).toBe(invalidPath);
         expect(result[0].range).toEqual([[0, 14], [0, 14]]);
       });
@@ -67,13 +67,13 @@ describe('The TSLint provider for Linter', () => {
       });
 
       it('handles messages from TSLint', async () => {
-        const expectedMsg = 'no-boolean-literal-compare - This expression is unnecessarily compared to a boolean. Just use it directly.';
+        const expectedMsgRegEx = /This expression is unnecessarily compared to a boolean. Just use it directly. \(<a href=".*">no-boolean-literal-compare<\/a>\)/;
         const editor = await atom.workspace.open(invalidTypecheckedPath);
         const result = await lint(editor);
         expect(result.length).toBe(1);
         expect(result[0].type).toBe('error');
-        expect(result[0].html).not.toBeDefined();
-        expect(result[0].text).toBe(expectedMsg);
+        expect(expectedMsgRegEx.test(result[0].html)).toBeTruthy();
+        expect(result[0].text).not.toBeDefined();
         expect(result[0].filePath).toBe(invalidTypecheckedPath);
         expect(result[0].range).toEqual([[1, 0], [1, 1]]);
       });
