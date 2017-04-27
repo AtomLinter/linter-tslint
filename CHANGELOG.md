@@ -1,15 +1,23 @@
 # Change Log
 
+## [v1.3.0](https://github.com/AtomLinter/linter-tslint/tree/v1.3.0) (2017-04-27)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.2.1...v1.3.0)
+
+**Implemented enhancements:**
+
+- Adding link to rule documentation [\#165](https://github.com/AtomLinter/linter-tslint/pull/165) ([Xapphire13](https://github.com/Xapphire13))
+
+**Fixed bugs:**
+
+- Bumping min Atom version to 1.14.0 [\#164](https://github.com/AtomLinter/linter-tslint/pull/164) ([Xapphire13](https://github.com/Xapphire13))
+
 ## [v1.2.1](https://github.com/AtomLinter/linter-tslint/tree/v1.2.1) (2017-04-26)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.2.0...v1.2.1)
 
 **Fixed bugs:**
 
-- Fixing old reference to this.lint\(\) that was left from refactoring in fix on save [\#163](https://github.com/AtomLinter/linter-tslint/pull/163) ([Xapphire13](https://github.com/Xapphire13))
-
-**Closed issues:**
-
 - Uncaught TypeError: \_this.lint is not a function [\#161](https://github.com/AtomLinter/linter-tslint/issues/161)
+- Fixing old reference to this.lint\(\) that was left from refactoring in fix on save [\#163](https://github.com/AtomLinter/linter-tslint/pull/163) ([Xapphire13](https://github.com/Xapphire13))
 
 ## [v1.2.0](https://github.com/AtomLinter/linter-tslint/tree/v1.2.0) (2017-04-25)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.1.0...v1.2.0)

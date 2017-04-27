@@ -1,7 +1,7 @@
 {
   "name": "linter-tslint",
   "main": "./lib/main.js",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Linter plugin for Typescript, using tslint",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
   },
   "license": "MIT",
   "engines": {
-    "atom": ">=1.0.0 <2.0.0"
+    "atom": ">=1.14.0 <2.0.0"
   },
   "configSchema": {
     "rulesDirectory": {
@@ -47,9 +47,11 @@
   "dependencies": {
     "atom-package-deps": "^4.3.1",
     "crypto-random-string": "^1.0.0",
+    "escape-html": "^1.0.3",
     "loophole": "^1.1.0",
     "resolve": "^1.2.0",
     "tslint": "5.1.0",
+    "tslint-rule-documentation": "^1.0.1",
     "typescript": "2.3.1"
   },
   "readmeFilename": "README.md",
