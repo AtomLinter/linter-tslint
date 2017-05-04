@@ -1,5 +1,21 @@
 # Change Log
 
+## [v1.4.0](https://github.com/AtomLinter/linter-tslint/tree/v1.4.0) (2017-05-04)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.3.0...v1.4.0)
+
+**Implemented enhancements:**
+
+- Update tslint to the latest version 🚀 [\#168](https://github.com/AtomLinter/linter-tslint/pull/168) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+- Update typescript to the latest version 🚀 [\#166](https://github.com/AtomLinter/linter-tslint/pull/166) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+
+**Closed issues:**
+
+- No longer working on Arch [\#162](https://github.com/AtomLinter/linter-tslint/issues/162)
+
+**Merged pull requests:**
+
+- Update typescript to the latest version 🚀 [\#167](https://github.com/AtomLinter/linter-tslint/pull/167) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+
 ## [v1.3.0](https://github.com/AtomLinter/linter-tslint/tree/v1.3.0) (2017-04-27)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.2.1...v1.3.0)
 
