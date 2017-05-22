@@ -50,7 +50,7 @@
     "escape-html": "^1.0.3",
     "loophole": "^1.1.0",
     "resolve": "^1.2.0",
-    "tslint": "5.2.0",
+    "tslint": "5.3.0",
     "tslint-rule-documentation": "^1.0.1",
     "typescript": "2.3.2"
   },
