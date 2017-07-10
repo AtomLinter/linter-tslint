@@ -1,13 +1,25 @@
 # Change Log
 
+## [v1.7.0](https://github.com/AtomLinter/linter-tslint/tree/v1.7.0) (2017-07-10)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.6.0...v1.7.0)
+
+**Implemented enhancements:**
+
+- Update tslint to the latest version 🚀 [\#185](https://github.com/AtomLinter/linter-tslint/pull/185) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update typescript to the latest version 🚀 [\#183](https://github.com/AtomLinter/linter-tslint/pull/183) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
+**Closed issues:**
+
+- Severe performance issues [\#179](https://github.com/AtomLinter/linter-tslint/issues/179)
+
 ## [v1.6.0](https://github.com/AtomLinter/linter-tslint/tree/v1.6.0) (2017-06-06)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.5.0...v1.6.0)
 
 **Implemented enhancements:**
 
-- Update tslint to the latest version 🚀 [\#178](https://github.com/AtomLinter/linter-tslint/pull/178) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
-- Update tslint to the latest version 🚀 [\#176](https://github.com/AtomLinter/linter-tslint/pull/176) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
-- Update typescript to the latest version 🚀 [\#175](https://github.com/AtomLinter/linter-tslint/pull/175) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update tslint to version 5.4.3 🚀 [\#178](https://github.com/AtomLinter/linter-tslint/pull/178) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update tslint to version 5.4.1 🚀 [\#176](https://github.com/AtomLinter/linter-tslint/pull/176) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update typescript to version 2.3.4 🚀 [\#175](https://github.com/AtomLinter/linter-tslint/pull/175) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 - fix\(package\): update tslint to version 5.3.2 [\#173](https://github.com/AtomLinter/linter-tslint/pull/173) ([Xapphire13](https://github.com/Xapphire13))
 
 ## [v1.5.0](https://github.com/AtomLinter/linter-tslint/tree/v1.5.0) (2017-05-23)
