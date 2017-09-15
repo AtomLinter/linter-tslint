@@ -15,7 +15,18 @@
   "engines": {
     "atom": ">=1.14.0 <2.0.0"
   },
+  "enhancedScopes": [
+    "source.ts",
+    "source.tsx",
+    "source.js",
+    "source.js.jsx"
+  ],
   "configSchema": {
+    "javascriptSupport": {
+      "type": "boolean",
+      "title": "Use TSLint with JavaScript Files",
+      "default": true
+    },
     "rulesDirectory": {
       "type": "string",
       "title": "Custom rules directory (absolute path)",
@@ -45,6 +56,8 @@
     }
   },
   "dependencies": {
+    "@keplersj/tslint-server": "^0.2.1",
+    "atom-languageclient": "^0.6.1",
     "atom-package-deps": "^4.3.1",
     "crypto-random-string": "^1.0.0",
     "escape-html": "^1.0.3",
@@ -65,10 +78,10 @@
   "package-deps": [
     "linter"
   ],
-  "providedServices": {
-    "linter": {
+  "consumedServices": {
+    "linter-indie": {
       "versions": {
-        "1.0.0": "provideLinter"
+        "2.0.0": "consumeLinterV2"
       }
     }
   },
@@ -89,7 +102,8 @@
             "atom"
           ]
         }
-      ]
+      ],
+      "class-methods-use-this": false
     },
     "env": {
       "browser": true,
