@@ -13,7 +13,7 @@ const validTypecheckedPath = path.join(__dirname, 'fixtures', 'valid-typechecked
 const invalidTypecheckedPath = path.join(__dirname, 'fixtures', 'invalid-typechecked', 'invalid-typechecked.ts');
 
 describe('The TSLint provider for Linter', () => {
-  const lint = linterTslint.provideLinter().lint;
+  const { lint } = linterTslint.provideLinter();
 
   beforeEach(async () => {
     await atom.packages.activatePackage('linter-tslint');
