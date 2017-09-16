@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "@keplersj/tslint-server": "^0.2.1",
-    "atom-languageclient": "^0.6.1",
+    "atom-languageclient": "^0.6.3",
     "atom-package-deps": "^4.3.1",
     "crypto-random-string": "^1.0.0",
     "escape-html": "^1.0.3",
