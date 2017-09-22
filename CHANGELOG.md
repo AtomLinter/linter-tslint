@@ -1,5 +1,18 @@
 # Change Log
 
+## [v1.8.0](https://github.com/AtomLinter/linter-tslint/tree/v1.8.0) (2017-09-22)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.7.0...v1.8.0)
+
+**Implemented enhancements:**
+
+- Implement feature request \#189 \(Option to use global tslint instance\) [\#196](https://github.com/AtomLinter/linter-tslint/pull/196) ([smhxx](https://github.com/smhxx))
+- Update eslint-config-airbnb-base to version 12.0.0 🚀 [\#195](https://github.com/AtomLinter/linter-tslint/pull/195) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update typescript to version 2.5.2 🚀 [\#194](https://github.com/AtomLinter/linter-tslint/pull/194) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update tslint to version 5.7.0 🚀 [\#191](https://github.com/AtomLinter/linter-tslint/pull/191) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update tslint to version 5.6.0 🚀 [\#188](https://github.com/AtomLinter/linter-tslint/pull/188) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update typescript to version 2.4.2 🚀 [\#186](https://github.com/AtomLinter/linter-tslint/pull/186) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update eslint to version 4.3.0 🚀 [\#182](https://github.com/AtomLinter/linter-tslint/pull/182) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v1.7.0](https://github.com/AtomLinter/linter-tslint/tree/v1.7.0) (2017-07-10)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.6.0...v1.7.0)
 
