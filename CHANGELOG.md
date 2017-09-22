@@ -5,12 +5,8 @@
 
 **Implemented enhancements:**
 
-- Update tslint to the latest version 🚀 [\#185](https://github.com/AtomLinter/linter-tslint/pull/185) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
-- Update typescript to the latest version 🚀 [\#183](https://github.com/AtomLinter/linter-tslint/pull/183) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
-
-**Closed issues:**
-
-- Severe performance issues [\#179](https://github.com/AtomLinter/linter-tslint/issues/179)
+- Update tslint to version 5.5.0 🚀 [\#185](https://github.com/AtomLinter/linter-tslint/pull/185) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update typescript to version 2.4.1 🚀 [\#183](https://github.com/AtomLinter/linter-tslint/pull/183) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 ## [v1.6.0](https://github.com/AtomLinter/linter-tslint/tree/v1.6.0) (2017-06-06)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.5.0...v1.6.0)
@@ -27,7 +23,7 @@
 
 **Implemented enhancements:**
 
-- Update typescript to the latest version 🚀 [\#171](https://github.com/AtomLinter/linter-tslint/pull/171) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update typescript to version 2.3.3 🚀 [\#171](https://github.com/AtomLinter/linter-tslint/pull/171) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 **Fixed bugs:**
 
@@ -38,16 +34,9 @@
 
 **Implemented enhancements:**
 
-- Update tslint to the latest version 🚀 [\#168](https://github.com/AtomLinter/linter-tslint/pull/168) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
-- Update typescript to the latest version 🚀 [\#166](https://github.com/AtomLinter/linter-tslint/pull/166) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
-
-**Closed issues:**
-
-- No longer working on Arch [\#162](https://github.com/AtomLinter/linter-tslint/issues/162)
-
-**Merged pull requests:**
-
-- Update typescript to the latest version 🚀 [\#167](https://github.com/AtomLinter/linter-tslint/pull/167) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update tslint to version 5.2.0 🚀 [\#168](https://github.com/AtomLinter/linter-tslint/pull/168) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update typescript to version 2.3.2 🚀 [\#167](https://github.com/AtomLinter/linter-tslint/pull/167) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update typescript to version 2.3.1 🚀 [\#166](https://github.com/AtomLinter/linter-tslint/pull/166) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 ## [v1.3.0](https://github.com/AtomLinter/linter-tslint/tree/v1.3.0) (2017-04-27)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.2.1...v1.3.0)
@@ -73,6 +62,7 @@
 
 **Implemented enhancements:**
 
+- Enable type-checking for rules that needs it [\#109](https://github.com/AtomLinter/linter-tslint/issues/109)
 - Performance issues with multiple rules [\#93](https://github.com/AtomLinter/linter-tslint/issues/93)
 - Refactored to perform linting/fixing on async worker task [\#158](https://github.com/AtomLinter/linter-tslint/pull/158) ([Xapphire13](https://github.com/Xapphire13))
 - Pass a program object to the linter to enable type checking [\#157](https://github.com/AtomLinter/linter-tslint/pull/157) ([smockle](https://github.com/smockle))
@@ -80,10 +70,6 @@
 **Fixed bugs:**
 
 - Fixing bug where the worker thread would hang if there wasn't a tslint.json file [\#160](https://github.com/AtomLinter/linter-tslint/pull/160) ([Xapphire13](https://github.com/Xapphire13))
-
-**Closed issues:**
-
-- Enable type-checking for rules that needs it [\#109](https://github.com/AtomLinter/linter-tslint/issues/109)
 
 ## [v1.1.0](https://github.com/AtomLinter/linter-tslint/tree/v1.1.0) (2017-04-17)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.0.0...v1.1.0)
@@ -105,11 +91,11 @@
 - Reduce activation time [\#154](https://github.com/AtomLinter/linter-tslint/pull/154) ([Arcanemagus](https://github.com/Arcanemagus))
 - fix\(package\): update tslint to version 5.1.0 [\#153](https://github.com/AtomLinter/linter-tslint/pull/153) ([Arcanemagus](https://github.com/Arcanemagus))
 - support tslint@5 [\#151](https://github.com/AtomLinter/linter-tslint/pull/151) ([despairblue](https://github.com/despairblue))
-- Update tslint to the latest version 🚀 [\#150](https://github.com/AtomLinter/linter-tslint/pull/150) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update tslint to version 5.0.0 🚀 [\#150](https://github.com/AtomLinter/linter-tslint/pull/150) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 - Adding command to fix TS files + other changes \(see desc.\) [\#149](https://github.com/AtomLinter/linter-tslint/pull/149) ([Xapphire13](https://github.com/Xapphire13))
-- Update typescript to the latest version 🚀 [\#148](https://github.com/AtomLinter/linter-tslint/pull/148) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update typescript to version 2.2.2 🚀 [\#148](https://github.com/AtomLinter/linter-tslint/pull/148) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Updating UTs to support both TSLint4 and TSLint5 issues [\#152](https://github.com/AtomLinter/linter-tslint/pull/152) ([Xapphire13](https://github.com/Xapphire13))
 
@@ -138,7 +124,7 @@
 **Implemented enhancements:**
 
 - Update to eslint-config-airbnb-base v11.0.1 [\#132](https://github.com/AtomLinter/linter-tslint/pull/132) ([Arcanemagus](https://github.com/Arcanemagus))
-- Update typescript to the latest version 🚀 [\#131](https://github.com/AtomLinter/linter-tslint/pull/131) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update typescript to version 2.1.5 🚀 [\#131](https://github.com/AtomLinter/linter-tslint/pull/131) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 ## [v0.13.0](https://github.com/AtomLinter/linter-tslint/tree/v0.13.0) (2017-01-07)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v0.12.0...v0.13.0)
