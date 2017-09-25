@@ -1,5 +1,17 @@
 # Change Log
 
+## [v1.8.1](https://github.com/AtomLinter/linter-tslint/tree/v1.8.1) (2017-09-25)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.8.0...v1.8.1)
+
+**Implemented enhancements:**
+
+- Option to use globally-installed tslint [\#189](https://github.com/AtomLinter/linter-tslint/issues/189)
+
+**Fixed bugs:**
+
+- `no-unnecessary-type-assertion` always errors [\#200](https://github.com/AtomLinter/linter-tslint/issues/200)
+- Fix invocation of Linter.createProgram\(\) to use full tsconfig path [\#202](https://github.com/AtomLinter/linter-tslint/pull/202) ([smhxx](https://github.com/smhxx))
+
 ## [v1.8.0](https://github.com/AtomLinter/linter-tslint/tree/v1.8.0) (2017-09-22)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.7.0...v1.8.0)
 
