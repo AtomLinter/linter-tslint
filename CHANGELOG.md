@@ -1,5 +1,18 @@
 # Change Log
 
+## [v1.9.0](https://github.com/AtomLinter/linter-tslint/tree/v1.9.0) (2017-10-20)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.8.1...v1.9.0)
+
+**Implemented enhancements:**
+
+- Update tslint to version 5.8.0 🚀 [\#209](https://github.com/AtomLinter/linter-tslint/pull/209)
+- Update typescript to version 2.5.3 🚀 [\#204](https://github.com/AtomLinter/linter-tslint/pull/204)
+
+**Fixed bugs:**
+
+- Error running TSLint Error: Cannot read property 'findConfigurationPath' of undefined [\#206](https://github.com/AtomLinter/linter-tslint/issues/206)
+- Bugfix: Check that tslint was found in global node_modules before use [\#207](https://github.com/AtomLinter/linter-tslint/pull/207) ([smhxx](https://github.com/smhxx))
+
 ## [v1.8.1](https://github.com/AtomLinter/linter-tslint/tree/v1.8.1) (2017-09-25)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.8.0...v1.8.1)
 
