@@ -1,19 +1,31 @@
-'use babel';
-
-// eslint-disable-next-line import/extensions, import/no-extraneous-dependencies
-import { CompositeDisposable, Task } from 'atom';
-import path from 'path';
-import fs from 'fs';
 import * as workerHelper from './workerHelper';
+import fs from 'fs';
+import path from 'path';
+import { CompositeDisposable, Task, TextEditor } from 'atom';
+import {Config} from "./config";
+
+declare var window: {
+  requestIdleCallback: (callback: Function) => number;
+  cancelIdleCallback: (callbackId: number) => void;
+} & Window;
+
+type Linter = {
+  name: string;
+  grammarScopes: string[];
+  scope: string;
+  lintOnFly: boolean;
+  lint: Function;
+};
 
 const grammarScopes = ['source.ts', 'source.tsx'];
 const editorClass = 'linter-tslint-compatible-editor';
-const idleCallbacks = new Set();
-const config = {
+const idleCallbacks = new Set<number>();
+const config: Config = {
   rulesDirectory: null,
   useLocalTslint: false,
   useGlobalTslint: false,
   globalNodePath: null,
+  enableSemanticRules: false
 };
 
 // Worker still hasn't initialized, since the queued idle callbacks are
@@ -28,9 +40,13 @@ const waitOnIdle = async () =>
     idleCallbacks.add(callbackID);
   });
 
-export default {
-  activate() {
-    let depsCallbackID;
+export default class LinterTsLint {
+  private subscriptions = new CompositeDisposable();
+  private ignoreTypings: boolean;
+  private worker: Task | null;
+
+  public activate(): void {
+    let depsCallbackID: number;
     const lintertslintDeps = () => {
       idleCallbacks.delete(depsCallbackID);
       // Install package dependencies
@@ -39,13 +55,11 @@ export default {
     depsCallbackID = window.requestIdleCallback(lintertslintDeps);
     idleCallbacks.add(depsCallbackID);
 
-    this.subscriptions = new CompositeDisposable();
-
     // Config subscriptions
     this.subscriptions.add(
       atom.config.observe('linter-tslint.rulesDirectory', (dir) => {
         if (dir && path.isAbsolute(dir)) {
-          fs.stat(dir, (err, stats) => {
+          fs.stat(dir, (_err, stats) => {
             if (stats && stats.isDirectory()) {
               config.rulesDirectory = dir;
               workerHelper.changeConfig('rulesDirectory', dir);
@@ -119,29 +133,30 @@ export default {
     );
 
     const createWorkerCallback = window.requestIdleCallback(() => {
-      this.worker = new Task(require.resolve('./worker.js'));
+      this.worker = new Task(require.resolve('./worker.ts'));
       idleCallbacks.delete(createWorkerCallback);
     });
     idleCallbacks.add(createWorkerCallback);
-  },
+  }
 
-  deactivate() {
+  public deactivate(): void {
     idleCallbacks.forEach(callbackID => window.cancelIdleCallback(callbackID));
     idleCallbacks.clear();
     this.subscriptions.dispose();
 
     workerHelper.terminateWorker();
     this.worker = null;
-  },
+  }
 
-  provideLinter() {
+  public provideLinter(): Linter {
     return {
       name: 'TSLint',
       grammarScopes,
       scope: 'file',
       lintOnFly: true,
-      lint: async (textEditor) => {
-        if (this.ignoreTypings && textEditor.getPath().toLowerCase().endsWith('.d.ts')) {
+      lint: async (textEditor: TextEditor) => {
+        const path = textEditor.getPath();
+        if (this.ignoreTypings && path && path.toLowerCase().endsWith('.d.ts')) {
           return [];
         }
 
@@ -149,7 +164,7 @@ export default {
           await waitOnIdle();
         }
 
-        workerHelper.startWorker(this.worker, config);
+        workerHelper.startWorker(this.worker!, config);
 
         const text = textEditor.getText();
         const results = await workerHelper.requestJob('lint', textEditor);
@@ -162,5 +177,5 @@ export default {
         return results;
       },
     };
-  },
+  }
 };

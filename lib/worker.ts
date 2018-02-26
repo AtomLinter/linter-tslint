@@ -1,26 +1,31 @@
-'use babel';
-
-/* global emit */
-
+import ChildProcess from 'child_process';
 import escapeHTML from 'escape-html';
 import fs from 'fs';
-import path from 'path';
-import { getRuleUri } from 'tslint-rule-documentation';
-import ChildProcess from 'child_process';
 import getPath from 'consistent-path';
+import path from 'path';
+import {Config} from "./Config";
+import {getRuleUri} from 'tslint-rule-documentation';
 
 process.title = 'linter-tslint worker';
 
+declare var emit: Function;
+
+type Linter = {};
+
 const tslintModuleName = 'tslint';
 const tslintCache = new Map();
-const config = {
+const config: Config = {
   useLocalTslint: false,
+  enableSemanticRules: false,
+  useGlobalTslint: false,
+  globalNodePath: null,
+  rulesDirectory: null
 };
 
-let fallbackLinter;
-let requireResolve;
+let fallbackLinter: Linter;
+let requireResolve: Function;
 
-function stat(pathname) {
+function stat(pathname: string): Promise<fs.Stats> {
   return new Promise((resolve, reject) => {
     fs.stat(pathname, (err, stats) => {
       if (err) {
@@ -36,31 +41,37 @@ function stat(pathname) {
  * @param {Function} Linter TSLint v3 linter
  * @return {Function} TSLint v4-compatible linter
  */
-function shim(Linter) {
-  function LinterShim(options) {
-    this.options = options;
-    this.results = {};
+function shim(Linter: {new(...args: any[]): any}): {new(options: any): Linter} {
+  class LinterShim {
+    private options: any;
+    private results: {};
+
+    constructor(options: any) {
+      this.options = options;
+      this.results = {};
+    }
+
+    public lint(filePath: string, text: string, configuration: any) {
+      const options = Object.assign({}, this.options, { configuration });
+      const linter = new Linter(filePath, text, options);
+      this.results = linter.lint();
+    }
+
+    getResult() {
+      return this.results;
+    }
   }
 
   // Assign class properties
   Object.assign(LinterShim, Linter);
 
   // Assign instance methods
-  LinterShim.prototype = Object.assign({}, Linter.prototype, {
-    lint(filePath, text, configuration) {
-      const options = Object.assign({}, this.options, { configuration });
-      const linter = new Linter(filePath, text, options);
-      this.results = linter.lint();
-    },
-    getResult() {
-      return this.results;
-    },
-  });
+  LinterShim.prototype = Object.assign({}, Linter.prototype, LinterShim.prototype);
 
   return LinterShim;
 }
 
-function resolveAndCacheLinter(fileDir, moduleDir) {
+function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<any> {
   const basedir = moduleDir || fileDir;
   return new Promise((resolve) => {
     if (!requireResolve) {
@@ -68,15 +79,13 @@ function resolveAndCacheLinter(fileDir, moduleDir) {
     }
     requireResolve(
       tslintModuleName,
-      { basedir },
-      (err, linterPath, pkg) => {
+      {basedir},
+      (err, linterPath: string, pkg) => {
         let linter;
         if (!err && pkg && /^3|4|5\./.test(pkg.version)) {
           if (pkg.version.startsWith('3')) {
-            // eslint-disable-next-line import/no-dynamic-require
             linter = shim(require('loophole').allowUnsafeNewFunction(() => require(linterPath)));
           } else {
-            // eslint-disable-next-line import/no-dynamic-require
             linter = require('loophole').allowUnsafeNewFunction(() => require(linterPath).Linter);
           }
           tslintCache.set(fileDir, linter);
@@ -87,7 +96,7 @@ function resolveAndCacheLinter(fileDir, moduleDir) {
   });
 }
 
-function getNodePrefixPath() {
+function getNodePrefixPath(): Promise<string> {
   return new Promise((resolve, reject) => {
     const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
     ChildProcess.exec(
@@ -104,7 +113,7 @@ function getNodePrefixPath() {
   });
 }
 
-async function getLinter(filePath) {
+async function getLinter(filePath: string) {
   const basedir = path.dirname(filePath);
   if (tslintCache.has(basedir)) {
     return tslintCache.get(basedir);
@@ -156,7 +165,7 @@ async function getLinter(filePath) {
   return fallbackLinter;
 }
 
-async function getProgram(Linter, configurationPath) {
+async function getProgram(Linter: any, configurationPath: string) {
   let program;
   const configurationDir = path.dirname(configurationPath);
   const tsconfigPath = path.resolve(configurationDir, 'tsconfig.json');
@@ -178,7 +187,7 @@ async function getProgram(Linter, configurationPath) {
  * @param options {Object} Linter options
  * @return Array of lint results
  */
-async function lint(content, filePath, options) {
+async function lint(content: string, filePath: string, options) {
   if (filePath === null || filePath === undefined) {
     return null;
   }
@@ -251,13 +260,13 @@ async function lint(content, filePath, options) {
   });
 }
 
-export default async function (initialConfig) {
+export default async function (initialConfig: Config) {
   config.useLocalTslint = initialConfig.useLocalTslint;
   config.enableSemanticRules = initialConfig.enableSemanticRules;
   config.useGlobalTslint = initialConfig.useGlobalTslint;
   config.globalNodePath = initialConfig.globalNodePath;
 
-  process.on('message', async (message) => {
+  process.on('message', async (message: {messageType: string, message: {key: keyof Config, value: any}}) => {
     if (message.messageType === 'config') {
       config[message.message.key] = message.message.value;
 

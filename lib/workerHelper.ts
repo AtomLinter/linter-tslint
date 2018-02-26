@@ -1,24 +1,24 @@
-'use babel';
-
+import {Config} from "./config";
+import {Task, TextEditor} from "atom";
 import cryptoRandomString from 'crypto-random-string';
 
-let workerInstance;
+let workerInstance: Task | null;
 
-export function startWorker(worker, config) {
+export function startWorker(worker: Task, config: Config): void {
   if (workerInstance !== worker) {
     workerInstance = worker;
     workerInstance.start(config);
   }
 }
 
-export function terminateWorker() {
+export function terminateWorker(): void {
   if (workerInstance) {
     workerInstance.terminate();
     workerInstance = null;
   }
 }
 
-export function changeConfig(key, value) {
+export function changeConfig<TKey = keyof Config>(key: TKey, value: any): void {
   if (workerInstance) {
     workerInstance.send({
       messageType: 'config',
@@ -27,11 +27,15 @@ export function changeConfig(key, value) {
   }
 }
 
-export function requestJob(jobType, textEditor) {
+export function requestJob(jobType: string, textEditor: TextEditor): Promise<any> {
   const emitKey = cryptoRandomString(10);
 
   return new Promise((resolve, reject) => {
-    const errSub = workerInstance.on('task:error', (...err) => {
+    if (!workerInstance) {
+      return reject("Worker not started");
+    }
+
+    const errSub = workerInstance.on('task:error', (...err: any[]) => {
       // Re-throw errors from the task
       const error = new Error(err[0]);
       // Set the stack to the one given to us by the worker
