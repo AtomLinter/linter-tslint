@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.9.1](https://github.com/AtomLinter/linter-tslint/tree/v1.9.1) (2018-04-12)
+[Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.9.0...v1.9.1)
+
+**Fixed bugs:**
+
+- Not working at all [OSX] [\#221](https://github.com/AtomLinter/linter-tslint/issues/221) ([Xapphire13](https://github.com/Xapphire13))
+
 ## [v1.9.0](https://github.com/AtomLinter/linter-tslint/tree/v1.9.0) (2017-10-20)
 [Full Changelog](https://github.com/AtomLinter/linter-tslint/compare/v1.8.1...v1.9.0)
 
