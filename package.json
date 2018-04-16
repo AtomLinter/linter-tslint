@@ -1,6 +1,6 @@
 {
   "name": "linter-tslint",
-  "main": "./lib/main.js",
+  "main": "./lib/main.ts",
   "version": "1.7.0",
   "description": "Linter plugin for Typescript, using tslint",
   "repository": {
@@ -57,15 +57,16 @@
   },
   "dependencies": {
     "@keplersj/tslint-server": "^0.2.1",
-    "atom-languageclient": "^0.6.3",
+    "atom-languageclient": "^0.9.5",
     "atom-package-deps": "^4.3.1",
+    "atom-ts-transpiler": "^1.5.2",
     "crypto-random-string": "^1.0.0",
     "escape-html": "^1.0.3",
     "loophole": "^1.1.0",
     "resolve": "^1.2.0",
     "tslint": "5.7.0",
     "tslint-rule-documentation": "^1.0.1",
-    "typescript": "2.5.2"
+    "typescript": "^2.8.1"
   },
   "readmeFilename": "README.md",
   "bugs": {
@@ -86,6 +87,8 @@
     }
   },
   "devDependencies": {
+    "@types/atom": "^1.25.1",
+    "@types/node": "^9.6.5",
     "eslint": "^4.6.0",
     "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
@@ -113,5 +116,16 @@
     "globals": {
       "atom": true
     }
-  }
+  },
+  "atomTranspilers": [
+    {
+      "transpiler": "atom-ts-transpiler",
+      "glob": "{!(node_modules)/**/,}*.ts?(x)",
+      "options": {
+        "compilerOptions": {},
+        "cacheKeyFiles": [],
+        "verbose": false
+      }
+    }
+  ]
 }
