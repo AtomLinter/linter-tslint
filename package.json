@@ -64,7 +64,7 @@
     }
   },
   "dependencies": {
-    "atom-package-deps": "^4.3.1",
+    "atom-package-deps": "^5.0.0",
     "consistent-path": "^2.0.1",
     "crypto-random-string": "^1.0.0",
     "escape-html": "^1.0.3",
