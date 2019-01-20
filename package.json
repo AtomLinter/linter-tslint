@@ -118,5 +118,10 @@
     "globals": {
       "atom": true
     }
+  },
+  "renovate": {
+    "extends": [
+      "config:base"
+    ]
   }
 }
