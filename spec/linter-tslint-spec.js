@@ -1,8 +1,10 @@
 'use babel';
 
 import * as path from 'path';
-// NOTE: If using 'fit' you must add it to the list below!
-import { beforeEach, it } from 'jasmine-fix'; // eslint-disable-line import/no-extraneous-dependencies
+import {
+  // eslint-disable-next-line no-unused-vars
+  it, fit, wait, beforeEach, afterEach,
+} from 'jasmine-fix';
 import linterTslint from '../lib/main';
 
 // Fixture paths
@@ -28,15 +30,16 @@ describe('The TSLint provider for Linter', () => {
       });
 
       it('handles messages from TSLint', async () => {
-        const expectedMsgRegEx = /Missing semicolon \(<a href=".*">semicolon<\/a>\)/;
+        const excerpt = 'Missing semicolon (semicolon)';
         const editor = await atom.workspace.open(invalidPath);
         const result = await lint(editor);
         expect(result.length).toBe(1);
-        expect(result[0].type).toBe('warning');
-        expect(expectedMsgRegEx.test(result[0].html)).toBeTruthy();
-        expect(result[0].text).not.toBeDefined();
-        expect(result[0].filePath).toBe(invalidPath);
-        expect(result[0].range).toEqual([[0, 14], [0, 14]]);
+        expect(result[0].severity).toBe('warning');
+        expect(result[0].excerpt).toBe(excerpt);
+        expect(result[0].url).toBeDefined();
+        expect(result[0].description).not.toBeDefined();
+        expect(result[0].location.file).toBe(invalidPath);
+        expect(result[0].location.position).toEqual([[0, 14], [0, 14]]);
       });
 
       it('handles undefined filepath', async () => {
@@ -67,15 +70,17 @@ describe('The TSLint provider for Linter', () => {
       });
 
       it('handles messages from TSLint', async () => {
-        const expectedMsgRegEx = /This expression is unnecessarily compared to a boolean. Just use it directly. \(<a href=".*">no-boolean-literal-compare<\/a>\)/;
+        const excerpt = 'This expression is unnecessarily compared to a boolean. '
+          + 'Just use it directly. (no-boolean-literal-compare)';
         const editor = await atom.workspace.open(invalidTypecheckedPath);
         const result = await lint(editor);
         expect(result.length).toBe(1);
-        expect(result[0].type).toBe('error');
-        expect(expectedMsgRegEx.test(result[0].html)).toBeTruthy();
-        expect(result[0].text).not.toBeDefined();
-        expect(result[0].filePath).toBe(invalidTypecheckedPath);
-        expect(result[0].range).toEqual([[1, 0], [1, 1]]);
+        expect(result[0].severity).toBe('error');
+        expect(result[0].excerpt).toBe(excerpt);
+        expect(result[0].url).toBeDefined();
+        expect(result[0].description).not.toBeDefined();
+        expect(result[0].location.file).toBe(invalidTypecheckedPath);
+        expect(result[0].location.position).toEqual([[1, 0], [1, 1]]);
       });
     });
   });
