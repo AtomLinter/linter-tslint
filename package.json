@@ -82,12 +82,12 @@
     "shasum": "ef99bad67e3e7db0dc69d8d379272ef02f4a4a21"
   },
   "package-deps": [
-    "linter"
+    "linter:2.0.0"
   ],
   "providedServices": {
     "linter": {
       "versions": {
-        "1.0.0": "provideLinter"
+        "2.0.0": "provideLinter"
       }
     }
   },
