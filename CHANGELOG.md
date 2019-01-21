@@ -1,3 +1,10 @@
+## [1.10.4](https://github.com/AtomLinter/linter-tslint/compare/v1.10.3...v1.10.4) (2019-01-21)
+
+
+### Bug Fixes
+
+* lintsOnChange wasn't defined ([8607b7a](https://github.com/AtomLinter/linter-tslint/commit/8607b7a)), closes [#238](https://github.com/AtomLinter/linter-tslint/issues/238)
+
 ## [1.10.3](https://github.com/AtomLinter/linter-tslint/compare/v1.10.2...v1.10.3) (2019-01-21)
 
 
