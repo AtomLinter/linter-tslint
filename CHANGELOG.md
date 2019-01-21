@@ -1,3 +1,10 @@
+## [1.10.3](https://github.com/AtomLinter/linter-tslint/compare/v1.10.2...v1.10.3) (2019-01-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency typescript to v3 ([20aff96](https://github.com/AtomLinter/linter-tslint/commit/20aff96))
+
 ## [1.10.2](https://github.com/AtomLinter/linter-tslint/compare/v1.10.1...v1.10.2) (2019-01-21)
 
 
