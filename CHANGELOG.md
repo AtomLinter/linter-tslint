@@ -1,3 +1,16 @@
+# [1.10.0](https://github.com/AtomLinter/linter-tslint/compare/v1.9.1...v1.10.0) (2019-01-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tslint to v5.12.1 ([2ac5dd6](https://github.com/AtomLinter/linter-tslint/commit/2ac5dd6))
+* **deps:** update dependency typescript to v2.9.2 ([8f09381](https://github.com/AtomLinter/linter-tslint/commit/8f09381))
+
+
+### Features
+
+* upgrade to linter v2 API ([c626444](https://github.com/AtomLinter/linter-tslint/commit/c626444))
+
 # Change Log
 
 ## [v1.9.1](https://github.com/AtomLinter/linter-tslint/tree/v1.9.1) (2018-04-12)
