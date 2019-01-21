@@ -8,7 +8,6 @@
     "url": "https://github.com/AtomLinter/linter-tslint.git"
   },
   "scripts": {
-    "commitmsg": "commitlint -e $GIT_PARAMS",
     "test": "apm test",
     "lint": "eslint ."
   },
@@ -93,16 +92,16 @@
     }
   },
   "devDependencies": {
-    "@commitlint/cli": "6.1.3",
-    "@commitlint/config-conventional": "6.1.3",
-    "@commitlint/travis-cli": "6.1.3",
-    "@semantic-release/apm-config": "2.0.1",
-    "husky": "0.14.3",
-    "semantic-release": "15.1.7",
+    "@commitlint/cli": "7.3.2",
+    "@commitlint/config-conventional": "7.3.1",
+    "@commitlint/travis-cli": "7.3.2",
+    "@semantic-release/apm-config": "6.0.1",
     "eslint": "4.19.1",
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-plugin-import": "2.9.0",
-    "jasmine-fix": "1.3.1"
+    "husky": "1.3.1",
+    "jasmine-fix": "1.3.1",
+    "semantic-release": "15.13.3"
   },
   "eslintConfig": {
     "extends": "airbnb-base",
@@ -123,6 +122,11 @@
     },
     "globals": {
       "atom": true
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "release": {
