@@ -1,3 +1,10 @@
+## [1.10.6](https://github.com/AtomLinter/linter-tslint/compare/v1.10.5...v1.10.6) (2019-02-06)
+
+
+### Bug Fixes
+
+* **deps:** pin remaining dependencies ([5e00c94](https://github.com/AtomLinter/linter-tslint/commit/5e00c94)), closes [#236](https://github.com/AtomLinter/linter-tslint/issues/236)
+
 ## [1.10.5](https://github.com/AtomLinter/linter-tslint/compare/v1.10.4...v1.10.5) (2019-02-01)
 
 
