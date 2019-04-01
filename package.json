@@ -69,7 +69,7 @@
     "crypto-random-string": "1.0.0",
     "loophole": "1.1.0",
     "resolve": "1.10.0",
-    "tslint": "5.14.0",
+    "tslint": "5.15.0",
     "tslint-rule-documentation": "1.0.3",
     "typescript": "3.4.1"
   },
