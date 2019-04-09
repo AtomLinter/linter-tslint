@@ -1,3 +1,10 @@
+## [1.10.16](https://github.com/AtomLinter/linter-tslint/compare/v1.10.15...v1.10.16) (2019-04-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency crypto-random-string to v2 ([436004b](https://github.com/AtomLinter/linter-tslint/commit/436004b))
+
 ## [1.10.15](https://github.com/AtomLinter/linter-tslint/compare/v1.10.14...v1.10.15) (2019-04-08)
 
 
