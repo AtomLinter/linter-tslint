@@ -1,3 +1,10 @@
+## [1.10.18](https://github.com/AtomLinter/linter-tslint/compare/v1.10.17...v1.10.18) (2019-04-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tslint to v5.16.0 ([366747d](https://github.com/AtomLinter/linter-tslint/commit/366747d))
+
 ## [1.10.17](https://github.com/AtomLinter/linter-tslint/compare/v1.10.16...v1.10.17) (2019-04-10)
 
 

@@ -1,7 +1,7 @@
 {
   "name": "linter-tslint",
   "main": "./lib/main.js",
-  "version": "1.10.17",
+  "version": "1.10.18",
   "description": "Linter plugin for Typescript, using tslint",
   "repository": {
     "type": "git",
