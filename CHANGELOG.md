@@ -1,3 +1,10 @@
+## [1.10.20](https://github.com/AtomLinter/linter-tslint/compare/v1.10.19...v1.10.20) (2019-04-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency atom-package-deps to v5.1.0 ([a61dfd4](https://github.com/AtomLinter/linter-tslint/commit/a61dfd4))
+
 ## [1.10.19](https://github.com/AtomLinter/linter-tslint/compare/v1.10.18...v1.10.19) (2019-04-19)
 
 
