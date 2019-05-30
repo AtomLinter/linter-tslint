@@ -1,3 +1,10 @@
+## [1.10.25](https://github.com/AtomLinter/linter-tslint/compare/v1.10.24...v1.10.25) (2019-05-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tslint to v5.17.0 ([eea1853](https://github.com/AtomLinter/linter-tslint/commit/eea1853))
+
 ## [1.10.24](https://github.com/AtomLinter/linter-tslint/compare/v1.10.23...v1.10.24) (2019-05-29)
 
 
