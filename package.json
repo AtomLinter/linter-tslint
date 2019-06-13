@@ -71,7 +71,7 @@
     "resolve": "1.11.1",
     "tslint": "5.17.0",
     "tslint-rule-documentation": "1.0.3",
-    "typescript": "3.5.1"
+    "typescript": "3.5.2"
   },
   "readmeFilename": "README.md",
   "bugs": {
