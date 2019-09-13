@@ -1,3 +1,14 @@
+## [1.10.29](https://github.com/AtomLinter/linter-tslint/compare/v1.10.28...v1.10.29) (2019-09-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency crypto-random-string to v3 ([a55d069](https://github.com/AtomLinter/linter-tslint/commit/a55d069))
+* correct call to cryptoRandomString ([1013802](https://github.com/AtomLinter/linter-tslint/commit/1013802))
+* **deps:** update dependency resolve to v1.12.0 ([a4d1a7c](https://github.com/AtomLinter/linter-tslint/commit/a4d1a7c))
+* **deps:** update dependency tslint to v5.19.0 ([a8cd6ab](https://github.com/AtomLinter/linter-tslint/commit/a8cd6ab))
+* **deps:** update dependency typescript to v3.6.2 ([f1f12d1](https://github.com/AtomLinter/linter-tslint/commit/f1f12d1))
+
 ## [1.10.28](https://github.com/AtomLinter/linter-tslint/compare/v1.10.27...v1.10.28) (2019-06-21)
 
 
