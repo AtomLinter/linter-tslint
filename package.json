@@ -68,7 +68,7 @@
     "consistent-path": "2.0.3",
     "crypto-random-string": "3.0.1",
     "loophole": "1.1.0",
-    "resolve": "1.14.0",
+    "resolve": "1.14.1",
     "tslint": "5.20.1",
     "tslint-rule-documentation": "1.0.3",
     "typescript": "3.7.3"
