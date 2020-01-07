@@ -1,3 +1,10 @@
+## [1.10.38](https://github.com/AtomLinter/linter-tslint/compare/v1.10.37...v1.10.38) (2020-01-07)
+
+
+### Bug Fixes
+
+* **deps:** update dependency resolve to v1.14.2 ([186040e](https://github.com/AtomLinter/linter-tslint/commit/186040e75626535df8697335e08322de57b16b00))
+
 ## [1.10.37](https://github.com/AtomLinter/linter-tslint/compare/v1.10.36...v1.10.37) (2019-12-21)
 
 
