@@ -1,3 +1,10 @@
+## [1.10.41](https://github.com/AtomLinter/linter-tslint/compare/v1.10.40...v1.10.41) (2020-02-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency typescript to v3.7.5 ([cefe30d](https://github.com/AtomLinter/linter-tslint/commit/cefe30d92bd24c6231d110cdebca165f8014deb6))
+
 ## [1.10.40](https://github.com/AtomLinter/linter-tslint/compare/v1.10.39...v1.10.40) (2020-02-05)
 
 
