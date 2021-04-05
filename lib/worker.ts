@@ -1,5 +1,3 @@
-'use babel';
-
 /* global emit */
 
 import { promises } from 'fs';
@@ -17,15 +15,16 @@ const config = {
   useLocalTslint: false,
 };
 
-let fallbackLinter;
-let requireResolve;
+type TsLintLinter = typeof import("tslint").Linter;
+let fallbackLinter: TsLintLinter;
+let requireResolve: typeof import("resolve");
 
 /**
  * Shim for TSLint v3 interoperability
  * @param {Function} Linter TSLint v3 linter
  * @return {Function} TSLint v4-compatible linter
  */
-function shim(Linter) {
+function shim(Linter: Function): TsLintLinter {
   function LinterShim(options) {
     this.options = options;
     this.results = {};
@@ -50,7 +49,7 @@ function shim(Linter) {
   return LinterShim;
 }
 
-function resolveAndCacheLinter(fileDir, moduleDir) {
+function resolveAndCacheLinter(fileDir: string, moduleDir: string): Promise<TsLintLinter> {
   const basedir = moduleDir || fileDir;
   return new Promise((resolve) => {
     if (!requireResolve) {
@@ -60,7 +59,7 @@ function resolveAndCacheLinter(fileDir, moduleDir) {
       tslintModuleName,
       { basedir },
       (err, linterPath, pkg) => {
-        let linter;
+        let linter: TsLintLinter;
         if (!err && pkg && /^3|4|5\./.test(pkg.version)) {
           if (pkg.version.startsWith('3')) {
             // eslint-disable-next-line import/no-dynamic-require
@@ -77,7 +76,7 @@ function resolveAndCacheLinter(fileDir, moduleDir) {
   });
 }
 
-function getNodePrefixPath() {
+function getNodePrefixPath(): Promise<string> {
   return new Promise((resolve, reject) => {
     const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
     ChildProcess.exec(
@@ -94,7 +93,7 @@ function getNodePrefixPath() {
   });
 }
 
-async function getLinter(filePath) {
+async function getLinter(filePath: string): Promise<TsLintLinter> {
   const basedir = path.dirname(filePath);
   if (tslintCache.has(basedir)) {
     return tslintCache.get(basedir);
@@ -121,7 +120,7 @@ async function getLinter(filePath) {
       }
     }
 
-    let prefix;
+    let prefix: string;
     try {
       prefix = await getNodePrefixPath();
     } catch (err) {
@@ -146,8 +145,10 @@ async function getLinter(filePath) {
   return fallbackLinter;
 }
 
-async function getProgram(Linter, configurationPath) {
-  let program;
+type TsProgram = ReturnType<TsLintLinter["createProgram"]>
+
+async function getProgram(Linter: TsLintLinter, configurationPath: string): TsProgram {
+  let program: TsProgram;
   const configurationDir = path.dirname(configurationPath);
   const tsconfigPath = path.resolve(configurationDir, 'tsconfig.json');
   try {
@@ -173,12 +174,12 @@ function getSeverity(failure) {
  * @param options {Object} Linter options
  * @return Array of lint results
  */
-async function lint(content, filePath, options) {
+async function lint(content: string, filePath: string, options: object) {
   if (filePath === null || filePath === undefined) {
     return null;
   }
 
-  let lintResult;
+  let lintResult: TsLintLinter;
   try {
     const Linter = await getLinter(filePath);
     const configurationPath = Linter.findConfigurationPath(null, filePath);
@@ -202,7 +203,7 @@ async function lint(content, filePath, options) {
       }
     }
 
-    let program;
+    let program: TsProgram;
     if (config.enableSemanticRules && configurationPath) {
       program = await getProgram(Linter, configurationPath);
     }
@@ -250,7 +251,7 @@ async function lint(content, filePath, options) {
   });
 }
 
-export default async function TsLintWorker(initialConfig) {
+export default async function TsLintWorker(initialConfig: object) {
   config.useLocalTslint = initialConfig.useLocalTslint;
   config.enableSemanticRules = initialConfig.enableSemanticRules;
   config.useGlobalTslint = initialConfig.useGlobalTslint;

@@ -1,5 +1,3 @@
-'use babel';
-
 import { CompositeDisposable } from 'atom';
 import path from 'path';
 import { promises } from 'fs';

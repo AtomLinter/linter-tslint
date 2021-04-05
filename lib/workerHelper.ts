@@ -1,5 +1,3 @@
-'use babel';
-
 import { Task } from 'atom';
 import cryptoRandomString from 'crypto-random-string';
 
