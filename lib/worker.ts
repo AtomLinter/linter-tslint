@@ -253,7 +253,7 @@ async function lint(content: string, filePath: string, options: Tslint.ILinterOp
   });
 }
 
-export default async function TsLintWorker(initialConfig: ConfigSchema) {
+async function TsLintWorker(initialConfig: ConfigSchema) {
   config.useLocalTslint = initialConfig.useLocalTslint;
   config.enableSemanticRules = initialConfig.enableSemanticRules;
   config.useGlobalTslint = initialConfig.useGlobalTslint;
@@ -277,3 +277,4 @@ export default async function TsLintWorker(initialConfig: ConfigSchema) {
     }
   });
 }
+module.exports = TsLintWorker; // Atom needs old style export

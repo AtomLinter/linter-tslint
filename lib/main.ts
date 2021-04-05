@@ -2,7 +2,7 @@ import { CompositeDisposable, TextEditor } from 'atom';
 import path from 'path';
 import { promises } from 'fs';
 const { stat } = promises;
-import WorkerHelper from './workerHelper';
+import { WorkerHelper } from './workerHelper';
 export { config } from './config';
 import { defaultConfig } from "./config"
 

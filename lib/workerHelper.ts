@@ -2,7 +2,7 @@ import { Task, TextEditor } from 'atom';
 import type { ConfigSchema } from "./config"
 import cryptoRandomString from 'crypto-random-string';
 
-export default class WorkerHelper {
+export class WorkerHelper {
   workerInstance: Task
   constructor() {
     this.workerInstance = null;
