@@ -642,8 +642,8 @@
         "affectsGlobalScope": false
       },
       "../lib/compat-shim.ts": {
-        "version": "9beed7934c1be9de6795b18c1f46a041ca13cdd18c4f04a00003ed5ac3f154d3",
-        "signature": "4fbb92b73948713415014fd8727b22f4007275b2ef13f64d79bcf6bca1a4c6ee",
+        "version": "9f65bb058759a30e643980435ee2a013c877e0b0b4ab6f76f675d81ac5c89a12",
+        "signature": "ff909562273d0877e7a960d72948e2be40895597ae24a9a93bba93c265251017",
         "affectsGlobalScope": false
       },
       "../lib/config.ts": {
@@ -1067,7 +1067,7 @@
         "affectsGlobalScope": false
       },
       "../lib/worker.ts": {
-        "version": "213678b5832967bea6fdca5dabc83f384bbd218616abd9395c189acba4fd1c32",
+        "version": "dd29d3a4212eeced8a50be8f2d6e24bebf15caf237f4b7cf00302043522f210a",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
         "affectsGlobalScope": false
       },
@@ -2549,15 +2549,7 @@
         [
           {
             "file": "../lib/compat-shim.ts",
-            "start": 267,
-            "length": 7,
-            "messageText": "Parameter 'options' implicitly has an 'any' type.",
-            "category": 1,
-            "code": 7006
-          },
-          {
-            "file": "../lib/compat-shim.ts",
-            "start": 282,
+            "start": 444,
             "length": 4,
             "messageText": "'this' implicitly has type 'any' because it does not have a type annotation.",
             "category": 1,
@@ -2565,7 +2557,7 @@
           },
           {
             "file": "../lib/compat-shim.ts",
-            "start": 310,
+            "start": 472,
             "length": 4,
             "messageText": "'this' implicitly has type 'any' because it does not have a type annotation.",
             "category": 1,
@@ -2573,54 +2565,19 @@
           },
           {
             "file": "../lib/compat-shim.ts",
-            "start": 491,
-            "length": 8,
-            "messageText": "Parameter 'filePath' implicitly has an 'any' type.",
+            "start": 828,
+            "length": 35,
+            "messageText": "'new' expression, whose target lacks a construct signature, implicitly has an 'any' type.",
             "category": 1,
-            "code": 7006
+            "code": 7009
           },
           {
             "file": "../lib/compat-shim.ts",
-            "start": 501,
-            "length": 4,
-            "messageText": "Parameter 'text' implicitly has an 'any' type.",
-            "category": 1,
-            "code": 7006
-          },
-          {
-            "file": "../lib/compat-shim.ts",
-            "start": 507,
-            "length": 13,
-            "messageText": "Parameter 'configuration' implicitly has an 'any' type.",
-            "category": 1,
-            "code": 7006
-          },
-          {
-            "file": "../lib/compat-shim.ts",
-            "start": 607,
-            "length": 6,
-            "code": 2351,
-            "category": 1,
-            "messageText": {
-              "messageText": "This expression is not constructable.",
-              "category": 1,
-              "code": 2351,
-              "next": [
-                {
-                  "messageText": "Type 'Function' has no construct signatures.",
-                  "category": 1,
-                  "code": 2761
-                }
-              ]
-            }
-          },
-          {
-            "file": "../lib/compat-shim.ts",
-            "start": 743,
+            "start": 998,
             "length": 18,
             "code": 2740,
             "category": 1,
-            "messageText": "Type '(options: any) => void' is missing the following properties from type 'typeof Linter': VERSION, findConfiguration, findConfigurationPath, getRulesDirectories, and 3 more."
+            "messageText": "Type '(options: ILinterOptions) => void' is missing the following properties from type 'typeof Linter': VERSION, findConfiguration, findConfigurationPath, getRulesDirectories, and 3 more."
           }
         ]
       ],
@@ -2634,120 +2591,7 @@
         [
           {
             "file": "../lib/worker.ts",
-            "start": 1499,
-            "length": 10,
-            "code": 2345,
-            "category": 1,
-            "messageText": {
-              "messageText": "Argument of type 'string | undefined' is not assignable to parameter of type 'string'.",
-              "category": 1,
-              "code": 2345,
-              "next": [
-                {
-                  "messageText": "Type 'undefined' is not assignable to type 'string'.",
-                  "category": 1,
-                  "code": 2322
-                }
-              ]
-            }
-          },
-          {
-            "file": "../lib/worker.ts",
-            "start": 1705,
-            "length": 10,
-            "code": 2345,
-            "category": 1,
-            "messageText": {
-              "messageText": "Argument of type 'string | undefined' is not assignable to parameter of type 'string'.",
-              "category": 1,
-              "code": 2345,
-              "next": [
-                {
-                  "messageText": "Type 'undefined' is not assignable to type 'string'.",
-                  "category": 1,
-                  "code": 2322
-                }
-              ]
-            }
-          },
-          {
-            "file": "../lib/worker.ts",
-            "start": 1836,
-            "length": 6,
-            "messageText": "Variable 'linter' is used before being assigned.",
-            "category": 1,
-            "code": 2454
-          },
-          {
-            "file": "../lib/worker.ts",
-            "start": 2492,
-            "length": 32,
-            "code": 2322,
-            "category": 1,
-            "messageText": {
-              "messageText": "Type 'typeof Linter | undefined' is not assignable to type 'typeof Linter'.",
-              "category": 1,
-              "code": 2322,
-              "next": [
-                {
-                  "messageText": "Type 'undefined' is not assignable to type 'typeof Linter'.",
-                  "category": 1,
-                  "code": 2322
-                }
-              ]
-            }
-          },
-          {
-            "file": "../lib/worker.ts",
-            "start": 3536,
-            "length": 6,
-            "messageText": "Variable 'prefix' is used before being assigned.",
-            "category": 1,
-            "code": 2454
-          },
-          {
-            "file": "../lib/worker.ts",
-            "start": 4641,
-            "length": 7,
-            "messageText": "Variable 'program' is used before being assigned.",
-            "category": 1,
-            "code": 2454
-          },
-          {
-            "file": "../lib/worker.ts",
-            "start": 4674,
-            "length": 7,
-            "messageText": "Parameter 'failure' implicitly has an 'any' type.",
-            "category": 1,
-            "code": 7006
-          },
-          {
-            "file": "../lib/worker.ts",
-            "start": 6278,
-            "length": 7,
-            "messageText": "Variable 'program' is used before being assigned.",
-            "category": 1,
-            "code": 2454
-          },
-          {
-            "file": "../lib/worker.ts",
-            "start": 6608,
-            "length": 12,
-            "code": 2339,
-            "category": 1,
-            "messageText": "Property 'failureCount' does not exist on type 'LintResult'."
-          },
-          {
-            "file": "../lib/worker.ts",
-            "start": 6720,
-            "length": 9,
-            "code": 2339,
-            "category": 1,
-            "messageText": "Property 'infoCount' does not exist on type 'LintResult'."
-          },
-          {
-            "file": "../lib/worker.ts",
-            "start": 7866,
+            "start": 9647,
             "length": 27,
             "code": 2322,
             "category": 1,
@@ -2766,26 +2610,7 @@
           },
           {
             "file": "../lib/worker.ts",
-            "start": 8227,
-            "length": 8,
-            "code": 2345,
-            "category": 1,
-            "messageText": {
-              "messageText": "Argument of type 'string | undefined' is not assignable to parameter of type 'string'.",
-              "category": 1,
-              "code": 2345,
-              "next": [
-                {
-                  "messageText": "Type 'undefined' is not assignable to type 'string'.",
-                  "category": 1,
-                  "code": 2322
-                }
-              ]
-            }
-          },
-          {
-            "file": "../lib/worker.ts",
-            "start": 8253,
+            "start": 10034,
             "length": 4,
             "messageText": "'emit' cannot be used as a value because it was imported using 'import type'.",
             "category": 1,

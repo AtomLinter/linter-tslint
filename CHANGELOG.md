@@ -1,3 +1,13 @@
+## [1.11.1](https://github.com/AtomLinter/linter-tslint/compare/v1.11.0...v1.11.1) (2021-04-05)
+
+
+### Bug Fixes
+
+* accessing failure private property ([dd4d646](https://github.com/AtomLinter/linter-tslint/commit/dd4d6464b0c34dee21f163ef252561acec83cb82))
+* add extends manually if Tslint fails to do so ([f20ac36](https://github.com/AtomLinter/linter-tslint/commit/f20ac3659e27f79f6ba46fdd0d0709c731edf332))
+* fix the null-ness, types, and bugs in worker ([290dd0e](https://github.com/AtomLinter/linter-tslint/commit/290dd0ece787eaf897c637a9f83605252379e668))
+* load tslint dynamically ([c2189f7](https://github.com/AtomLinter/linter-tslint/commit/c2189f74d8873fab023cd82a3aa63923406fcd99))
+
 # [1.11.0](https://github.com/AtomLinter/linter-tslint/compare/v1.10.43...v1.11.0) (2021-04-05)
 
 
