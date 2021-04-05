@@ -13,6 +13,7 @@ import type { emit } from 'node:cluster';
 import type * as Tslint from "tslint";
 import type * as Ts from "typescript";
 import type { JobMessage, ConfigMessage } from "./workerHelper"
+import { RuleFailure } from 'tslint';
 
 process.title = 'linter-tslint worker';
 
@@ -24,7 +25,7 @@ let fallbackLinter: typeof Tslint.Linter;
 let requireResolve: typeof import("resolve");
 
 
-function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typeof Tslint.Linter> {
+function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typeof Tslint.Linter | undefined> {
   const basedir = moduleDir || fileDir;
   return new Promise((resolve) => {
     if (!requireResolve) {
@@ -34,8 +35,8 @@ function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typ
       tslintModuleName,
       { basedir },
       (err, linterPath, pkg) => {
-        let linter: typeof Tslint.Linter;
-        if (!err && pkg && /^3|4|5|6\./.test(pkg.version)) {
+        let linter: typeof Tslint.Linter | undefined = undefined;
+        if (!err && linterPath !== undefined && pkg && /^3|4|5|6\./.test(pkg.version)) {
           if (pkg.version.startsWith('3')) {
             // eslint-disable-next-line import/no-dynamic-require
             linter = shim(require('loophole').allowUnsafeNewFunction(() => require(linterPath) as typeof import("tslint")));
@@ -43,7 +44,7 @@ function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typ
             // eslint-disable-next-line import/no-dynamic-require
             linter = require('loophole').allowUnsafeNewFunction(() => (require(linterPath) as typeof import("tslint")).Linter);
           }
-          tslintCache.set(fileDir, linter);
+          tslintCache.set(fileDir, linter!);
         }
         resolve(linter);
       },
@@ -68,7 +69,7 @@ function getNodePrefixPath(): Promise<string> {
   });
 }
 
-async function getLinter(filePath: string): Promise<typeof Tslint.Linter> {
+async function getLinter(filePath: string): Promise<typeof Tslint.Linter | undefined> {
   const basedir = path.dirname(filePath);
   if (tslintCache.has(basedir)) {
     return tslintCache.get(basedir);
@@ -95,7 +96,7 @@ async function getLinter(filePath: string): Promise<typeof Tslint.Linter> {
       }
     }
 
-    let prefix: string;
+    let prefix: string | undefined = undefined;
     try {
       prefix = await getNodePrefixPath();
     } catch (err) {
@@ -120,8 +121,8 @@ async function getLinter(filePath: string): Promise<typeof Tslint.Linter> {
   return fallbackLinter;
 }
 
-async function getProgram(Linter: typeof Tslint.Linter, configurationPath: string): Promise<Ts.Program> {
-  let program: Ts.Program;
+async function getProgram(Linter: typeof Tslint.Linter, configurationPath: string): Promise<Ts.Program | undefined> {
+  let program: Ts.Program | undefined = undefined;
   const configurationDir = path.dirname(configurationPath);
   const tsconfigPath = path.resolve(configurationDir, 'tsconfig.json');
   try {
@@ -135,9 +136,49 @@ async function getProgram(Linter: typeof Tslint.Linter, configurationPath: strin
   return program;
 }
 
-function getSeverity(failure) {
-  const severity = failure.ruleSeverity.toLowerCase();
+function getSeverity(failure: RuleFailure) {
+  const severity = failure["ruleSeverity"].toLowerCase();
   return ['info', 'warning', 'error'].includes(severity) ? severity : 'warning';
+}
+
+let tslint: undefined | typeof import("tslint")
+
+function loadTslintConfig(Linter: typeof Tslint.Linter, filePath: string) {
+  let configurationPath: string | undefined
+  let configuration: Tslint.Configuration.IConfigurationFile | undefined
+  if (typeof Linter.findConfiguration === "function") {
+    const { path, results } = Linter.findConfiguration(null, filePath)
+    configurationPath = path
+    configuration = results
+  } else {
+    configurationPath = Linter.findConfigurationPath(null, filePath);
+    configuration = Linter.loadConfigurationFromPath(configurationPath);
+  }
+  // Load extends using `require` - this is a bug in Tslint
+  let configExtends = configuration?.extends ?? []
+  if (configurationPath !== undefined && configExtends !== undefined && configExtends.length === 0) {
+    try {
+      if (!tslint) {
+        tslint = require("tslint") as typeof import("tslint")
+      }
+      const configurationJson = tslint.Configuration.readConfigurationFile?.(configurationPath)
+      const extendsJson  = configurationJson.extends
+      if (typeof extendsJson === "string") {
+        configExtends = [...configExtends, extendsJson]
+      } else if (extendsJson !== undefined) {
+        configExtends = [...configExtends, ...extendsJson]
+      }
+    } catch { /* ignore error */ }
+  }
+  return {
+    configurationPath,
+    configuration: configuration !== undefined
+    ? {
+      ...configuration,
+      extends: configExtends
+    }
+    : configuration
+  }
 }
 
 /**
@@ -147,7 +188,7 @@ function getSeverity(failure) {
  * @param options {Object} Linter options
  * @return Array of lint results
  */
-async function lint(content: string, filePath: string, options: Tslint.ILinterOptions) {
+async function lint(content: string, filePath: string | undefined, options: Tslint.ILinterOptions) {
   if (filePath === null || filePath === undefined) {
     return null;
   }
@@ -155,10 +196,12 @@ async function lint(content: string, filePath: string, options: Tslint.ILinterOp
   let lintResult: Tslint.LintResult;
   try {
     const Linter = await getLinter(filePath);
-    const configurationPath = Linter.findConfigurationPath(null, filePath);
-    const configuration = Linter.loadConfigurationFromPath(configurationPath);
+    if (!Linter) {
+      throw new Error(`tslint was not found for ${filePath}`)
+    }
+    const { configurationPath, configuration } = loadTslintConfig(Linter, filePath)
 
-    let { rulesDirectory } = configuration;
+    let rulesDirectory = configuration?.rulesDirectory;
     if (rulesDirectory && configurationPath) {
       const configurationDir = path.dirname(configurationPath);
       if (!Array.isArray(rulesDirectory)) {
@@ -176,7 +219,7 @@ async function lint(content: string, filePath: string, options: Tslint.ILinterOp
       }
     }
 
-    let program: Ts.Program;
+    let program: Ts.Program | undefined = undefined;
     if (config.enableSemanticRules && configurationPath) {
       program = await getProgram(Linter, configurationPath);
     }
@@ -196,11 +239,11 @@ async function lint(content: string, filePath: string, options: Tslint.ILinterOp
 
   if (
     // tslint@<5
-    !lintResult.failureCount
+    !(lintResult as any).failureCount
     // tslint@>=5
     && !lintResult.errorCount
     && !lintResult.warningCount
-    && !lintResult.infoCount
+    && !(lintResult as any).infoCount // TODO is this still supported?
   ) {
     return [];
   }
