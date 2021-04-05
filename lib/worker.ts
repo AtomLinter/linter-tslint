@@ -6,6 +6,8 @@ import path from 'path';
 import { getRuleUri } from 'tslint-rule-documentation';
 import ChildProcess from 'child_process';
 import getPath from 'consistent-path';
+import { shim } from "./compat-shim";
+import { defaultConfig } from "./config"
 import type { ConfigSchema } from "./config"
 import type { emit } from 'node:cluster';
 import type * as Tslint from "tslint";
@@ -16,42 +18,11 @@ process.title = 'linter-tslint worker';
 
 const tslintModuleName = 'tslint';
 const tslintCache = new Map<string, typeof Tslint.Linter>();
-const config: ConfigSchema = {
-  useLocalTslint: false,
-};
+const config: ConfigSchema = { ...defaultConfig } // copy of default config
 
 let fallbackLinter: typeof Tslint.Linter;
 let requireResolve: typeof import("resolve");
 
-/**
- * Shim for TSLint v3 interoperability
- * @param {Function} Linter TSLint v3 linter
- * @return {Function} TSLint v4-compatible linter
- */
-function shim(Linter: Function): typeof Tslint.Linter {
-  function LinterShim(options) {
-    this.options = options;
-    this.results = {};
-  }
-
-  // Assign class properties
-  Object.assign(LinterShim, Linter);
-
-  // Assign instance methods
-  LinterShim.prototype = {
-    ...Linter.prototype,
-    lint(filePath, text, configuration) {
-      const options = { ...this.options, configuration };
-      const linter = new Linter(filePath, text, options);
-      this.results = linter.lint();
-    },
-    getResult() {
-      return this.results;
-    },
-  };
-
-  return LinterShim;
-}
 
 function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typeof Tslint.Linter> {
   const basedir = moduleDir || fileDir;
@@ -234,7 +205,7 @@ async function lint(content: string, filePath: string, options: Tslint.ILinterOp
     return [];
   }
 
-  return lintResult["failures"].map((failure: Tslint.RuleFailure) => {
+  return lintResult.failures.map((failure: Tslint.RuleFailure) => {
     const ruleUri = getRuleUri(failure.getRuleName());
     const startPosition = failure.getStartPosition().getLineAndCharacter();
     const endPosition = failure.getEndPosition().getLineAndCharacter();
@@ -261,6 +232,7 @@ async function TsLintWorker(initialConfig: ConfigSchema) {
 
   process.on('message', async (message: JobMessage | ConfigMessage) => {
     if (message.messageType === 'config') {
+      // set the config for the worker
       config[message.message.key] = message.message.value;
 
       if (message.message.key === 'useLocalTslint') {
