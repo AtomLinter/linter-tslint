@@ -51,7 +51,7 @@ function shim(Linter: Function): TsLintLinter {
   return LinterShim;
 }
 
-function resolveAndCacheLinter(fileDir: string, moduleDir: string): Promise<TsLintLinter> {
+function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<TsLintLinter> {
   const basedir = moduleDir || fileDir;
   return new Promise((resolve) => {
     if (!requireResolve) {
