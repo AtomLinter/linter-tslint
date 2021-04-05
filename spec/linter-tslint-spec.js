@@ -2,7 +2,7 @@
 
 import * as path from 'path';
 import { it, beforeEach, afterEach } from 'jasmine-fix';
-import linterTslint from '../lib/main';
+import linterTslint from '../dist/main';
 
 // Fixture paths
 const invalidPath = path.join(__dirname, 'fixtures', 'invalid', 'invalid.ts');

@@ -1,6 +1,6 @@
 {
   "name": "linter-tslint",
-  "main": "./lib/main.js",
+  "main": "./dist/main.js",
   "version": "1.10.43",
   "description": "Linter plugin for Typescript, using tslint",
   "repository": {
@@ -12,7 +12,12 @@
     "test.format": "prettier . --check",
     "lint": "eslint . --fix",
     "test.lint": "eslint .",
-    "test": "atom --test spec"
+    "test": "npm run build && atom --test spec",
+    "clean": "shx rm -rf dist",
+    "dev": "npm run build -- --watch",
+    "build": "tsc -p lib/tsconfig.json || echo done",
+    "build-commit": "build-commit -o dist",
+    "prepare": "npm run build"
   },
   "license": "MIT",
   "engines": {
@@ -101,9 +106,11 @@
     "@types/atom": "^1.40.10",
     "@types/node": "^14.14.37",
     "@types/resolve": "^1.20.0",
+    "build-commit": "^0.1.4",
     "eslint": "7.23.0",
     "eslint-config-atomic": "^1.12.5",
-    "jasmine-fix": "1.3.1"
+    "jasmine-fix": "1.3.1",
+    "shx": "^0.3.3"
   },
   "eslintConfig": {
     "extends": "eslint-config-atomic"
