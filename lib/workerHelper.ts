@@ -1,6 +1,7 @@
 import { Task, TextEditor } from 'atom';
 import type { ConfigSchema } from "./config"
 import cryptoRandomString from 'crypto-random-string';
+import type * as Tslint from "tslint";
 
 export class WorkerHelper {
   workerInstance: Task
@@ -35,7 +36,7 @@ export class WorkerHelper {
     }
   }
 
-  async requestJob(jobType: string, textEditor: TextEditor) {
+  async requestJob(jobType: string, textEditor: TextEditor): Promise<Tslint.LintResult[]> {
     if (!this.workerInstance) {
       throw new Error("Worker hasn't started");
     }
@@ -51,7 +52,7 @@ export class WorkerHelper {
         reject(error);
       });
 
-      const responseSub = this.workerInstance.on(emitKey, (data) => {
+      const responseSub = this.workerInstance.on(emitKey, (data: Tslint.LintResult[]) => {
         errSub.dispose();
         responseSub.dispose();
         resolve(data);
