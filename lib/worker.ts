@@ -10,6 +10,7 @@ import type { ConfigSchema } from "./config"
 import type { emit } from 'node:cluster';
 import type * as Tslint from "tslint";
 import type * as Ts from "typescript";
+import type { JobMessage, ConfigMessage } from "./workerHelper"
 
 process.title = 'linter-tslint worker';
 
@@ -258,7 +259,7 @@ export default async function TsLintWorker(initialConfig: ConfigSchema) {
   config.useGlobalTslint = initialConfig.useGlobalTslint;
   config.globalNodePath = initialConfig.globalNodePath;
 
-  process.on('message', async (message) => {
+  process.on('message', async (message: JobMessage | ConfigMessage) => {
     if (message.messageType === 'config') {
       config[message.message.key] = message.message.value;
 

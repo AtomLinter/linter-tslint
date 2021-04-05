@@ -1,4 +1,4 @@
-import { Task } from 'atom';
+import { Task, TextEditor } from 'atom';
 import type { ConfigSchema } from "./config"
 import cryptoRandomString from 'crypto-random-string';
 
@@ -26,16 +26,16 @@ export default class WorkerHelper {
     }
   }
 
-  changeConfig(key, value) {
+  changeConfig(key: string, value: any) {
     if (this.workerInstance) {
       this.workerInstance.send({
         messageType: 'config',
         message: { key, value },
-      });
+      } as ConfigMessage);
     }
   }
 
-  requestJob(jobType, textEditor) {
+  requestJob(jobType: string, textEditor: TextEditor) {
     if (!this.workerInstance) {
       throw new Error("Worker hasn't started");
     }
@@ -66,10 +66,28 @@ export default class WorkerHelper {
             content: textEditor.getText(),
             filePath: textEditor.getPath(),
           },
-        });
+        } as JobMessage);
       } catch (e) {
         reject(e);
       }
     });
+  }
+}
+
+export type ConfigMessage = {
+  messageType: 'config',
+  message: {
+    key: string,
+    value: any,
+  }
+}
+
+export type JobMessage = {
+  messageType: 'job',
+  message: {
+    emitKey: string,
+    jobType: string,
+    content: ReturnType<TextEditor["getText"]>,
+    filePath: ReturnType<TextEditor["getPath"]>,
   }
 }
