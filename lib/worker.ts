@@ -13,6 +13,7 @@ import type { emit } from 'node:cluster';
 import type * as Tslint from "tslint";
 import type * as Ts from "typescript";
 import type { JobMessage, ConfigMessage } from "./workerHelper"
+import { RuleFailure } from 'tslint';
 
 process.title = 'linter-tslint worker';
 
@@ -135,8 +136,8 @@ async function getProgram(Linter: typeof Tslint.Linter, configurationPath: strin
   return program;
 }
 
-function getSeverity(failure) {
-  const severity = failure.ruleSeverity.toLowerCase();
+function getSeverity(failure: RuleFailure) {
+  const severity = failure["ruleSeverity"].toLowerCase();
   return ['info', 'warning', 'error'].includes(severity) ? severity : 'warning';
 }
 
