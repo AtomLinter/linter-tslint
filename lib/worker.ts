@@ -8,6 +8,8 @@ import ChildProcess from 'child_process';
 import getPath from 'consistent-path';
 import type { ConfigSchema } from "./config"
 import type { emit } from 'node:cluster';
+import type * as Tslint from "tslint";
+import type * as Ts from "typescript";
 
 process.title = 'linter-tslint worker';
 
@@ -17,8 +19,7 @@ const config: ConfigSchema = {
   useLocalTslint: false,
 };
 
-type TsLintLinter = typeof import("tslint").Linter;
-let fallbackLinter: TsLintLinter;
+let fallbackLinter: Tslint.Linter;
 let requireResolve: typeof import("resolve");
 
 /**
@@ -26,7 +27,7 @@ let requireResolve: typeof import("resolve");
  * @param {Function} Linter TSLint v3 linter
  * @return {Function} TSLint v4-compatible linter
  */
-function shim(Linter: Function): TsLintLinter {
+function shim(Linter: Function): Tslint.Linter {
   function LinterShim(options) {
     this.options = options;
     this.results = {};
@@ -51,7 +52,7 @@ function shim(Linter: Function): TsLintLinter {
   return LinterShim;
 }
 
-function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<TsLintLinter> {
+function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<Tslint.Linter> {
   const basedir = moduleDir || fileDir;
   return new Promise((resolve) => {
     if (!requireResolve) {
@@ -61,7 +62,7 @@ function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<TsL
       tslintModuleName,
       { basedir },
       (err, linterPath, pkg) => {
-        let linter: TsLintLinter;
+        let linter: Tslint.Linter;
         if (!err && pkg && /^3|4|5\./.test(pkg.version)) {
           if (pkg.version.startsWith('3')) {
             // eslint-disable-next-line import/no-dynamic-require
@@ -95,7 +96,7 @@ function getNodePrefixPath(): Promise<string> {
   });
 }
 
-async function getLinter(filePath: string): Promise<TsLintLinter> {
+async function getLinter(filePath: string): Promise<Tslint.Linter> {
   const basedir = path.dirname(filePath);
   if (tslintCache.has(basedir)) {
     return tslintCache.get(basedir);
@@ -147,10 +148,8 @@ async function getLinter(filePath: string): Promise<TsLintLinter> {
   return fallbackLinter;
 }
 
-type TsProgram = ReturnType<TsLintLinter["createProgram"]>
-
-async function getProgram(Linter: TsLintLinter, configurationPath: string): TsProgram {
-  let program: TsProgram;
+async function getProgram(Linter: Tslint.Linter, configurationPath: string): Promise<Ts.Program> {
+  let program: Ts.Program;
   const configurationDir = path.dirname(configurationPath);
   const tsconfigPath = path.resolve(configurationDir, 'tsconfig.json');
   try {
@@ -176,12 +175,12 @@ function getSeverity(failure) {
  * @param options {Object} Linter options
  * @return Array of lint results
  */
-async function lint(content: string, filePath: string, options: object) {
+async function lint(content: string, filePath: string, options: Tslint.ILinterOptions) {
   if (filePath === null || filePath === undefined) {
     return null;
   }
 
-  let lintResult: TsLintLinter;
+  let lintResult: Tslint.Linter;
   try {
     const Linter = await getLinter(filePath);
     const configurationPath = Linter.findConfigurationPath(null, filePath);
@@ -205,16 +204,16 @@ async function lint(content: string, filePath: string, options: object) {
       }
     }
 
-    let program: TsProgram;
+    let program: Ts.Program;
     if (config.enableSemanticRules && configurationPath) {
       program = await getProgram(Linter, configurationPath);
     }
 
-    const linter = new Linter(({
+    const linter = new Linter({
       formatter: 'json',
       rulesDirectory,
       ...options,
-    }), program);
+    }, program);
 
     linter.lint(filePath, content, configuration);
     lintResult = linter.getResult();
@@ -234,7 +233,7 @@ async function lint(content: string, filePath: string, options: object) {
     return [];
   }
 
-  return lintResult.failures.map((failure) => {
+  return lintResult["failures"].map((failure: Tslint.RuleFailure) => {
     const ruleUri = getRuleUri(failure.getRuleName());
     const startPosition = failure.getStartPosition().getLineAndCharacter();
     const endPosition = failure.getEndPosition().getLineAndCharacter();
