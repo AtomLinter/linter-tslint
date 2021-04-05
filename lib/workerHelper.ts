@@ -35,12 +35,12 @@ export class WorkerHelper {
     }
   }
 
-  requestJob(jobType: string, textEditor: TextEditor) {
+  async requestJob(jobType: string, textEditor: TextEditor) {
     if (!this.workerInstance) {
       throw new Error("Worker hasn't started");
     }
 
-    const emitKey = cryptoRandomString({ length: 10 });
+    const emitKey = await cryptoRandomString.async({ length: 10 });
 
     return new Promise((resolve, reject) => {
       const errSub = this.workerInstance.on('task:error', (...err) => {
