@@ -1,41 +1,36 @@
-'use babel';
-
-// eslint-disable-next-line import/extensions, import/no-extraneous-dependencies
-import { CompositeDisposable } from 'atom';
+import { CompositeDisposable, TextEditor } from 'atom';
 import path from 'path';
-import fs from 'fs';
-import WorkerHelper from './workerHelper';
+import { promises } from 'fs';
+const { stat } = promises;
+import { WorkerHelper } from './workerHelper';
+export { config } from './config';
+import { defaultConfig } from "./config"
 
 const grammarScopes = ['source.ts', 'source.tsx'];
 const editorClass = 'linter-tslint-compatible-editor';
 const idleCallbacks = new Set();
-const config = {
-  rulesDirectory: null,
-  useLocalTslint: false,
-  useGlobalTslint: false,
-  globalNodePath: null,
-};
+const config = defaultConfig;
 
 // Worker still hasn't initialized, since the queued idle callbacks are
 // done in order, waiting on a newly queued idle callback will ensure that
 // the worker has been initialized
-const waitOnIdle = async () => new Promise((resolve) => {
-  const callbackID = window.requestIdleCallback(() => {
-    idleCallbacks.delete(callbackID);
-    resolve();
+function waitOnIdle() {
+  return new Promise((resolve) => {
+    const callbackID = window.requestIdleCallback(() => {
+      idleCallbacks.delete(callbackID);
+      resolve(true);
+    });
+    idleCallbacks.add(callbackID);
   });
-  idleCallbacks.add(callbackID);
-});
+};
 
-export default {
+const TsLintPackage = {
   activate() {
-    let depsCallbackID;
-    const lintertslintDeps = () => {
+    const depsCallbackID = window.requestIdleCallback(() => {
       idleCallbacks.delete(depsCallbackID);
       // Install package dependencies
       require('atom-package-deps').install('linter-tslint');
-    };
-    depsCallbackID = window.requestIdleCallback(lintertslintDeps);
+    });
     idleCallbacks.add(depsCallbackID);
 
     this.subscriptions = new CompositeDisposable();
@@ -43,14 +38,13 @@ export default {
 
     // Config subscriptions
     this.subscriptions.add(
-      atom.config.observe('linter-tslint.rulesDirectory', (dir) => {
+      atom.config.observe('linter-tslint.rulesDirectory', async (dir) => {
         if (dir && path.isAbsolute(dir)) {
-          fs.stat(dir, (err, stats) => {
-            if (stats && stats.isDirectory()) {
-              config.rulesDirectory = dir;
-              this.workerHelper.changeConfig('rulesDirectory', dir);
-            }
-          });
+          const stats = await stat(dir);
+          if (stats && stats.isDirectory()) {
+            config.rulesDirectory = dir;
+            this.workerHelper.changeConfig('rulesDirectory', dir);
+          }
         }
       }),
       atom.config.observe('linter-tslint.useLocalTslint', (use) => {
@@ -144,7 +138,7 @@ export default {
       grammarScopes,
       scope: 'file',
       lintsOnChange: true,
-      lint: async (textEditor) => {
+      lint: async (textEditor: TextEditor) => {
         if (this.ignoreTypings && textEditor.getPath().toLowerCase().endsWith('.d.ts')) {
           return [];
         }
@@ -167,3 +161,4 @@ export default {
     };
   },
 };
+export default TsLintPackage;

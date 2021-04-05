@@ -1,6 +1,6 @@
 {
   "name": "linter-tslint",
-  "main": "./lib/main.js",
+  "main": "./dist/main.js",
   "version": "1.10.43",
   "description": "Linter plugin for Typescript, using tslint",
   "repository": {
@@ -8,70 +8,30 @@
     "url": "https://github.com/AtomLinter/linter-tslint.git"
   },
   "scripts": {
-    "test": "apm test",
-    "lint": "eslint ."
+    "format": "prettier --write .",
+    "test.format": "prettier . --check",
+    "lint": "eslint . --fix",
+    "test.lint": "eslint .",
+    "test": "npm run build && atom --test spec",
+    "clean": "shx rm -rf dist",
+    "dev": "npm run build -- --watch",
+    "build": "tsc -p lib/tsconfig.json || echo done",
+    "build-commit": "build-commit -o dist",
+    "prepare": "npm run build"
   },
   "license": "MIT",
   "engines": {
     "atom": ">=1.14.0 <2.0.0"
   },
-  "configSchema": {
-    "enableSemanticRules": {
-      "type": "boolean",
-      "title": "Enable semantic rules",
-      "description": "Allow passing a TypeScript program object to the linter. May negatively affect performance. See this page for details: https://palantir.github.io/tslint/usage/type-checking/",
-      "default": false,
-      "order": 1
-    },
-    "rulesDirectory": {
-      "type": "string",
-      "title": "Custom rules directory (absolute path)",
-      "default": "",
-      "order": 2
-    },
-    "fixOnSave": {
-      "title": "Fix errors on save",
-      "description": "Have tslint attempt to fix some errors automatically when saving the file.",
-      "type": "boolean",
-      "default": false,
-      "order": 3
-    },
-    "ignoreTypings": {
-      "type": "boolean",
-      "title": "Ignore typings files (.d.ts)",
-      "default": false,
-      "order": 4
-    },
-    "useLocalTslint": {
-      "type": "boolean",
-      "title": "Try to use the project's local tslint package, if it exists",
-      "default": true,
-      "order": 5
-    },
-    "useGlobalTslint": {
-      "type": "boolean",
-      "title": "Use the global tslint install",
-      "description": "If enabled, the global tslint installation will be used as a fallback, instead of the version packaged with linter-tslint.",
-      "default": false,
-      "order": 6
-    },
-    "globalNodePath": {
-      "type": "string",
-      "title": "Global node installation path",
-      "description": "The location of your global npm install. (Will default to `npm get prefix`.)",
-      "default": "",
-      "order": 7
-    }
-  },
   "dependencies": {
-    "atom-package-deps": "5.1.0",
+    "atom-package-deps": "7.2.3",
     "consistent-path": "2.0.3",
-    "crypto-random-string": "3.1.0",
+    "crypto-random-string": "3.3.1",
     "loophole": "1.1.0",
-    "resolve": "1.15.1",
+    "resolve": "1.20.0",
     "tslint": "5.20.1",
     "tslint-rule-documentation": "1.0.3",
-    "typescript": "3.8.2"
+    "typescript": "4.2.3"
   },
   "readmeFilename": "README.md",
   "bugs": {
@@ -82,7 +42,10 @@
     "shasum": "ef99bad67e3e7db0dc69d8d379272ef02f4a4a21"
   },
   "package-deps": [
-    "linter:2.0.0"
+    {
+      "name": "linter",
+      "minimumVersion": "3.3.0"
+    }
   ],
   "providedServices": {
     "linter": {
@@ -92,54 +55,16 @@
     }
   },
   "devDependencies": {
-    "@commitlint/cli": "8.3.5",
-    "@commitlint/config-conventional": "8.3.4",
-    "@commitlint/travis-cli": "8.3.5",
-    "@semantic-release/apm-config": "8.0.0",
-    "eslint": "6.8.0",
-    "eslint-config-airbnb-base": "14.0.0",
-    "eslint-plugin-import": "2.20.1",
-    "husky": "4.2.3",
+    "@types/atom": "^1.40.10",
+    "@types/node": "^14.14.37",
+    "@types/resolve": "^1.20.0",
+    "build-commit": "^0.1.4",
+    "eslint": "7.23.0",
+    "eslint-config-atomic": "^1.12.5",
     "jasmine-fix": "1.3.1",
-    "semantic-release": "17.0.4"
+    "shx": "^0.3.3"
   },
   "eslintConfig": {
-    "extends": "airbnb-base",
-    "rules": {
-      "global-require": "off",
-      "import/no-unresolved": [
-        "error",
-        {
-          "ignore": [
-            "atom"
-          ]
-        }
-      ]
-    },
-    "env": {
-      "browser": true,
-      "node": true
-    },
-    "globals": {
-      "atom": true
-    }
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "release": {
-    "extends": "@semantic-release/apm-config"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "renovate": {
-    "extends": [
-      "config:base"
-    ]
+    "extends": "eslint-config-atomic"
   }
 }

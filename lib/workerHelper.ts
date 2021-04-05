@@ -1,19 +1,18 @@
-'use babel';
-
-// eslint-disable-next-line import/extensions, import/no-extraneous-dependencies
-import { Task } from 'atom';
+import { Task, TextEditor } from 'atom';
+import type { ConfigSchema } from "./config"
 import cryptoRandomString from 'crypto-random-string';
 
-export default class WorkerHelper {
+export class WorkerHelper {
+  workerInstance: Task
   constructor() {
     this.workerInstance = null;
   }
 
   isRunning() {
-    return !!this.workerInstance;
+    return Boolean(this.workerInstance);
   }
 
-  startWorker(config) {
+  startWorker(config: ConfigSchema) {
     if (!this.workerInstance) {
       this.workerInstance = new Task(require.resolve('./worker.js'));
       this.workerInstance.start(config);
@@ -27,21 +26,21 @@ export default class WorkerHelper {
     }
   }
 
-  changeConfig(key, value) {
+  changeConfig(key: string, value: any) {
     if (this.workerInstance) {
       this.workerInstance.send({
         messageType: 'config',
         message: { key, value },
-      });
+      } as ConfigMessage);
     }
   }
 
-  requestJob(jobType, textEditor) {
+  async requestJob(jobType: string, textEditor: TextEditor) {
     if (!this.workerInstance) {
       throw new Error("Worker hasn't started");
     }
 
-    const emitKey = cryptoRandomString({ length: 10 });
+    const emitKey = await cryptoRandomString.async({ length: 10 });
 
     return new Promise((resolve, reject) => {
       const errSub = this.workerInstance.on('task:error', (...err) => {
@@ -67,10 +66,28 @@ export default class WorkerHelper {
             content: textEditor.getText(),
             filePath: textEditor.getPath(),
           },
-        });
+        } as JobMessage);
       } catch (e) {
         reject(e);
       }
     });
+  }
+}
+
+export type ConfigMessage = {
+  messageType: 'config',
+  message: {
+    key: string,
+    value: any,
+  }
+}
+
+export type JobMessage = {
+  messageType: 'job',
+  message: {
+    emitKey: string,
+    jobType: string,
+    content: ReturnType<TextEditor["getText"]>,
+    filePath: ReturnType<TextEditor["getPath"]>,
   }
 }

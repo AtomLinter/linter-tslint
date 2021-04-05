@@ -1,11 +1,8 @@
 'use babel';
 
 import * as path from 'path';
-import {
-  // eslint-disable-next-line no-unused-vars
-  it, fit, wait, beforeEach, afterEach,
-} from 'jasmine-fix';
-import linterTslint from '../lib/main';
+import { it, beforeEach, afterEach } from 'jasmine-fix';
+import linterTslint from '../dist/main';
 
 // Fixture paths
 const invalidPath = path.join(__dirname, 'fixtures', 'invalid', 'invalid.ts');

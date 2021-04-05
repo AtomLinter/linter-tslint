@@ -1,41 +1,34 @@
-'use babel';
-
 /* global emit */
 
-import fs from 'fs';
+import { promises } from 'fs';
+const { stat } = promises;
 import path from 'path';
 import { getRuleUri } from 'tslint-rule-documentation';
 import ChildProcess from 'child_process';
 import getPath from 'consistent-path';
+import type { ConfigSchema } from "./config"
+import type { emit } from 'node:cluster';
+import type * as Tslint from "tslint";
+import type * as Ts from "typescript";
+import type { JobMessage, ConfigMessage } from "./workerHelper"
 
 process.title = 'linter-tslint worker';
 
 const tslintModuleName = 'tslint';
-const tslintCache = new Map();
-const config = {
+const tslintCache = new Map<string, typeof Tslint.Linter>();
+const config: ConfigSchema = {
   useLocalTslint: false,
 };
 
-let fallbackLinter;
-let requireResolve;
-
-function stat(pathname) {
-  return new Promise((resolve, reject) => {
-    fs.stat(pathname, (err, stats) => {
-      if (err) {
-        return reject(err);
-      }
-      return resolve(stats);
-    });
-  });
-}
+let fallbackLinter: typeof Tslint.Linter;
+let requireResolve: typeof import("resolve");
 
 /**
  * Shim for TSLint v3 interoperability
  * @param {Function} Linter TSLint v3 linter
  * @return {Function} TSLint v4-compatible linter
  */
-function shim(Linter) {
+function shim(Linter: Function): typeof Tslint.Linter {
   function LinterShim(options) {
     this.options = options;
     this.results = {};
@@ -60,7 +53,7 @@ function shim(Linter) {
   return LinterShim;
 }
 
-function resolveAndCacheLinter(fileDir, moduleDir) {
+function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typeof Tslint.Linter> {
   const basedir = moduleDir || fileDir;
   return new Promise((resolve) => {
     if (!requireResolve) {
@@ -70,14 +63,14 @@ function resolveAndCacheLinter(fileDir, moduleDir) {
       tslintModuleName,
       { basedir },
       (err, linterPath, pkg) => {
-        let linter;
+        let linter: typeof Tslint.Linter;
         if (!err && pkg && /^3|4|5\./.test(pkg.version)) {
           if (pkg.version.startsWith('3')) {
             // eslint-disable-next-line import/no-dynamic-require
-            linter = shim(require('loophole').allowUnsafeNewFunction(() => require(linterPath)));
+            linter = shim(require('loophole').allowUnsafeNewFunction(() => require(linterPath) as typeof import("tslint")));
           } else {
             // eslint-disable-next-line import/no-dynamic-require
-            linter = require('loophole').allowUnsafeNewFunction(() => require(linterPath).Linter);
+            linter = require('loophole').allowUnsafeNewFunction(() => (require(linterPath) as typeof import("tslint")).Linter);
           }
           tslintCache.set(fileDir, linter);
         }
@@ -87,7 +80,7 @@ function resolveAndCacheLinter(fileDir, moduleDir) {
   });
 }
 
-function getNodePrefixPath() {
+function getNodePrefixPath(): Promise<string> {
   return new Promise((resolve, reject) => {
     const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
     ChildProcess.exec(
@@ -104,7 +97,7 @@ function getNodePrefixPath() {
   });
 }
 
-async function getLinter(filePath) {
+async function getLinter(filePath: string): Promise<typeof Tslint.Linter> {
   const basedir = path.dirname(filePath);
   if (tslintCache.has(basedir)) {
     return tslintCache.get(basedir);
@@ -131,7 +124,7 @@ async function getLinter(filePath) {
       }
     }
 
-    let prefix;
+    let prefix: string;
     try {
       prefix = await getNodePrefixPath();
     } catch (err) {
@@ -156,8 +149,8 @@ async function getLinter(filePath) {
   return fallbackLinter;
 }
 
-async function getProgram(Linter, configurationPath) {
-  let program;
+async function getProgram(Linter: typeof Tslint.Linter, configurationPath: string): Promise<Ts.Program> {
+  let program: Ts.Program;
   const configurationDir = path.dirname(configurationPath);
   const tsconfigPath = path.resolve(configurationDir, 'tsconfig.json');
   try {
@@ -183,12 +176,12 @@ function getSeverity(failure) {
  * @param options {Object} Linter options
  * @return Array of lint results
  */
-async function lint(content, filePath, options) {
+async function lint(content: string, filePath: string, options: Tslint.ILinterOptions) {
   if (filePath === null || filePath === undefined) {
     return null;
   }
 
-  let lintResult;
+  let lintResult: Tslint.LintResult;
   try {
     const Linter = await getLinter(filePath);
     const configurationPath = Linter.findConfigurationPath(null, filePath);
@@ -212,22 +205,22 @@ async function lint(content, filePath, options) {
       }
     }
 
-    let program;
+    let program: Ts.Program;
     if (config.enableSemanticRules && configurationPath) {
       program = await getProgram(Linter, configurationPath);
     }
 
-    const linter = new Linter(({
+    const linter = new Linter({
       formatter: 'json',
       rulesDirectory,
       ...options,
-    }), program);
+    }, program);
 
     linter.lint(filePath, content, configuration);
     lintResult = linter.getResult();
   } catch (err) {
     console.error(err.message, err.stack); // eslint-disable-line no-console
-    lintResult = {};
+    lintResult = { errorCount: 0, warningCount: 0, failures: [], format: "", output: "" };
   }
 
   if (
@@ -241,7 +234,7 @@ async function lint(content, filePath, options) {
     return [];
   }
 
-  return lintResult.failures.map((failure) => {
+  return lintResult["failures"].map((failure: Tslint.RuleFailure) => {
     const ruleUri = getRuleUri(failure.getRuleName());
     const startPosition = failure.getStartPosition().getLineAndCharacter();
     const endPosition = failure.getEndPosition().getLineAndCharacter();
@@ -260,13 +253,13 @@ async function lint(content, filePath, options) {
   });
 }
 
-export default async function (initialConfig) {
+async function TsLintWorker(initialConfig: ConfigSchema) {
   config.useLocalTslint = initialConfig.useLocalTslint;
   config.enableSemanticRules = initialConfig.enableSemanticRules;
   config.useGlobalTslint = initialConfig.useGlobalTslint;
   config.globalNodePath = initialConfig.globalNodePath;
 
-  process.on('message', async (message) => {
+  process.on('message', async (message: JobMessage | ConfigMessage) => {
     if (message.messageType === 'config') {
       config[message.message.key] = message.message.value;
 
@@ -277,10 +270,11 @@ export default async function (initialConfig) {
       const {
         emitKey, jobType, content, filePath,
       } = message.message;
-      const options = jobType === 'fix' ? { fix: true } : {};
+      const options = jobType === 'fix' ? { fix: true } : { fix: false };
 
       const results = await lint(content, filePath, options);
       emit(emitKey, results);
     }
   });
 }
+module.exports = TsLintWorker; // Atom needs old style export
