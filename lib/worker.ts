@@ -7,6 +7,7 @@ import { getRuleUri } from 'tslint-rule-documentation';
 import ChildProcess from 'child_process';
 import getPath from 'consistent-path';
 import type { ConfigSchema } from "./config"
+import type { emit } from 'node:cluster';
 
 process.title = 'linter-tslint worker';
 
