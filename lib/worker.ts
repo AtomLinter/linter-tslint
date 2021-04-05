@@ -15,12 +15,12 @@ import type { JobMessage, ConfigMessage } from "./workerHelper"
 process.title = 'linter-tslint worker';
 
 const tslintModuleName = 'tslint';
-const tslintCache = new Map<string, Tslint.Linter>();
+const tslintCache = new Map<string, typeof Tslint.Linter>();
 const config: ConfigSchema = {
   useLocalTslint: false,
 };
 
-let fallbackLinter: Tslint.Linter;
+let fallbackLinter: typeof Tslint.Linter;
 let requireResolve: typeof import("resolve");
 
 /**
@@ -28,7 +28,7 @@ let requireResolve: typeof import("resolve");
  * @param {Function} Linter TSLint v3 linter
  * @return {Function} TSLint v4-compatible linter
  */
-function shim(Linter: Function): Tslint.Linter {
+function shim(Linter: Function): typeof Tslint.Linter {
   function LinterShim(options) {
     this.options = options;
     this.results = {};
@@ -53,7 +53,7 @@ function shim(Linter: Function): Tslint.Linter {
   return LinterShim;
 }
 
-function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<Tslint.Linter> {
+function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typeof Tslint.Linter> {
   const basedir = moduleDir || fileDir;
   return new Promise((resolve) => {
     if (!requireResolve) {
@@ -63,14 +63,14 @@ function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<Tsl
       tslintModuleName,
       { basedir },
       (err, linterPath, pkg) => {
-        let linter: Tslint.Linter;
+        let linter: typeof Tslint.Linter;
         if (!err && pkg && /^3|4|5\./.test(pkg.version)) {
           if (pkg.version.startsWith('3')) {
             // eslint-disable-next-line import/no-dynamic-require
-            linter = shim(require('loophole').allowUnsafeNewFunction(() => require(linterPath)));
+            linter = shim(require('loophole').allowUnsafeNewFunction(() => require(linterPath) as typeof import("tslint")));
           } else {
             // eslint-disable-next-line import/no-dynamic-require
-            linter = require('loophole').allowUnsafeNewFunction(() => require(linterPath).Linter);
+            linter = require('loophole').allowUnsafeNewFunction(() => (require(linterPath) as typeof import("tslint")).Linter);
           }
           tslintCache.set(fileDir, linter);
         }
@@ -97,7 +97,7 @@ function getNodePrefixPath(): Promise<string> {
   });
 }
 
-async function getLinter(filePath: string): Promise<Tslint.Linter> {
+async function getLinter(filePath: string): Promise<typeof Tslint.Linter> {
   const basedir = path.dirname(filePath);
   if (tslintCache.has(basedir)) {
     return tslintCache.get(basedir);
@@ -149,7 +149,7 @@ async function getLinter(filePath: string): Promise<Tslint.Linter> {
   return fallbackLinter;
 }
 
-async function getProgram(Linter: Tslint.Linter, configurationPath: string): Promise<Ts.Program> {
+async function getProgram(Linter: typeof Tslint.Linter, configurationPath: string): Promise<Ts.Program> {
   let program: Ts.Program;
   const configurationDir = path.dirname(configurationPath);
   const tsconfigPath = path.resolve(configurationDir, 'tsconfig.json');
