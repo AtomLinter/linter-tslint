@@ -269,7 +269,7 @@ export default async function TsLintWorker(initialConfig: ConfigSchema) {
       const {
         emitKey, jobType, content, filePath,
       } = message.message;
-      const options = jobType === 'fix' ? { fix: true } : {};
+      const options = jobType === 'fix' ? { fix: true } : { fix: false };
 
       const results = await lint(content, filePath, options);
       emit(emitKey, results);
