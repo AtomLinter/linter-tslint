@@ -4,7 +4,7 @@ import cryptoRandomString from 'crypto-random-string';
 import type * as Tslint from "tslint";
 
 export class WorkerHelper {
-  workerInstance: Task
+  workerInstance: Task | null
   constructor() {
     this.workerInstance = null;
   }
@@ -37,13 +37,16 @@ export class WorkerHelper {
   }
 
   async requestJob(jobType: string, textEditor: TextEditor): Promise<Tslint.LintResult[]> {
-    if (!this.workerInstance) {
+    if (this.workerInstance === null) {
       throw new Error("Worker hasn't started");
     }
 
     const emitKey = await cryptoRandomString.async({ length: 10 });
 
     return new Promise((resolve, reject) => {
+      if (this.workerInstance === null) {
+        throw new Error("Worker hasn't started");
+      }
       const errSub = this.workerInstance.on('task:error', (...err) => {
         // Re-throw errors from the task
         const error = new Error(err[0]);
