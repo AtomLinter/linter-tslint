@@ -25,7 +25,7 @@ let fallbackLinter: typeof Tslint.Linter;
 let requireResolve: typeof import("resolve");
 
 
-function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typeof Tslint.Linter> {
+function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typeof Tslint.Linter | undefined> {
   const basedir = moduleDir || fileDir;
   return new Promise((resolve) => {
     if (!requireResolve) {
@@ -35,8 +35,8 @@ function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typ
       tslintModuleName,
       { basedir },
       (err, linterPath, pkg) => {
-        let linter: typeof Tslint.Linter;
-        if (!err && pkg && /^3|4|5|6\./.test(pkg.version)) {
+        let linter: typeof Tslint.Linter | undefined = undefined;
+        if (!err && linterPath !== undefined && pkg && /^3|4|5|6\./.test(pkg.version)) {
           if (pkg.version.startsWith('3')) {
             // eslint-disable-next-line import/no-dynamic-require
             linter = shim(require('loophole').allowUnsafeNewFunction(() => require(linterPath) as typeof import("tslint")));
@@ -44,7 +44,7 @@ function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typ
             // eslint-disable-next-line import/no-dynamic-require
             linter = require('loophole').allowUnsafeNewFunction(() => (require(linterPath) as typeof import("tslint")).Linter);
           }
-          tslintCache.set(fileDir, linter);
+          tslintCache.set(fileDir, linter!);
         }
         resolve(linter);
       },
@@ -69,7 +69,7 @@ function getNodePrefixPath(): Promise<string> {
   });
 }
 
-async function getLinter(filePath: string): Promise<typeof Tslint.Linter> {
+async function getLinter(filePath: string): Promise<typeof Tslint.Linter | undefined> {
   const basedir = path.dirname(filePath);
   if (tslintCache.has(basedir)) {
     return tslintCache.get(basedir);
@@ -96,7 +96,7 @@ async function getLinter(filePath: string): Promise<typeof Tslint.Linter> {
       }
     }
 
-    let prefix: string;
+    let prefix: string | undefined = undefined;
     try {
       prefix = await getNodePrefixPath();
     } catch (err) {
@@ -121,8 +121,8 @@ async function getLinter(filePath: string): Promise<typeof Tslint.Linter> {
   return fallbackLinter;
 }
 
-async function getProgram(Linter: typeof Tslint.Linter, configurationPath: string): Promise<Ts.Program> {
-  let program: Ts.Program;
+async function getProgram(Linter: typeof Tslint.Linter, configurationPath: string): Promise<Ts.Program | undefined> {
+  let program: Ts.Program | undefined = undefined;
   const configurationDir = path.dirname(configurationPath);
   const tsconfigPath = path.resolve(configurationDir, 'tsconfig.json');
   try {
@@ -148,7 +148,7 @@ function getSeverity(failure: RuleFailure) {
  * @param options {Object} Linter options
  * @return Array of lint results
  */
-async function lint(content: string, filePath: string, options: Tslint.ILinterOptions) {
+async function lint(content: string, filePath: string | undefined, options: Tslint.ILinterOptions) {
   if (filePath === null || filePath === undefined) {
     return null;
   }
@@ -156,6 +156,9 @@ async function lint(content: string, filePath: string, options: Tslint.ILinterOp
   let lintResult: Tslint.LintResult;
   try {
     const Linter = await getLinter(filePath);
+    if (!Linter) {
+      throw new Error(`tslint was not found for ${filePath}`)
+    }
     const configurationPath = Linter.findConfigurationPath(null, filePath);
     const configuration = Linter.loadConfigurationFromPath(configurationPath);
 
@@ -177,7 +180,7 @@ async function lint(content: string, filePath: string, options: Tslint.ILinterOp
       }
     }
 
-    let program: Ts.Program;
+    let program: Ts.Program | undefined = undefined;
     if (config.enableSemanticRules && configurationPath) {
       program = await getProgram(Linter, configurationPath);
     }
@@ -197,11 +200,11 @@ async function lint(content: string, filePath: string, options: Tslint.ILinterOp
 
   if (
     // tslint@<5
-    !lintResult.failureCount
+    !(lintResult as any).failureCount
     // tslint@>=5
     && !lintResult.errorCount
     && !lintResult.warningCount
-    && !lintResult.infoCount
+    && !(lintResult as any).infoCount // TODO is this still supported?
   ) {
     return [];
   }
