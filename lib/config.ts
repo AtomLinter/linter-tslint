@@ -57,7 +57,7 @@ export interface ConfigSchema {
   globalNodePath: string | null,
 }
 
-export const defaultConfig = {
+export const defaultConfig = Object.freeze({
   enableSemanticRules: false,
   rulesDirectory: "",
   fixOnSave: false,
@@ -65,4 +65,4 @@ export const defaultConfig = {
   useLocalTslint: true,
   useGlobalTslint: false,
   globalNodePath: "",
-}
+} as const)

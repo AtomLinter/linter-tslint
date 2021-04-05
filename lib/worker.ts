@@ -7,6 +7,7 @@ import { getRuleUri } from 'tslint-rule-documentation';
 import ChildProcess from 'child_process';
 import getPath from 'consistent-path';
 import { shim } from "./compat-shim";
+import { defaultConfig } from "./config"
 import type { ConfigSchema } from "./config"
 import type { emit } from 'node:cluster';
 import type * as Tslint from "tslint";
@@ -17,9 +18,7 @@ process.title = 'linter-tslint worker';
 
 const tslintModuleName = 'tslint';
 const tslintCache = new Map<string, typeof Tslint.Linter>();
-const config: ConfigSchema = {
-  useLocalTslint: false,
-};
+const config: ConfigSchema = { ...defaultConfig } // copy of default config
 
 let fallbackLinter: typeof Tslint.Linter;
 let requireResolve: typeof import("resolve");
@@ -233,6 +232,7 @@ async function TsLintWorker(initialConfig: ConfigSchema) {
 
   process.on('message', async (message: JobMessage | ConfigMessage) => {
     if (message.messageType === 'config') {
+      // set the config for the worker
       config[message.message.key] = message.message.value;
 
       if (message.message.key === 'useLocalTslint') {

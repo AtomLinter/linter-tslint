@@ -3,12 +3,12 @@ import path from 'path';
 import { promises } from 'fs';
 const { stat } = promises;
 import { WorkerHelper } from './workerHelper';
-import { defaultConfig } from "./config"
+import { defaultConfig, ConfigSchema } from "./config"
 
 const grammarScopes = ['source.ts', 'source.tsx'];
 const editorClass = 'linter-tslint-compatible-editor';
 const idleCallbacks = new Set();
-const config = defaultConfig;
+const config: ConfigSchema = { ...defaultConfig } // copy of default config
 
 // Worker still hasn't initialized, since the queued idle callbacks are
 // done in order, waiting on a newly queued idle callback will ensure that

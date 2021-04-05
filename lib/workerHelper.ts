@@ -81,8 +81,8 @@ export class WorkerHelper {
 export type ConfigMessage = {
   messageType: 'config',
   message: {
-    key: string,
-    value: any,
+    key: keyof ConfigSchema,
+    value: boolean | string | null,
   }
 }
 
