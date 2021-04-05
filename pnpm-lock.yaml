@@ -1,27 +1,27 @@
 lockfileVersion: 5.3
 
 specifiers:
-  atom-package-deps: 5.1.0
+  atom-package-deps: 7.2.3
   consistent-path: 2.0.3
-  crypto-random-string: 3.1.0
+  crypto-random-string: 3.3.1
   eslint: 7.23.0
   eslint-config-atomic: ^1.12.5
   jasmine-fix: 1.3.1
   loophole: 1.1.0
-  resolve: 1.15.1
+  resolve: 1.20.0
   tslint: 5.20.1
   tslint-rule-documentation: 1.0.3
-  typescript: 3.8.2
+  typescript: 4.2.3
 
 dependencies:
-  atom-package-deps: 5.1.0
+  atom-package-deps: 7.2.3
   consistent-path: 2.0.3
-  crypto-random-string: 3.1.0
+  crypto-random-string: 3.3.1
   loophole: 1.1.0
-  resolve: 1.15.1
-  tslint: 5.20.1_typescript@3.8.2
+  resolve: 1.20.0
+  tslint: 5.20.1_typescript@4.2.3
   tslint-rule-documentation: 1.0.3
-  typescript: 3.8.2
+  typescript: 4.2.3
 
 devDependencies:
   eslint: 7.23.0
@@ -510,11 +510,9 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /atom-package-deps/5.1.0:
-    resolution: {integrity: sha512-RGktH8NSFBJ5rdwuta3M7DbFdDr1EgrXo7uW7DQR/+lWJZcrfH2yxobnSdb/g1JM1tTvLyRYmZYOeRJGqQ9UGw==}
-    dependencies:
-      sb-fs: 4.0.0
-      semver: 6.3.0
+  /atom-package-deps/7.2.3:
+    resolution: {integrity: sha512-Z1FHJS2c2xBN3wQVniG7jXDyE4mUjZlHA0tfIkCND9U/fHaZyBJPno4/jD8PtYUnhlymaHRbCsgxCU3QuKjqfQ==}
+    hasBin: true
     dev: false
 
   /axe-core/3.5.5:
@@ -798,8 +796,8 @@ packages:
       which: 2.0.2
     dev: true
 
-  /crypto-random-string/3.1.0:
-    resolution: {integrity: sha512-Tip3yGB+bA7B0W8E4K4mNf2rZhu5r2G5Tb89/utEl5tP1QuLjTF/S9a1b8ifDrR4ORc9Utf6tscpSEtBY3YcPQ==}
+  /crypto-random-string/3.3.1:
+    resolution: {integrity: sha512-5j88ECEn6h17UePrLi6pn1JcLtAiANa3KExyr9y9Z5vo2mv56Gh3I4Aja/B9P9uyMwyxNHAHWv+nE72f30T5Dg==}
     engines: {node: '>=8'}
     dependencies:
       type-fest: 0.8.1
@@ -1422,7 +1420,6 @@ packages:
 
   /function-bind/1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
-    dev: true
 
   /functional-red-black-tree/1.0.1:
     resolution: {integrity: sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=}
@@ -1528,7 +1525,6 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
-    dev: true
 
   /hosted-git-info/2.8.8:
     resolution: {integrity: sha512-f/wzC2QaWBs7t9IYqB4T3sR1xviIViXJRJTWBlx2Gf3g0Xi5vI7Yy4koXQ1c9OYDGHN9sBy1DQ2AB8fqZBWhUg==}
@@ -1615,7 +1611,6 @@ packages:
     resolution: {integrity: sha512-XRAfAdyyY5F5cOXn7hYQDqh2Xmii+DEfIcQGxK/uNwMHhIkPWO0g8msXcbzLe+MpGoR951MlqM/2iIlU4vKDdQ==}
     dependencies:
       has: 1.0.3
-    dev: true
 
   /is-date-object/1.0.2:
     resolution: {integrity: sha512-USlDT524woQ08aoZFzh3/Z6ch9Y/EWXEHQ/AaRN0SkKq4t2Jw2R2339tSXmwuVoY7LLlBCbOIlx2myP/L5zk0g==}
@@ -1673,10 +1668,6 @@ packages:
     dependencies:
       has-symbols: 1.0.2
     dev: true
-
-  /is-utf8/0.2.1:
-    resolution: {integrity: sha1-Sw2hRCEE0bM2NA6AeX6GXPOffXI=}
-    dev: false
 
   /isarray/0.0.1:
     resolution: {integrity: sha1-ihis/Kmo9Bd+Cav8YDiTmwXR7t8=}
@@ -2168,7 +2159,6 @@ packages:
     dependencies:
       is-core-module: 2.2.0
       path-parse: 1.0.6
-    dev: true
 
   /resolve/2.0.0-next.3:
     resolution: {integrity: sha512-W8LucSynKUIDu9ylraa7ueVZ7hc0uAgJBxVsQSKOXOyle8a93qXhcz+XAXZ8bIq2d6i4Ehddn6Evt+0/UwKk6Q==}
@@ -2199,13 +2189,6 @@ packages:
     resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}
     dev: true
 
-  /sb-fs/4.0.0:
-    resolution: {integrity: sha512-UjjIHC4uahPWvKYqgknvFCCJ11S0oDahz+nsmyTCAmARKto31aoE+Lu7GGGK0nogengJEKGzFdh46ho5+IL88Q==}
-    engines: {node: '>= 8'}
-    dependencies:
-      strip-bom-buf: 1.0.0
-    dev: false
-
   /semver/5.7.1:
     resolution: {integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==}
     hasBin: true
@@ -2213,6 +2196,7 @@ packages:
   /semver/6.3.0:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
+    dev: true
 
   /semver/7.3.5:
     resolution: {integrity: sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==}
@@ -2345,13 +2329,6 @@ packages:
       ansi-regex: 5.0.0
     dev: true
 
-  /strip-bom-buf/1.0.0:
-    resolution: {integrity: sha1-HLRar1dTD0yvhsf3UXnSyaUd1XI=}
-    engines: {node: '>=4'}
-    dependencies:
-      is-utf8: 0.2.1
-    dev: false
-
   /strip-bom/3.0.0:
     resolution: {integrity: sha1-IzTBjpx1n3vdVv3vfprj1YjmjtM=}
     engines: {node: '>=4'}
@@ -2438,7 +2415,7 @@ packages:
     resolution: {integrity: sha1-NxY3WzA2WumtU940MWn5agF665A=}
     dev: false
 
-  /tslint/5.20.1_typescript@3.8.2:
+  /tslint/5.20.1_typescript@4.2.3:
     resolution: {integrity: sha512-EcMxhzCFt8k+/UP5r8waCf/lzmeSyVlqxqMEDQE7rWYiQky8KpIBz1JAoYXfROHrPZ1XXd43q8yQnULOLiBRQg==}
     engines: {node: '>=4.8.0'}
     hasBin: true
@@ -2457,17 +2434,17 @@ packages:
       resolve: 1.15.1
       semver: 5.7.1
       tslib: 1.14.1
-      tsutils: 2.29.0_typescript@3.8.2
-      typescript: 3.8.2
+      tsutils: 2.29.0_typescript@4.2.3
+      typescript: 4.2.3
     dev: false
 
-  /tsutils/2.29.0_typescript@3.8.2:
+  /tsutils/2.29.0_typescript@4.2.3:
     resolution: {integrity: sha512-g5JVHCIJwzfISaXpXE1qvNalca5Jwob6FjI4AoPlqMusJ6ftFE7IkkFoMhVLRgK+4Kx3gkzb8UZK5t5yTTvEmA==}
     peerDependencies:
       typescript: '>=2.1.0 || >=2.1.0-dev || >=2.2.0-dev || >=2.3.0-dev || >=2.4.0-dev || >=2.5.0-dev || >=2.6.0-dev || >=2.7.0-dev || >=2.8.0-dev || >=2.9.0-dev || >= 3.0.0-dev || >= 3.1.0-dev'
     dependencies:
       tslib: 1.14.1
-      typescript: 3.8.2
+      typescript: 4.2.3
     dev: false
 
   /tsutils/3.21.0_typescript@4.2.3:
@@ -2496,17 +2473,10 @@ packages:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
 
-  /typescript/3.8.2:
-    resolution: {integrity: sha512-EgOVgL/4xfVrCMbhYKUQTdF37SQn4Iw73H5BgCrF1Abdun7Kwy/QZsE/ssAy0y4LxBbvua3PIbFsbRczWWnDdQ==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-    dev: false
-
   /typescript/4.2.3:
     resolution: {integrity: sha512-qOcYwxaByStAWrBf4x0fibwZvMRG+r4cQoTjbPtUlrWjBHbmCAww1i448U0GJ+3cNNEtebDteo/cHOR3xJ4wEw==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /unbox-primitive/1.0.1:
     resolution: {integrity: sha512-tZU/3NqK3dA5gpE1KtyiJUrEB0lxnGkMFHptJ7q6ewdZ8s12QrODwNbhIJStmJkd1QDXa1NRA8aF2A1zk/Ypyw==}
