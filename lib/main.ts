@@ -24,7 +24,7 @@ function waitOnIdle() {
 };
 
 const subscriptions = new CompositeDisposable();
-let workerHelper: WorkerHelper | undefined
+const workerHelper = new WorkerHelper();
 
 export function activate() {
   const depsCallbackID = window.requestIdleCallback(() => {
@@ -34,7 +34,6 @@ export function activate() {
   });
   idleCallbacks.add(depsCallbackID);
 
-  workerHelper = new WorkerHelper();
 
   // Config subscriptions
   subscriptions.add(
