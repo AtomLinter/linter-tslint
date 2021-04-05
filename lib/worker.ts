@@ -181,7 +181,7 @@ async function lint(content: string, filePath: string, options: Tslint.ILinterOp
     return null;
   }
 
-  let lintResult: Tslint.Linter;
+  let lintResult: Tslint.LintResult;
   try {
     const Linter = await getLinter(filePath);
     const configurationPath = Linter.findConfigurationPath(null, filePath);
@@ -220,7 +220,7 @@ async function lint(content: string, filePath: string, options: Tslint.ILinterOp
     lintResult = linter.getResult();
   } catch (err) {
     console.error(err.message, err.stack); // eslint-disable-line no-console
-    lintResult = {};
+    lintResult = { errorCount: 0, warningCount: 0, failures: [], format: "", output: "" };
   }
 
   if (
