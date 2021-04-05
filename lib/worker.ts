@@ -10,7 +10,7 @@ import { shim } from "./compat-shim";
 import { defaultConfig } from "./config"
 import type { ConfigSchema } from "./config"
 import type { emit } from 'node:cluster';
-import type * as Tslint from "tslint";
+import * as Tslint from "tslint";
 import type * as Ts from "typescript";
 import type { JobMessage, ConfigMessage } from "./workerHelper"
 import { RuleFailure } from 'tslint';
@@ -141,6 +141,41 @@ function getSeverity(failure: RuleFailure) {
   return ['info', 'warning', 'error'].includes(severity) ? severity : 'warning';
 }
 
+function loadTslintConfig(Linter: typeof Tslint.Linter, filePath: string) {
+  let configurationPath: string | undefined
+  let configuration: Tslint.Configuration.IConfigurationFile | undefined
+  if (typeof Linter.findConfiguration === "function") {
+    const { path, results } = Linter.findConfiguration(null, filePath)
+    configurationPath = path
+    configuration = results
+  } else {
+    configurationPath = Linter.findConfigurationPath(null, filePath);
+    configuration = Linter.loadConfigurationFromPath(configurationPath);
+  }
+  // Load extends using `require` - this is a bug in Tslint
+  let configExtends = configuration?.extends ?? []
+  if (configurationPath !== undefined && configExtends !== undefined && configExtends.length === 0) {
+    try {
+      const configurationJson = Tslint.Configuration.readConfigurationFile?.(configurationPath)
+      const extendsJson  = configurationJson.extends
+      if (typeof extendsJson === "string") {
+        configExtends = [...configExtends, extendsJson]
+      } else if (extendsJson !== undefined) {
+        configExtends = [...configExtends, ...extendsJson]
+      }
+    } catch { /* ignore error */ }
+  }
+  return {
+    configurationPath,
+    configuration: configuration !== undefined
+    ? {
+      ...configuration,
+      extends: configExtends
+    }
+    : configuration
+  }
+}
+
 /**
  * Lint the provided TypeScript content
  * @param content {string} The content of the TypeScript file
@@ -159,10 +194,9 @@ async function lint(content: string, filePath: string | undefined, options: Tsli
     if (!Linter) {
       throw new Error(`tslint was not found for ${filePath}`)
     }
-    const configurationPath = Linter.findConfigurationPath(null, filePath);
-    const configuration = Linter.loadConfigurationFromPath(configurationPath);
+    const { configurationPath, configuration } = loadTslintConfig(Linter, filePath)
 
-    let { rulesDirectory } = configuration;
+    let rulesDirectory = configuration?.rulesDirectory;
     if (rulesDirectory && configurationPath) {
       const configurationDir = path.dirname(configurationPath);
       if (!Array.isArray(rulesDirectory)) {
