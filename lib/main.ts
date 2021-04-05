@@ -64,7 +64,7 @@ export function activate() {
       workerHelper.changeConfig('globalNodePath', globalNodePath);
     }),
     atom.config.observe('linter-tslint.ignoreTypings', (ignoreTypings) => {
-      ignoreTypings = ignoreTypings;
+      config.ignoreTypings = ignoreTypings;
     }),
     atom.workspace.observeTextEditors((textEditor) => {
       // Marks each TypeScript editor with a CSS class so that
@@ -139,7 +139,7 @@ export function provideLinter() {
     scope: 'file',
     lintsOnChange: true,
     lint: async (textEditor: TextEditor) => {
-      if (ignoreTypings && textEditor.getPath().toLowerCase().endsWith('.d.ts')) {
+      if (config.ignoreTypings && textEditor.getPath().toLowerCase().endsWith('.d.ts')) {
         return [];
       }
 
