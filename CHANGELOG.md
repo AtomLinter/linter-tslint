@@ -1,3 +1,32 @@
+# [1.11.0](https://github.com/AtomLinter/linter-tslint/compare/v1.10.43...v1.11.0) (2021-04-05)
+
+
+### Bug Fixes
+
+* add types for JobMessage and ConfigMessage ([856ec7c](https://github.com/AtomLinter/linter-tslint/commit/856ec7cd1ca9bbecd03792031089951acd479ebf))
+* create a copy of defaultConfig ([1d9db83](https://github.com/AtomLinter/linter-tslint/commit/1d9db836a836598433f6931dcb323233ddf82fc8))
+* create WorkerHelper globally ([46c560b](https://github.com/AtomLinter/linter-tslint/commit/46c560bb465016099618ee0ac647904695a34989))
+* export functions directly ([f39bfbc](https://github.com/AtomLinter/linter-tslint/commit/f39bfbcb910685c701e0f44cd7aa9c1db95019c1))
+* fix is required in ILintOptions ([9f41379](https://github.com/AtomLinter/linter-tslint/commit/9f413792b3f2fe4bbd0180be4d0dc2c44fee73b5))
+* fix the exports ([8d678ae](https://github.com/AtomLinter/linter-tslint/commit/8d678ae2bc63d47a260ced9da04d6dc2abe2b5e0))
+* handle no textEditor path ([9a7db62](https://github.com/AtomLinter/linter-tslint/commit/9a7db62d538041eca1426f06ee655978a1c757e5))
+* ignoreTypings wasn't assigned to config ([eabb6eb](https://github.com/AtomLinter/linter-tslint/commit/eabb6eb3af5af7017f7abe032ca63fc3a03981df))
+* import types from tslint and ts + access private member ([f3541b4](https://github.com/AtomLinter/linter-tslint/commit/f3541b4632b5f491ef6a54d59c93d68cd283b36f))
+* move config to config.ts and add types for config ([20a1e06](https://github.com/AtomLinter/linter-tslint/commit/20a1e067a9af2583ba288160ab5f17a578811dcc))
+* null-check for workerInstance ([08310e7](https://github.com/AtomLinter/linter-tslint/commit/08310e7df448ec7c6c681e972b47561be4443b99))
+* resolveAndCacheLinter 2nd argument is optional ([663cadd](https://github.com/AtomLinter/linter-tslint/commit/663cadd39e717059ecde5ccebae58673bb9ece07))
+* type of lintResult ([ab07c3e](https://github.com/AtomLinter/linter-tslint/commit/ab07c3e4ec21628453369ae69cb2b0e98a4615d2))
+* use async cryptoRandomString ([25faee0](https://github.com/AtomLinter/linter-tslint/commit/25faee03163f58a48151476d412946b05cbbd402))
+* use async fs.stat ([fb51a78](https://github.com/AtomLinter/linter-tslint/commit/fb51a78bf641efa0536edf1dbde009a4fc01c6da))
+* use rollup to bundle worker and main ([376dbae](https://github.com/AtomLinter/linter-tslint/commit/376dbae54ad3c92d93908d2ef6fc336754309a03))
+
+
+### Features
+
+* convert to typescript ([c3c9031](https://github.com/AtomLinter/linter-tslint/commit/c3c9031a5154ddf794e973da57d2f5e65a9cb028))
+* support tslint 6 ([cfec59d](https://github.com/AtomLinter/linter-tslint/commit/cfec59d0ab20dd5fb52462ed95b5185807071ad5))
+* update dependencies ([7ae98cf](https://github.com/AtomLinter/linter-tslint/commit/7ae98cf032ad68974173c9a9e7e0b0bfdca70420))
+
 ## [1.10.43](https://github.com/AtomLinter/linter-tslint/compare/v1.10.42...v1.10.43) (2020-02-21)
 
 
