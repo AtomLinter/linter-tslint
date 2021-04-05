@@ -1,10 +1,7 @@
 'use babel';
 
 import * as path from 'path';
-import {
-  // eslint-disable-next-line no-unused-vars
-  it, fit, wait, beforeEach, afterEach,
-} from 'jasmine-fix';
+import { it, beforeEach, afterEach } from 'jasmine-fix';
 import linterTslint from '../lib/main';
 
 // Fixture paths
