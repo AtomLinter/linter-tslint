@@ -1,6 +1,9 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@types/atom': ^1.40.10
+  '@types/node': ^14.14.37
+  '@types/resolve': ^1.20.0
   atom-package-deps: 7.2.3
   consistent-path: 2.0.3
   crypto-random-string: 3.3.1
@@ -24,6 +27,9 @@ dependencies:
   typescript: 4.2.3
 
 devDependencies:
+  '@types/atom': 1.40.10
+  '@types/node': 14.14.37
+  '@types/resolve': 1.20.0
   eslint: 7.23.0
   eslint-config-atomic: 1.12.5_eslint@7.23.0
   jasmine-fix: 1.3.1
@@ -270,12 +276,26 @@ packages:
       fastq: 1.11.0
     dev: true
 
+  /@types/atom/1.40.10:
+    resolution: {integrity: sha512-aNFUhCuR6nmTTMoYKfWWMifZ3IcNETLWC75hCdg3i1/OvirfR/5qm1wfiISBb4s/TPM2YVEtxytCdWhKJuEhzw==}
+    dependencies:
+      '@types/node': 14.14.37
+    dev: true
+
   /@types/json-schema/7.0.7:
     resolution: {integrity: sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==}
     dev: true
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
+    dev: true
+
+  /@types/node/14.14.37:
+    resolution: {integrity: sha512-XYmBiy+ohOR4Lh5jE379fV2IU+6Jn4g5qASinhitfyO71b/sCo6MKsMLF5tc7Zf2CE8hViVQyYSobJNke8OvUw==}
+    dev: true
+
+  /@types/resolve/1.20.0:
+    resolution: {integrity: sha512-SFT3jdUNlLkjxUWwH/0QjLiEsV38hjdDX8oMcX9jZAD8KWNzRLdg6INZE7UMz9O86b2BOHzA3dR8nF+DbonX2Q==}
     dev: true
 
   /@typescript-eslint/eslint-plugin/4.20.0_7448dc1756632cc6400f187319207d38:
