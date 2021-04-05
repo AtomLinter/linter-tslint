@@ -8,8 +8,11 @@
     "url": "https://github.com/AtomLinter/linter-tslint.git"
   },
   "scripts": {
-    "test": "apm test",
-    "lint": "eslint ."
+    "format": "prettier --write .",
+    "test.format": "prettier . --check",
+    "lint": "eslint . --fix",
+    "test.lint": "eslint .",
+    "test": "atom --test spec"
   },
   "license": "MIT",
   "engines": {
