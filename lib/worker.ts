@@ -15,7 +15,7 @@ import type { JobMessage, ConfigMessage } from "./workerHelper"
 process.title = 'linter-tslint worker';
 
 const tslintModuleName = 'tslint';
-const tslintCache = new Map();
+const tslintCache = new Map<string, Tslint.Linter>();
 const config: ConfigSchema = {
   useLocalTslint: false,
 };
