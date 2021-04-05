@@ -206,7 +206,7 @@ async function lint(content: string, filePath: string, options: Tslint.ILinterOp
     return [];
   }
 
-  return lintResult["failures"].map((failure: Tslint.RuleFailure) => {
+  return lintResult.failures.map((failure: Tslint.RuleFailure) => {
     const ruleUri = getRuleUri(failure.getRuleName());
     const startPosition = failure.getStartPosition().getLineAndCharacter();
     const endPosition = failure.getEndPosition().getLineAndCharacter();
