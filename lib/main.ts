@@ -138,7 +138,7 @@ export function provideLinter() {
     scope: 'file',
     lintsOnChange: true,
     lint: async (textEditor: TextEditor) => {
-      if (config.ignoreTypings && textEditor.getPath().toLowerCase().endsWith('.d.ts')) {
+      if (config.ignoreTypings && (textEditor.getPath() ?? "").toLowerCase().endsWith('.d.ts')) {
         return [];
       }
 
