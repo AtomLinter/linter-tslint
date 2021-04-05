@@ -6,12 +6,13 @@ import path from 'path';
 import { getRuleUri } from 'tslint-rule-documentation';
 import ChildProcess from 'child_process';
 import getPath from 'consistent-path';
+import type { ConfigSchema } from "./config"
 
 process.title = 'linter-tslint worker';
 
 const tslintModuleName = 'tslint';
 const tslintCache = new Map();
-const config = {
+const config: ConfigSchema = {
   useLocalTslint: false,
 };
 
@@ -251,7 +252,7 @@ async function lint(content: string, filePath: string, options: object) {
   });
 }
 
-export default async function TsLintWorker(initialConfig: object) {
+export default async function TsLintWorker(initialConfig: ConfigSchema) {
   config.useLocalTslint = initialConfig.useLocalTslint;
   config.enableSemanticRules = initialConfig.enableSemanticRules;
   config.useGlobalTslint = initialConfig.useGlobalTslint;

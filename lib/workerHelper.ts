@@ -1,7 +1,9 @@
 import { Task } from 'atom';
+import type { ConfigSchema } from "./config"
 import cryptoRandomString from 'crypto-random-string';
 
 export default class WorkerHelper {
+  workerInstance: Task
   constructor() {
     this.workerInstance = null;
   }
@@ -10,7 +12,7 @@ export default class WorkerHelper {
     return Boolean(this.workerInstance);
   }
 
-  startWorker(config) {
+  startWorker(config: ConfigSchema) {
     if (!this.workerInstance) {
       this.workerInstance = new Task(require.resolve('./worker.js'));
       this.workerInstance.start(config);

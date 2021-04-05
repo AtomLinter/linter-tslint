@@ -3,16 +3,13 @@ import path from 'path';
 import { promises } from 'fs';
 const { stat } = promises;
 import WorkerHelper from './workerHelper';
+export { config } from './config';
+import { defaultConfig } from "./config"
 
 const grammarScopes = ['source.ts', 'source.tsx'];
 const editorClass = 'linter-tslint-compatible-editor';
 const idleCallbacks = new Set();
-const config = {
-  rulesDirectory: null,
-  useLocalTslint: false,
-  useGlobalTslint: false,
-  globalNodePath: null,
-};
+const config = defaultConfig;
 
 // Worker still hasn't initialized, since the queued idle callbacks are
 // done in order, waiting on a newly queued idle callback will ensure that
