@@ -17,7 +17,7 @@ specifiers:
   rollup: ^2.44.0
   rollup-plugin-atomic: ^2.2.0
   shx: ^0.3.3
-  tslint: 5.20.1
+  tslint: ^6
   tslint-rule-documentation: 1.0.3
   typescript: 4.2.3
 
@@ -27,7 +27,7 @@ dependencies:
   crypto-random-string: 3.3.1
   loophole: 1.1.0
   resolve: 1.20.0
-  tslint: 5.20.1_typescript@4.2.3
+  tslint: 6.1.3_typescript@4.2.3
   tslint-rule-documentation: 1.0.3
   typescript: 4.2.3
 
@@ -2640,6 +2640,7 @@ packages:
     resolution: {integrity: sha512-84oo6ZTtoTUpjgNEr5SJyzQhzL72gaRodsSfyxC/AXRvwu0Yse9H8eF9IpGo7b8YetZhlI6v7ZQ6bKBFV/6S7w==}
     dependencies:
       path-parse: 1.0.6
+    dev: true
 
   /resolve/1.20.0:
     resolution: {integrity: sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A==}
@@ -3125,12 +3126,13 @@ packages:
     resolution: {integrity: sha1-NxY3WzA2WumtU940MWn5agF665A=}
     dev: false
 
-  /tslint/5.20.1_typescript@4.2.3:
-    resolution: {integrity: sha512-EcMxhzCFt8k+/UP5r8waCf/lzmeSyVlqxqMEDQE7rWYiQky8KpIBz1JAoYXfROHrPZ1XXd43q8yQnULOLiBRQg==}
+  /tslint/6.1.3_typescript@4.2.3:
+    resolution: {integrity: sha512-IbR4nkT96EQOvKE2PW/djGz8iGNeJ4rF2mBfiYaR/nvUWYKJhLwimoJKgjIFEIDibBtOevj7BqCRL4oHeWWUCg==}
     engines: {node: '>=4.8.0'}
+    deprecated: TSLint has been deprecated in favor of ESLint. Please see https://github.com/palantir/tslint/issues/4534 for more information.
     hasBin: true
     peerDependencies:
-      typescript: '>=2.3.0-dev || >=2.4.0-dev || >=2.5.0-dev || >=2.6.0-dev || >=2.7.0-dev || >=2.8.0-dev || >=2.9.0-dev || >=3.0.0-dev || >= 3.1.0-dev || >= 3.2.0-dev'
+      typescript: '>=2.3.0-dev || >=2.4.0-dev || >=2.5.0-dev || >=2.6.0-dev || >=2.7.0-dev || >=2.8.0-dev || >=2.9.0-dev || >=3.0.0-dev || >= 3.1.0-dev || >= 3.2.0-dev || >= 4.0.0-dev'
     dependencies:
       '@babel/code-frame': 7.12.13
       builtin-modules: 1.1.1
@@ -3141,7 +3143,7 @@ packages:
       js-yaml: 3.14.1
       minimatch: 3.0.4
       mkdirp: 0.5.5
-      resolve: 1.15.1
+      resolve: 1.20.0
       semver: 5.7.1
       tslib: 1.14.1
       tsutils: 2.29.0_typescript@4.2.3

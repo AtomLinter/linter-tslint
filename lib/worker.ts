@@ -35,7 +35,7 @@ function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typ
       { basedir },
       (err, linterPath, pkg) => {
         let linter: typeof Tslint.Linter;
-        if (!err && pkg && /^3|4|5\./.test(pkg.version)) {
+        if (!err && pkg && /^3|4|5|6\./.test(pkg.version)) {
           if (pkg.version.startsWith('3')) {
             // eslint-disable-next-line import/no-dynamic-require
             linter = shim(require('loophole').allowUnsafeNewFunction(() => require(linterPath) as typeof import("tslint")));
