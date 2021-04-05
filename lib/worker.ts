@@ -10,7 +10,7 @@ import { shim } from "./compat-shim";
 import { defaultConfig } from "./config"
 import type { ConfigSchema } from "./config"
 import type { emit } from 'node:cluster';
-import * as Tslint from "tslint";
+import type * as Tslint from "tslint";
 import type * as Ts from "typescript";
 import type { JobMessage, ConfigMessage } from "./workerHelper"
 import { RuleFailure } from 'tslint';
@@ -141,6 +141,8 @@ function getSeverity(failure: RuleFailure) {
   return ['info', 'warning', 'error'].includes(severity) ? severity : 'warning';
 }
 
+let tslint: undefined | typeof import("tslint")
+
 function loadTslintConfig(Linter: typeof Tslint.Linter, filePath: string) {
   let configurationPath: string | undefined
   let configuration: Tslint.Configuration.IConfigurationFile | undefined
@@ -156,7 +158,10 @@ function loadTslintConfig(Linter: typeof Tslint.Linter, filePath: string) {
   let configExtends = configuration?.extends ?? []
   if (configurationPath !== undefined && configExtends !== undefined && configExtends.length === 0) {
     try {
-      const configurationJson = Tslint.Configuration.readConfigurationFile?.(configurationPath)
+      if (!tslint) {
+        tslint = require("tslint") as typeof import("tslint")
+      }
+      const configurationJson = tslint.Configuration.readConfigurationFile?.(configurationPath)
       const extendsJson  = configurationJson.extends
       if (typeof extendsJson === "string") {
         configExtends = [...configExtends, extendsJson]

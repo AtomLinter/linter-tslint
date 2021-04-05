@@ -14,7 +14,7 @@ const CommonConfig = {
       sourcemap: true,
     },
   ],
-  external: ["atom"],
+  external: ["atom", "tslint"],
   plugins,
 }
 
