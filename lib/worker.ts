@@ -6,6 +6,7 @@ import path from 'path';
 import { getRuleUri } from 'tslint-rule-documentation';
 import ChildProcess from 'child_process';
 import getPath from 'consistent-path';
+import { shim } from "./compat-shim";
 import type { ConfigSchema } from "./config"
 import type { emit } from 'node:cluster';
 import type * as Tslint from "tslint";
@@ -23,35 +24,6 @@ const config: ConfigSchema = {
 let fallbackLinter: typeof Tslint.Linter;
 let requireResolve: typeof import("resolve");
 
-/**
- * Shim for TSLint v3 interoperability
- * @param {Function} Linter TSLint v3 linter
- * @return {Function} TSLint v4-compatible linter
- */
-function shim(Linter: Function): typeof Tslint.Linter {
-  function LinterShim(options) {
-    this.options = options;
-    this.results = {};
-  }
-
-  // Assign class properties
-  Object.assign(LinterShim, Linter);
-
-  // Assign instance methods
-  LinterShim.prototype = {
-    ...Linter.prototype,
-    lint(filePath, text, configuration) {
-      const options = { ...this.options, configuration };
-      const linter = new Linter(filePath, text, options);
-      this.results = linter.lint();
-    },
-    getResult() {
-      return this.results;
-    },
-  };
-
-  return LinterShim;
-}
 
 function resolveAndCacheLinter(fileDir: string, moduleDir?: string): Promise<typeof Tslint.Linter> {
   const basedir = moduleDir || fileDir;
