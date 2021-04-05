@@ -1,4 +1,4 @@
-import { CompositeDisposable } from 'atom';
+import { CompositeDisposable, TextEditor } from 'atom';
 import path from 'path';
 import { promises } from 'fs';
 const { stat } = promises;
@@ -18,7 +18,7 @@ function waitOnIdle() {
   return new Promise((resolve) => {
     const callbackID = window.requestIdleCallback(() => {
       idleCallbacks.delete(callbackID);
-      resolve();
+      resolve(true);
     });
     idleCallbacks.add(callbackID);
   });
@@ -138,7 +138,7 @@ const TsLintPackage = {
       grammarScopes,
       scope: 'file',
       lintsOnChange: true,
-      lint: async (textEditor) => {
+      lint: async (textEditor: TextEditor) => {
         if (this.ignoreTypings && textEditor.getPath().toLowerCase().endsWith('.d.ts')) {
           return [];
         }
