@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@types/atom": "^1.40.10",
-    "@types/node": "^14.14.37",
+    "@types/node": "^15.0.0",
     "@types/resolve": "^1.20.0",
     "build-commit": "^0.1.4",
     "cross-env": "^7.0.3",
