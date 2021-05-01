@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@types/atom': ^1.40.10
-  '@types/node': ^14.14.37
+  '@types/node': ^15.0.0
   '@types/resolve': ^1.20.0
   atom-package-deps: 7.2.3
   build-commit: ^0.1.4
@@ -33,7 +33,7 @@ dependencies:
 
 devDependencies:
   '@types/atom': 1.40.10
-  '@types/node': 14.14.37
+  '@types/node': 15.0.1
   '@types/resolve': 1.20.0
   build-commit: 0.1.4
   cross-env: 7.0.3
@@ -41,7 +41,7 @@ devDependencies:
   eslint-config-atomic: 1.12.5_eslint@7.25.0
   jasmine-fix: 1.3.1
   rollup: 2.44.0
-  rollup-plugin-atomic: 2.2.0_efcd15ed4dbe2aad5f083d29b5019c50
+  rollup-plugin-atomic: 2.2.0_@types+node@15.0.1+rollup@2.44.0
   shx: 0.3.3
 
 packages:
@@ -424,6 +424,10 @@ packages:
 
   /@types/node/14.14.37:
     resolution: {integrity: sha512-XYmBiy+ohOR4Lh5jE379fV2IU+6Jn4g5qASinhitfyO71b/sCo6MKsMLF5tc7Zf2CE8hViVQyYSobJNke8OvUw==}
+    dev: true
+
+  /@types/node/15.0.1:
+    resolution: {integrity: sha512-TMkXt0Ck1y0KKsGr9gJtWGjttxlZnnvDtphxUOSd0bfaR6Q1jle+sPvrzNR1urqYTWMinoKvjKfXUGsumaO1PA==}
     dev: true
 
   /@types/resolve/1.17.1:
@@ -2676,7 +2680,7 @@ packages:
       assemblyscript: 0.18.21
     dev: true
 
-  /rollup-plugin-atomic/2.2.0_efcd15ed4dbe2aad5f083d29b5019c50:
+  /rollup-plugin-atomic/2.2.0_@types+node@15.0.1+rollup@2.44.0:
     resolution: {integrity: sha512-YFHG7kWGKbhAQx2TVd5JS8LuTyAeiXq9psbHpKKThLFzCGw5KuJg9gvTY2pr7+Wml4CATtSDUNJrZoSHdXMJnw==}
     peerDependencies:
       rollup: ^2
@@ -2696,7 +2700,7 @@ packages:
       rollup-plugin-coffee-script: 2.0.0_coffeescript@1.12.7
       rollup-plugin-css-only: 3.1.0_rollup@2.44.0
       rollup-plugin-execute: 1.1.1
-      rollup-plugin-sourcemaps: 0.6.3_efcd15ed4dbe2aad5f083d29b5019c50
+      rollup-plugin-sourcemaps: 0.6.3_@types+node@15.0.1+rollup@2.44.0
       rollup-plugin-terser: 7.0.2_rollup@2.44.0
       rollup-plugin-visualizer: 4.2.2_rollup@2.44.0
       tslib: 2.1.0
@@ -2759,7 +2763,7 @@ packages:
       resolve: 1.20.0
     dev: true
 
-  /rollup-plugin-sourcemaps/0.6.3_efcd15ed4dbe2aad5f083d29b5019c50:
+  /rollup-plugin-sourcemaps/0.6.3_@types+node@15.0.1+rollup@2.44.0:
     resolution: {integrity: sha512-paFu+nT1xvuO1tPFYXGe+XnQvg4Hjqv/eIhG8i5EspfYYPBKL57X7iVbfv55aNVASg3dzWvES9dmWsL2KhfByw==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
@@ -2770,7 +2774,7 @@ packages:
         optional: true
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.44.0
-      '@types/node': 14.14.37
+      '@types/node': 15.0.1
       rollup: 2.44.0
       source-map-resolve: 0.6.0
     dev: true
