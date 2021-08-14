@@ -15,7 +15,7 @@ specifiers:
   loophole: 1.1.0
   resolve: 1.20.0
   rollup: ^2.44.0
-  rollup-plugin-atomic: ^2.2.0
+  rollup-plugin-atomic: ^3.0.0
   shx: ^0.3.3
   tslint: ^6
   tslint-rule-documentation: 1.0.3
@@ -41,7 +41,7 @@ devDependencies:
   eslint-config-atomic: 1.12.5_eslint@7.32.0
   jasmine-fix: 1.3.1
   rollup: 2.44.0
-  rollup-plugin-atomic: 2.2.0_@types+node@16.3.3+rollup@2.44.0
+  rollup-plugin-atomic: 3.0.1_@types+node@16.3.3
   shx: 0.3.3
 
 packages:
@@ -318,11 +318,11 @@ packages:
       rollup: 2.44.0
     dev: true
 
-  /@rollup/plugin-commonjs/18.0.0_rollup@2.44.0:
-    resolution: {integrity: sha512-fj92shhg8luw7XbA0HowAqz90oo7qtLGwqTKbyZ8pmOyH8ui5e+u0wPEgeHLH3djcVma6gUCUrjY6w5R2o1u6g==}
+  /@rollup/plugin-commonjs/20.0.0_rollup@2.44.0:
+    resolution: {integrity: sha512-5K0g5W2Ol8hAcTHqcTBHiA7M58tfmYi1o9KxeJuuRNpGaTa5iLjcyemBitCBcKXaHamOBBEH2dGom6v6Unmqjg==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
-      rollup: ^2.30.0
+      rollup: ^2.38.3
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.44.0
       commondir: 1.0.1
@@ -343,11 +343,11 @@ packages:
       rollup: 2.44.0
     dev: true
 
-  /@rollup/plugin-node-resolve/11.2.1_rollup@2.44.0:
-    resolution: {integrity: sha512-yc2n43jcqVyGE2sqV5/YCmocy9ArjVAP/BeXyTtADTBBX6V0e5UMqwO8CdQ0kzjb6zu5P1qMzsScCMRvE9OlVg==}
+  /@rollup/plugin-node-resolve/13.0.4_rollup@2.44.0:
+    resolution: {integrity: sha512-eYq4TFy40O8hjeDs+sIxEH/jc9lyuI2k9DM557WN6rO5OpnC2qXMBNj4IKH1oHrnAazL49C5p0tgP0/VpqJ+/w==}
     engines: {node: '>= 10.0.0'}
     peerDependencies:
-      rollup: ^1.20.0||^2.0.0
+      rollup: ^2.42.0
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.44.0
       '@types/resolve': 1.17.1
@@ -358,8 +358,8 @@ packages:
       rollup: 2.44.0
     dev: true
 
-  /@rollup/plugin-replace/2.4.2_rollup@2.44.0:
-    resolution: {integrity: sha512-IGcu+cydlUMZ5En85jxHH4qj2hta/11BHq95iHEyb2sbgiN0eCdzvUcHw5gt9pBL5lTi4JDYJ1acCoMGpTvEZg==}
+  /@rollup/plugin-replace/3.0.0_rollup@2.44.0:
+    resolution: {integrity: sha512-3c7JCbMuYXM4PbPWT4+m/4Y6U60SgsnDT/cCyAyUKwFHg7pTSfsSQzIpETha3a3ig6OdOKzZz87D9ZXIK3qsDg==}
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0
     dependencies:
@@ -368,8 +368,8 @@ packages:
       rollup: 2.44.0
     dev: true
 
-  /@rollup/plugin-typescript/8.2.1_ad28fe470f8da8a1474fbb07c029e4b1:
-    resolution: {integrity: sha512-Qd2E1pleDR4bwyFxqbjt4eJf+wB0UKVMLc7/BAFDGVdAXQMCsD4DUv5/7/ww47BZCYxWtJqe1Lo0KVNswBJlRw==}
+  /@rollup/plugin-typescript/8.2.5_e73d0a722eb99d9e2b6db283e17ba707:
+    resolution: {integrity: sha512-QL/LvDol/PAGB2O0S7/+q2HpSUNodpw7z6nGn9BfoVCPOZ0r4EALrojFU29Bkoi2Hr2jgTocTejJ5GGWZfOxbQ==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       rollup: ^2.14.0
@@ -379,7 +379,7 @@ packages:
       '@rollup/pluginutils': 3.1.0_rollup@2.44.0
       resolve: 1.20.0
       rollup: 2.44.0
-      tslib: 2.1.0
+      tslib: 2.3.1
       typescript: 4.2.3
     dev: true
 
@@ -448,7 +448,7 @@ packages:
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 14.14.37
+      '@types/node': 16.3.3
     dev: true
 
   /@types/resolve/1.20.0:
@@ -2081,7 +2081,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 14.14.37
+      '@types/node': 16.3.3
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
@@ -2700,17 +2700,15 @@ packages:
       assemblyscript: 0.18.21
     dev: true
 
-  /rollup-plugin-atomic/2.2.0_@types+node@16.3.3+rollup@2.44.0:
-    resolution: {integrity: sha512-YFHG7kWGKbhAQx2TVd5JS8LuTyAeiXq9psbHpKKThLFzCGw5KuJg9gvTY2pr7+Wml4CATtSDUNJrZoSHdXMJnw==}
-    peerDependencies:
-      rollup: ^2
+  /rollup-plugin-atomic/3.0.1_@types+node@16.3.3:
+    resolution: {integrity: sha512-as+LsOqZ2Pq8J8DH8J7Y2tRqLSqZPpHRcEx+3L2S1WdxPMTxf5ucifrzWAqFezsOv/V8/DOEMOv2SZh0t4fa+A==}
     dependencies:
       '@rollup/plugin-babel': 5.3.0_5e7fd6efeecd0601cdf62a5dd59ff63a
-      '@rollup/plugin-commonjs': 18.0.0_rollup@2.44.0
+      '@rollup/plugin-commonjs': 20.0.0_rollup@2.44.0
       '@rollup/plugin-json': 4.1.0_rollup@2.44.0
-      '@rollup/plugin-node-resolve': 11.2.1_rollup@2.44.0
-      '@rollup/plugin-replace': 2.4.2_rollup@2.44.0
-      '@rollup/plugin-typescript': 8.2.1_ad28fe470f8da8a1474fbb07c029e4b1
+      '@rollup/plugin-node-resolve': 13.0.4_rollup@2.44.0
+      '@rollup/plugin-replace': 3.0.0_rollup@2.44.0
+      '@rollup/plugin-typescript': 8.2.5_e73d0a722eb99d9e2b6db283e17ba707
       '@rollup/plugin-wasm': 5.1.2_rollup@2.44.0
       array-includes-any: 2.7.3
       csso-cli: 3.0.0
@@ -2722,8 +2720,8 @@ packages:
       rollup-plugin-execute: 1.1.1
       rollup-plugin-sourcemaps: 0.6.3_@types+node@16.3.3+rollup@2.44.0
       rollup-plugin-terser: 7.0.2_rollup@2.44.0
-      rollup-plugin-visualizer: 4.2.2_rollup@2.44.0
-      tslib: 2.1.0
+      rollup-plugin-visualizer: 5.5.2_rollup@2.44.0
+      tslib: 2.3.1
     optionalDependencies:
       '@babel/core': 7.13.14
       assemblyscript: 0.18.21
@@ -2811,12 +2809,12 @@ packages:
       terser: 5.6.1
     dev: true
 
-  /rollup-plugin-visualizer/4.2.2_rollup@2.44.0:
-    resolution: {integrity: sha512-10/TsugsaQL5rdynl0lrklBngTtkRBESZdxUJy+3fN+xKqNdg5cr7JQU1OoPx4p5mhQ+nspa6EvX3qc8SsBvnA==}
-    engines: {node: '>=10'}
+  /rollup-plugin-visualizer/5.5.2_rollup@2.44.0:
+    resolution: {integrity: sha512-sh+P9KhuWTzeStyRA5yNZpoEFGuj5Ph34JLMa9+muhU8CneFf9L0XE4fmAwAojJLWp//uLUEyytBPSCdZEg5AA==}
+    engines: {node: '>=10.16'}
     hasBin: true
     peerDependencies:
-      rollup: '>=1.20.0'
+      rollup: ^2.0.0
     dependencies:
       nanoid: 3.1.22
       open: 7.4.2
@@ -3142,8 +3140,8 @@ packages:
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
 
-  /tslib/2.1.0:
-    resolution: {integrity: sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==}
+  /tslib/2.3.1:
+    resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==}
     dev: true
 
   /tslint-rule-documentation/1.0.3:
